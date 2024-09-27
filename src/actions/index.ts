@@ -55,7 +55,7 @@ export const getLocalProducts =
         type: GET_LOCAL_PRODUCTS,
         payload: state.productState.master?.filter(
           (product) =>
-            Math.floor(product.rating.rate) >= Number(filter.substr(0, 1))
+            Math.floor(product.rating.rate) === Number(filter.substr(0, 1))
         ),
       });
     }

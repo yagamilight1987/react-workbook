@@ -25,7 +25,7 @@ class ActiveFilters extends Component<ActiveFiltersProps> {
             key &&
             value && (
               <li key={key} className="text-lg flex items-center">
-                <span className="capitalize">{key}:</span>{' '}
+                {/* <span className="capitalize">{key}:</span>{' '} */}
                 <button
                   onClick={() => this.handleDeleteFilter(key)}
                   className=" bg-white rounded-xl py-2 px-4 ml-4"

@@ -6,15 +6,15 @@ import ActiveFilters from '../components/ActiveFilters';
 const ProductPage: React.FC = () => {
   return (
     <div className="flex">
-      <div className="p-4 w-64 border-zinc-600 border-r-2">
+      <aside className="p-4 w-64 bg-zinc-900 h-full fixed mt-12">
         <Sidebar />
-      </div>
+      </aside>
 
-      <div className="flex-1 p-4">
+      <div className="flex-1 p-4 pl-72 mt-12">
         <div className="py-4">
           <ActiveFilters />
         </div>
-        <div className="flex justify-center flex-wrap">
+        <div className="flex flex-wrap">
           <Products />
         </div>
       </div>

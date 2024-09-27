@@ -28,7 +28,7 @@ class Products extends Component<ProductsProps> {
   renderProductList(products: Product[] | undefined) {
     return products && products.length > 0
       ? products.map((product: Product) => (
-          <div key={product.id} className="m-4 w-96">
+          <div key={product.id} className="m-4 w-64">
             <ProductItem product={product} />
           </div>
         ))
