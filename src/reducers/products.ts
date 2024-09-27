@@ -13,7 +13,13 @@ export default (state: ProductState = {}, action: IActionCreator) => {
       return { ...state, products: [...action.payload] };
 
     case CHANGE_FILTER:
-      return { ...state, filter: action.payload };
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          ...{ [action.payload.filterType]: action.payload.filterValue },
+        },
+      };
 
     case CHANGE_SORT:
       return { ...state, sort: action.payload };

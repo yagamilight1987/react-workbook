@@ -17,7 +17,8 @@ export const getProducts =
     try {
       let url = 'https://fakestoreapi.com/products';
       const state: AppState = getState();
-      const filter = state.productState.filter;
+      const filters = state.productState.filters;
+      const filter = filters ? filters['category'] : '';
       const sort = state.productState.sort;
 
       if (filter) {
@@ -53,11 +54,11 @@ export const getCategories = (): any => async (dispatch: Dispatch) => {
 };
 
 export const changeFilter =
-  (filter: string): any =>
+  (filterType: string, filterValue: string): any =>
   async (dispatch: Dispatch) => {
     dispatch({
       type: CHANGE_FILTER,
-      payload: filter,
+      payload: { filterType, filterValue },
     });
 
     dispatch(getProducts());

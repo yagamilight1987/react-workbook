@@ -5,7 +5,7 @@ export interface AppState {
 
 export interface ProductState {
   products?: Product[];
-  filter?: string;
+  filters?: { [key: string]: string };
   sort?: string;
   loading?: boolean;
   error?: string;

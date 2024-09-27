@@ -15,7 +15,7 @@ if (element) {
   const INITIAL_STATE: any = {
     productState: {
       products: [],
-      filter: '',
+      filters: {},
       sort: 'asc',
     },
     categories: [],

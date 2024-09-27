@@ -38,13 +38,13 @@ class Products extends Component<ProductsProps> {
   render() {
     const { products, loading, error } = this.props;
     return (
-      <div className="flex-1 flex flex-wrap justify-center p-4">
+      <>
         {loading
           ? this.renderLoader()
           : error
           ? this.renderError(error)
           : this.renderProductList(products)}
-      </div>
+      </>
     );
   }
 }

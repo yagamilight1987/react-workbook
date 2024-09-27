@@ -5,38 +5,39 @@ import { changeFilter, changeSort, getCategories } from '../actions';
 
 interface SidebarProps {
   categories?: Array<string>;
-  filter?: string;
+  filters?: { [key: string]: string };
   sort?: string;
   getCategories: () => void;
-  changeFilter: (filter: string) => void;
+  changeFilter: (filterType: string, filterValue: string) => void;
   changeSort: (sort: string) => void;
 }
 
 class Sidebar extends Component<SidebarProps> {
-  
   componentDidMount(): void {
     this.props.getCategories();
   }
 
   handleCategoryChange = (category: string) => {
-    this.props.changeFilter(category);
+    this.props.changeFilter('category', category);
   };
 
   handleSortChange = (event: any) => {
     this.props.changeSort(event.target.value);
   };
 
-  render() {
-    const { categories, filter, sort } = this.props;
+  renderCategoryFilter() {
+    const { categories, filters } = this.props;
+    const categoryFilter = filters ? filters['category'] : '';
+
     return (
-      <div className="p-4 w-64 border-zinc-600 border-r-2">
+      <>
         <h2 className="font-bold text-lg mb-4">Filter by Category</h2>
         <div className="mb-4">
-          {categories?.map((category) => (
+          {categories?.map((category: string) => (
             <label key={category} className="block">
               <input
                 type="radio"
-                checked={filter === category}
+                checked={categoryFilter === category}
                 onChange={() => this.handleCategoryChange(category)}
                 className="mr-2"
               />
@@ -44,7 +45,14 @@ class Sidebar extends Component<SidebarProps> {
             </label>
           ))}
         </div>
+      </>
+    );
+  }
 
+  renderSortOptions() {
+    const { sort } = this.props;
+    return (
+      <>
         <h2 className="font-bold text-lg mb-4">Sort by</h2>
         <div>
           <label className="block">
@@ -68,7 +76,16 @@ class Sidebar extends Component<SidebarProps> {
             Descending
           </label>
         </div>
-      </div>
+      </>
+    );
+  }
+
+  render() {
+    return (
+      <>
+        {this.renderCategoryFilter()}
+        {this.renderSortOptions()}
+      </>
     );
   }
 }
@@ -76,7 +93,7 @@ class Sidebar extends Component<SidebarProps> {
 const mapStateToProps = (state: AppState) => {
   return {
     categories: state.categories,
-    filter: state.productState.filter,
+    filters: state.productState.filters,
     sort: state.productState.sort,
   };
 };
