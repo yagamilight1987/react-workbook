@@ -4,6 +4,7 @@ export interface AppState {
 }
 
 export interface ProductState {
+  master?: Product[];
   products?: Product[];
   filters?: { [key: string]: string };
   sort?: string;

@@ -4,6 +4,7 @@ import {
   CHANGE_SORT,
   ERROR_PRODUCTS,
   FETCH_CATEGORIES,
+  GET_LOCAL_PRODUCTS,
   GET_PRODUCTS,
   LOADING_PRODUCTS,
 } from './types';
@@ -44,6 +45,22 @@ export const getProducts =
     }
   };
 
+export const getLocalProducts =
+  (): any => (dispatch: Dispatch, getState: () => any) => {
+    const state: AppState = getState();
+    const filters = state.productState.filters;
+    const filter = filters ? filters['rating'] : '';
+    if (filter) {
+      dispatch({
+        type: GET_LOCAL_PRODUCTS,
+        payload: state.productState.master?.filter(
+          (product) =>
+            Math.floor(product.rating.rate) >= Number(filter.substr(0, 1))
+        ),
+      });
+    }
+  };
+
 export const getCategories = (): any => async (dispatch: Dispatch) => {
   const response = await axios('https://fakestoreapi.com/products/categories');
 
@@ -54,14 +71,18 @@ export const getCategories = (): any => async (dispatch: Dispatch) => {
 };
 
 export const changeFilter =
-  (filterType: string, filterValue: string): any =>
+  (filterType: string, filterValue: string, isOffline = false): any =>
   async (dispatch: Dispatch) => {
     dispatch({
       type: CHANGE_FILTER,
       payload: { filterType, filterValue },
     });
 
-    dispatch(getProducts());
+    if (!isOffline) {
+      await dispatch(getProducts());
+    }
+
+    dispatch(getLocalProducts());
   };
 
 export const changeSort =

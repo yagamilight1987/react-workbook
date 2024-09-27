@@ -8,7 +8,11 @@ interface SidebarProps {
   filters?: { [key: string]: string };
   sort?: string;
   getCategories: () => void;
-  changeFilter: (filterType: string, filterValue: string) => void;
+  changeFilter: (
+    filterType: string,
+    filterValue: string,
+    isOffline?: boolean
+  ) => void;
   changeSort: (sort: string) => void;
 }
 
@@ -20,6 +24,10 @@ class Sidebar extends Component<SidebarProps> {
   handleCategoryChange = (category: string) => {
     this.props.changeFilter('category', category);
   };
+
+  handleRatingChange(rating: string) {
+    this.props.changeFilter('rating', rating, true);
+  }
 
   handleSortChange = (event: any) => {
     this.props.changeSort(event.target.value);
@@ -42,6 +50,31 @@ class Sidebar extends Component<SidebarProps> {
                 className="mr-2"
               />
               {category}
+            </label>
+          ))}
+        </div>
+      </>
+    );
+  }
+
+  renderRatingFilter() {
+    const { filters } = this.props;
+    const ratingFilter = filters ? filters['rating'] : '';
+    const ratings = ['1 star', '2 star', '3 star', '4 star and above'];
+
+    return (
+      <>
+        <h2 className="font-bold text-lg mb-4">Filter by Rating</h2>
+        <div className="mb-4">
+          {ratings.map((rating) => (
+            <label key={rating} className="block">
+              <input
+                type="radio"
+                checked={ratingFilter === rating}
+                onChange={() => this.handleRatingChange(rating)}
+                className="mr-2"
+              />
+              {rating}
             </label>
           ))}
         </div>
@@ -84,6 +117,7 @@ class Sidebar extends Component<SidebarProps> {
     return (
       <>
         {this.renderCategoryFilter()}
+        {this.renderRatingFilter()}
         {this.renderSortOptions()}
       </>
     );
