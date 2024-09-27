@@ -5,44 +5,29 @@ import { changeFilter, changeSort, getCategories } from '../actions';
 
 interface SidebarProps {
   categories?: Array<string>;
+  filter?: string;
+  sort?: string;
   getCategories: () => void;
   changeFilter: (filter: string) => void;
   changeSort: (sort: string) => void;
 }
 
-interface SidebarState {
-  filter: string;
-  sortOrder: 'asc' | 'desc';
-}
-
-class Sidebar extends Component<SidebarProps, SidebarState> {
-  constructor(props: SidebarProps) {
-    super(props);
-
-    this.state = {
-      filter: '',
-      sortOrder: 'asc',
-    };
-  }
-
+class Sidebar extends Component<SidebarProps> {
+  
   componentDidMount(): void {
     this.props.getCategories();
   }
 
   handleCategoryChange = (category: string) => {
-    this.setState({ filter: category });
-
     this.props.changeFilter(category);
   };
 
   handleSortChange = (event: any) => {
-    this.setState({ sortOrder: event.target.value });
-
     this.props.changeSort(event.target.value);
   };
 
   render() {
-    const { categories } = this.props;
+    const { categories, filter, sort } = this.props;
     return (
       <div className="p-4 w-64 border-zinc-600 border-r-2">
         <h2 className="font-bold text-lg mb-4">Filter by Category</h2>
@@ -51,7 +36,7 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
             <label key={category} className="block">
               <input
                 type="radio"
-                checked={this.state.filter === category}
+                checked={filter === category}
                 onChange={() => this.handleCategoryChange(category)}
                 className="mr-2"
               />
@@ -66,7 +51,7 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
             <input
               type="radio"
               value="asc"
-              checked={this.state.sortOrder === 'asc'}
+              checked={sort === 'asc'}
               onChange={this.handleSortChange}
               className="mr-2"
             />
@@ -76,7 +61,7 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
             <input
               type="radio"
               value="desc"
-              checked={this.state.sortOrder === 'desc'}
+              checked={sort === 'desc'}
               onChange={this.handleSortChange}
               className="mr-2"
             />
@@ -91,6 +76,8 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
 const mapStateToProps = (state: AppState) => {
   return {
     categories: state.categories,
+    filter: state.productState.filter,
+    sort: state.productState.sort,
   };
 };
 

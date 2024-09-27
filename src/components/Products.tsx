@@ -1,12 +1,14 @@
-import { AppState, Product } from '@/interfaces';
 import { Component } from 'react';
-
 import { connect } from 'react-redux';
-import { getProducts } from '../actions';
+
+import { getProducts, setError, setLoading } from '../actions';
 import ProductItem from './ProductItem';
+import { AppState, Product } from '@/interfaces';
 
 interface ProductsProps {
   products?: Product[];
+  loading?: boolean;
+  error?: string;
   getProducts: () => void;
 }
 
@@ -15,17 +17,33 @@ class Products extends Component<ProductsProps> {
     this.props.getProducts();
   }
 
+  renderLoader() {
+    return 'Loading...';
+  }
+
+  renderError(message: string) {
+    return message;
+  }
+
+  renderProductList(products: Product[] | undefined) {
+    return products && products.length > 0
+      ? products.map((product: Product) => (
+          <div key={product.id} className="m-4 w-96">
+            <ProductItem product={product} />
+          </div>
+        ))
+      : 'No products';
+  }
+
   render() {
-    const { products } = this.props;
+    const { products, loading, error } = this.props;
     return (
       <div className="flex-1 flex flex-wrap justify-center p-4">
-        {products && products.length > 0
-          ? products.map((product) => (
-              <div key={product.id} className="m-4 w-96">
-                <ProductItem product={product} />
-              </div>
-            ))
-          : 'No products'}
+        {loading
+          ? this.renderLoader()
+          : error
+          ? this.renderError(error)
+          : this.renderProductList(products)}
       </div>
     );
   }
@@ -34,30 +52,15 @@ class Products extends Component<ProductsProps> {
 const mapStateToProps = (state: AppState) => {
   return {
     products: state.productState.products,
+    loading: state.productState.loading,
+    error: state.productState.error,
   };
 };
 
 const mapDispatchToProps = {
   getProducts: getProducts,
+  setLoading: setLoading,
+  setError: setError,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
-
-// export default () => {
-//   const dispatch = useDispatch();
-//   const products: Product[] | undefined = useSelector(
-//     (state: IState) => state.products
-//   );
-
-//   useEffect(() => {
-//     dispatch(getProducts());
-//   }, [dispatch]);
-
-//   return (
-//     <ul>
-//       {products?.map((p: Product) => (
-//         <li key={p.id}>{p.title}</li>
-//       ))}
-//     </ul>
-//   );
-// };

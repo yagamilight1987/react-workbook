@@ -7,6 +7,8 @@ export interface ProductState {
   products?: Product[];
   filter?: string;
   sort?: string;
+  loading?: boolean;
+  error?: string;
 }
 
 export interface Product {

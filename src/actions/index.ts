@@ -2,34 +2,45 @@ import axios, { AxiosResponse } from 'axios';
 import {
   CHANGE_FILTER,
   CHANGE_SORT,
+  ERROR_PRODUCTS,
   FETCH_CATEGORIES,
   GET_PRODUCTS,
+  LOADING_PRODUCTS,
 } from './types';
 import { Dispatch } from 'redux';
 import { AppState } from '@/interfaces';
 
 export const getProducts =
   (): any => async (dispatch: Dispatch, getState: () => any) => {
-    let url = 'https://fakestoreapi.com/products';
-    const state: AppState = getState();
-    const filter = state.productState.filter;
-    const sort = state.productState.sort;
+    dispatch(setLoading(true));
 
-    console.log(filter, sort);
+    try {
+      let url = 'https://fakestoreapi.com/products';
+      const state: AppState = getState();
+      const filter = state.productState.filter;
+      const sort = state.productState.sort;
 
-    if (filter) {
-      url = `${url}/category/${filter}`;
+      if (filter) {
+        url = `${url}/category/${filter}`;
+      }
+
+      if (sort) {
+        url = `${url}?sort=${sort}`;
+      }
+      const response: AxiosResponse = await axios.get(url);
+
+      dispatch({
+        type: GET_PRODUCTS,
+        payload: response.data,
+      });
+    } catch (error: any) {
+      dispatch({
+        type: ERROR_PRODUCTS,
+        payload: error.message,
+      });
+    } finally {
+      dispatch(setLoading(false));
     }
-
-    if (sort) {
-      url = `${url}?sort=${sort}`;
-    }
-    const response: AxiosResponse = await axios.get(url);
-
-    dispatch({
-      type: GET_PRODUCTS,
-      payload: response.data,
-    });
   };
 
 export const getCategories = (): any => async (dispatch: Dispatch) => {
@@ -61,4 +72,22 @@ export const changeSort =
     });
 
     dispatch(getProducts());
+  };
+
+export const setLoading =
+  (value: boolean): any =>
+  (dispatch: Dispatch) => {
+    dispatch({
+      type: LOADING_PRODUCTS,
+      payload: value,
+    });
+  };
+
+export const setError =
+  (message: string): any =>
+  (dispatch: Dispatch) => {
+    dispatch({
+      type: ERROR_PRODUCTS,
+      payload: message,
+    });
   };
