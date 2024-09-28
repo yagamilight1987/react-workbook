@@ -8,6 +8,12 @@ import './index.css';
 import App from './components/App';
 import reducers from './reducers';
 
+import { makeServer } from './__mock__';
+
+if (process.env.NODE_ENV === 'development') {
+  makeServer({ environment: 'development' });
+}
+
 const element: HTMLElement | null = document.getElementById('root');
 if (element) {
   const root: Root = createRoot(element);

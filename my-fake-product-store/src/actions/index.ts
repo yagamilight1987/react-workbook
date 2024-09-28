@@ -93,7 +93,9 @@ export const changeSort =
       payload: sort,
     });
 
-    dispatch(getProducts());
+    await dispatch(getProducts());
+
+    dispatch(getLocalProducts());
   };
 
 export const setLoading =

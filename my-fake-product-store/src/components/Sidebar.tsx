@@ -42,7 +42,7 @@ class Sidebar extends Component<SidebarProps> {
         <h2 className="font-bold text-lg mb-4">Filter by Category</h2>
         <div className="mb-4">
           {categories?.map((category: string) => (
-            <label key={category} className="block">
+            <label key={category} className="block capitalize">
               <input
                 type="radio"
                 checked={categoryFilter === category}

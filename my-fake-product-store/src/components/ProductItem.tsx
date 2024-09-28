@@ -14,7 +14,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
           {product.title}
         </h2>
         {/* <p className="text-zinc-300 mt-2 line-clamp-2 text-zinc-500">{product.description}</p> */}
-        <p className="mt-2">Category: {product.category}</p>
+        <p className="mt-2 capitalize">Category: {product.category}</p>
         <div className="flex items-center justify-between">
           <p className="mt-2 text-lg font-semibold">
             ${product.price.toFixed(2)}
