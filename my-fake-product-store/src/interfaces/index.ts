@@ -1,6 +1,7 @@
 export interface AppState {
   productState: ProductState;
   categories: Array<string>;
+  authState: AuthState;
 }
 
 export interface ProductState {
@@ -30,4 +31,10 @@ export interface Rating {
 export interface IActionCreator {
   type: string;
   payload: any;
+}
+
+export interface AuthState {
+  token?: string;
+  error?: string;
+  username?: string;
 }

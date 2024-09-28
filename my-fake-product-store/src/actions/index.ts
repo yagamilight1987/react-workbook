@@ -7,6 +7,8 @@ import {
   GET_LOCAL_PRODUCTS,
   GET_PRODUCTS,
   LOADING_PRODUCTS,
+  LOGIN_USER_ERROR,
+  LOGIN_USER_SUCCESS,
 } from './types';
 import { Dispatch } from 'redux';
 import { AppState } from '@/interfaces';
@@ -114,4 +116,25 @@ export const setError =
       type: ERROR_PRODUCTS,
       payload: message,
     });
+  };
+
+export const loginUser =
+  (username: string, password: string) => async (dispatch: Dispatch) => {
+    try {
+      const response = await axios.post(
+        'https://fakestoreapi.com/auth/login',
+        JSON.stringify({ username, password }),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      dispatch({ type: LOGIN_USER_SUCCESS, payload: response.data });
+    } catch (error: any) {
+      dispatch({
+        type: LOGIN_USER_ERROR,
+        payload: error.message,
+      });
+    }
   };

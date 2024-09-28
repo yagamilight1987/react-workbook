@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
 import ProductPage from '../pages/ProductPage';
-import Login from '../pages/LoginPage';
+import LoginPage from '../pages/LoginPage';
 import NoMatch from '../pages/NoMatchPage';
 import Auth from './auth/Auth';
 
@@ -14,7 +14,7 @@ const App: React.FC = (): ReactNode => {
           <Route index element={<ProductPage />} />
         </Route>
         <Route path="/login" element={<Auth />}>
-          <Route path="" element={<Login />} />
+          <Route path="" element={<LoginPage />} />
         </Route>
         <Route path="*" element={<NoMatch />} />
       </Routes>

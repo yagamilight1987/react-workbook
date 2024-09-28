@@ -13,6 +13,8 @@ export function makeServer({ environment = 'development' } = {}) {
     routes() {
       this.urlPrefix = 'https://fakestoreapi.com';
 
+      // this.post('/auth/login')
+
       this.get('/products', (schema, request) => {
         const data = (schema as any).products.all().models;
 
@@ -52,7 +54,7 @@ export function makeServer({ environment = 'development' } = {}) {
         ];
       });
 
-      this.passthrough('https://fakestoreapi.com/img/**');
+      this.passthrough('https://fakestoreapi.com/**');
     },
 
     seeds(server) {
