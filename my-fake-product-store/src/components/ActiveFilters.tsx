@@ -28,12 +28,12 @@ class ActiveFilters extends Component<ActiveFiltersProps> {
                 {/* <span className="capitalize">{key}:</span>{' '} */}
                 <button
                   onClick={() => this.handleDeleteFilter(key)}
-                  className=" bg-white rounded-xl py-2 px-4 ml-4"
+                  className=" bg-secondary rounded-xl py-2 px-4 ml-4"
                 >
-                  <span className="text-zinc-600 text-bold tracking-wider capitalize">
+                  <span className="text-bold tracking-wider capitalize">
                     {value}
                   </span>
-                  <span className="text-sm text-zinc-400 ml-2">X</span>
+                  <span className="text-sm ml-2">X</span>
                 </button>
               </li>
             )

@@ -6,7 +6,7 @@ import ActiveFilters from '../components/ActiveFilters';
 const ProductPage: React.FC = () => {
   return (
     <div className="flex">
-      <aside className="p-4 w-64 bg-zinc-900 h-full fixed mt-12">
+      <aside className="p-4 w-64 bg-secondary h-full fixed mt-12">
         <Sidebar />
       </aside>
 

@@ -7,16 +7,18 @@ import NoMatch from '../pages/NoMatchPage';
 
 const App: React.FC = (): ReactNode => {
   return (
-    <div className="container mx-auto bg-zinc-800 text-zinc-400 min-h-screen">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<ProductPage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="*" element={<NoMatch />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+    <div className=" bg-primary">
+      <div className="container mx-auto min-h-screen text-white">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<ProductPage />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="*" element={<NoMatch />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
     </div>
   );
 };
