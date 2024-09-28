@@ -20,6 +20,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "start:mock": "cross-env REACT_APP_ENABLE_MOCK=true npm run start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -45,6 +46,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
+    "cross-env": "^7.0.3",
     "miragejs": "^0.2.0-alpha.3",
     "postcss": "^8.4.47",
     "react-devtools": "^4.28.5",

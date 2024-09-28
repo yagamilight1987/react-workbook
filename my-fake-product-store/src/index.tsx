@@ -10,7 +10,7 @@ import reducers from './reducers';
 
 import { makeServer } from './__mock__';
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.REACT_APP_ENABLE_MOCK) {
   makeServer({ environment: 'development' });
 }
 
