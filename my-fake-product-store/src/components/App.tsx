@@ -4,6 +4,7 @@ import Layout from './Layout';
 import ProductPage from '../pages/ProductPage';
 import Login from '../pages/LoginPage';
 import NoMatch from '../pages/NoMatchPage';
+import Auth from './auth/Auth';
 
 const App: React.FC = (): ReactNode => {
   return (
@@ -11,9 +12,11 @@ const App: React.FC = (): ReactNode => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<ProductPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="*" element={<NoMatch />} />
         </Route>
+        <Route path="/login" element={<Auth />}>
+          <Route path="" element={<Login />} />
+        </Route>
+        <Route path="*" element={<NoMatch />} />
       </Routes>
     </BrowserRouter>
   );
