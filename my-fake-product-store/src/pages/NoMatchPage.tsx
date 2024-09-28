@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const NoMatch: React.FC = () => {
   return (
     <div className="flex">
-      <div className="mt-12 p-2">
+      <div className="p-2">
         <h2>Nothing to see here!</h2>
         <p>
           <Link to="/">Go to the home page</Link>

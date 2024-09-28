@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const getClassNames = (isActive: boolean) => {
@@ -7,7 +7,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="flex justify-center bg-zinc-900 h-12 fixed left-0 w-full z-10">
+    <header className="flex justify-center bg-header h-16 fixed left-0 w-full z-10">
       <div className="container px-2 flex justify-between items-center">
         <div className="text-bold tracking-widest">My Fake Product Store</div>
         <nav>
