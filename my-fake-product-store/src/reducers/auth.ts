@@ -4,7 +4,7 @@ import { IActionCreator } from '../interfaces';
 const authReducer = (state = {}, action: IActionCreator) => {
   switch (action.type) {
     case LOGIN_USER_SUCCESS:
-      return { ...state, token: action.payload };
+      return { ...state, ...action.payload };
 
     case LOGIN_USER_ERROR:
       return { ...state, error: action.payload };

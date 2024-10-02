@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { Form, Field } from 'react-final-form';
+import { Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Form, Field } from 'react-final-form';
 import * as actions from '../../actions';
+import { AppState } from '../../interfaces';
 
 interface LoginFormProps {
-    loginUser: (username: string, password: string) => void;
+  isUserAuthenticated: boolean;
+  loginUser: (username: string, password: string) => void;
 }
 
 class LoginForm extends Component<LoginFormProps> {
@@ -69,12 +72,22 @@ class LoginForm extends Component<LoginFormProps> {
   };
 
   render() {
+    const isUserAuthenticated = this.props.isUserAuthenticated;
+    if (isUserAuthenticated) {
+      return <Navigate to="/" />;
+    }
     return <Form onSubmit={this.onSubmit} render={this.renderForm}></Form>;
   }
 }
 
-const mapDispatchToProps = {
-    loginUser: actions.loginUser
+const mapStateToProps = (state: AppState) => {
+  return {
+    isUserAuthenticated: state.authState?.token != null,
+  };
 };
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+const mapDispatchToProps = {
+  loginUser: actions.loginUser,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

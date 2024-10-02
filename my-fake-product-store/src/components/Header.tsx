@@ -1,10 +1,16 @@
+import { AppState } from '@/interfaces';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const getClassNames = (isActive: boolean) => {
     return ['mx-2 pb-2 rounded-sm', isActive ? 'border-b-2' : ''].join(' ');
   };
+
+  const isUserAuthenticated = useSelector(
+    (state: AppState) => state.authState.token != null
+  );
 
   return (
     <header className="flex justify-center bg-header h-16 fixed left-0 w-full z-10">
@@ -21,12 +27,16 @@ const Header: React.FC = () => {
               </NavLink>
             </li>
             <li className="p-2">
-              <NavLink
-                to="/login"
-                className={({ isActive }) => getClassNames(isActive)}
-              >
-                Login
-              </NavLink>
+              {isUserAuthenticated ? (
+                'Sign out'
+              ) : (
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) => getClassNames(isActive)}
+                >
+                  Login
+                </NavLink>
+              )}
             </li>
           </ul>
         </nav>
