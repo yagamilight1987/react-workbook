@@ -16,6 +16,11 @@ const Header: React.FC = () => {
     Boolean(state.authState.token)
   );
 
+  const fullName = useSelector(
+    (state: AppState) =>
+      `${state.authState.userInfo?.name?.firstname} ${state.authState.userInfo?.name?.lastname}`
+  );
+
   const handleLogout = () => {
     dispatch(actions.logoutUser());
     naviate('/');
@@ -36,12 +41,25 @@ const Header: React.FC = () => {
               </NavLink>
             </li>
             <li className="p-2">
+              <NavLink
+                to="/cart"
+                className={({ isActive }) => getClassNames(isActive)}
+              >
+                Cart
+              </NavLink>
+            </li>
+            <li className="p-2">
               {isUserAuthenticated ? (
                 <button onClick={handleLogout}>Logout</button>
               ) : (
                 <NavLink to="/auth/login">Login</NavLink>
               )}
             </li>
+            {isUserAuthenticated && fullName && (
+              <li className="p-2">
+                Hi, <strong className="capitalize">{fullName}</strong>
+              </li>
+            )}
           </ul>
         </nav>
       </div>
