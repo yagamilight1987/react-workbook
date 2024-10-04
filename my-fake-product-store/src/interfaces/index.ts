@@ -2,6 +2,7 @@ export interface AppState {
   productState: ProductState;
   categories: Array<string>;
   authState: AuthState;
+  cartState: CartState;
 }
 
 export interface ProductState {
@@ -36,5 +37,40 @@ export interface IActionCreator {
 export interface AuthState {
   token?: string;
   error?: string;
+  userInfo?: UserInfo;
+}
+
+export interface UserInfo {
+  id?: string;
+  email?: string;
   username?: string;
+  password?: string;
+  name?: NameInfo;
+  address?: Address;
+  phone?: string;
+}
+
+export interface NameInfo {
+  firstname?: string;
+  lastname?: string;
+}
+
+export interface Address {
+  city?: string;
+  street?: string;
+  number?: number;
+  zipcode?: string;
+  geolocation?: Geolocation;
+}
+
+export interface GeoLocation {
+  lat?: string;
+  long?: string;
+}
+
+export interface CartState {
+  id: number;
+  userId: number;
+  date: string;
+  products: Array<{ productId: string; quantity: string }>;
 }

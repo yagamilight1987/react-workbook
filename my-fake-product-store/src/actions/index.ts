@@ -1,17 +1,20 @@
 import axios, { AxiosResponse } from 'axios';
 import {
+  ADD_PRODUCT_TO_CART,
   CHANGE_FILTER,
   CHANGE_SORT,
   ERROR_PRODUCTS,
   FETCH_CATEGORIES,
   GET_LOCAL_PRODUCTS,
   GET_PRODUCTS,
+  GET_USER_INFO,
   LOADING_PRODUCTS,
   LOGIN_USER_ERROR,
   LOGIN_USER_SUCCESS,
+  LOGOUT_USER,
 } from './types';
 import { Dispatch } from 'redux';
-import { AppState } from '@/interfaces';
+import { AppState, UserInfo } from '../interfaces';
 
 export const getProducts =
   (): any => async (dispatch: Dispatch, getState: () => any) => {
@@ -131,10 +134,43 @@ export const loginUser =
         }
       );
       dispatch({ type: LOGIN_USER_SUCCESS, payload: response.data });
+
+      await dispatch(getUserInfo(username, password));
     } catch (error: any) {
       dispatch({
         type: LOGIN_USER_ERROR,
         payload: error.message,
       });
     }
+  };
+
+export const logoutUser = (): any => (dispatch: Dispatch) => {
+  dispatch({
+    type: LOGOUT_USER,
+    payload: '',
+  });
+};
+
+export const getUserInfo =
+  (username: string, password: string): any =>
+  async (dispatch: Dispatch) => {
+    const response: any = await axios.get('https://fakestoreapi.com/users');
+    const foundUser = response?.data?.find(
+      (user: UserInfo) =>
+        user.username === username && user.password === password
+    );
+
+    dispatch({
+      type: GET_USER_INFO,
+      payload: foundUser,
+    });
+  };
+
+export const addProductToCart =
+  (productId: number): any =>
+  (dispatch: Dispatch) => {
+    dispatch({
+      type: ADD_PRODUCT_TO_CART,
+      payload: productId,
+    });
   };

@@ -63,7 +63,7 @@ class LoginForm extends Component<LoginFormProps> {
         <button
           type="submit"
           disabled={submitting}
-          className="hover:bg-primary p-4 rounded-lg"
+          className="bg-primary hover:opacity-75 p-4 rounded-lg disabled:opacity-50"
         >
           Sign in
         </button>
@@ -82,7 +82,8 @@ class LoginForm extends Component<LoginFormProps> {
 
 const mapStateToProps = (state: AppState) => {
   return {
-    isUserAuthenticated: state.authState?.token != null,
+    isUserAuthenticated:
+      state.authState?.token !== '' && state.authState?.userInfo?.id !== '',
   };
 };
 

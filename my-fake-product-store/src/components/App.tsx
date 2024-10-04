@@ -13,8 +13,8 @@ const App: React.FC = (): ReactNode => {
         <Route path="/" element={<Layout />}>
           <Route index element={<ProductPage />} />
         </Route>
-        <Route path="/login" element={<Auth />}>
-          <Route path="" element={<LoginPage />} />
+        <Route path="/auth" element={<Auth />}>
+          <Route path="login" element={<LoginPage />} />
         </Route>
         <Route path="*" element={<NoMatch />} />
       </Routes>

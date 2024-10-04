@@ -40,6 +40,11 @@ export function makeServer({ environment = 'development' } = {}) {
         { timing: 4000 }
       );
 
+      this.get('/users', (schema) => {
+        const data = (schema as any).users.all().models;
+        return data;
+      });
+
       this.get('/products', (schema, request) => {
         const data = (schema as any).products.all().models;
 

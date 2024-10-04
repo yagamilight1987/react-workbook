@@ -1,16 +1,25 @@
-import { AppState } from '@/interfaces';
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { AppState } from '../interfaces';
+import * as actions from '../actions';
 
 const Header: React.FC = () => {
+  const dispatch = useDispatch();
+  const naviate = useNavigate();
+
   const getClassNames = (isActive: boolean) => {
     return ['mx-2 pb-2 rounded-sm', isActive ? 'border-b-2' : ''].join(' ');
   };
 
-  const isUserAuthenticated = useSelector(
-    (state: AppState) => state.authState.token != null
+  const isUserAuthenticated = useSelector((state: AppState) =>
+    Boolean(state.authState.token)
   );
+
+  const handleLogout = () => {
+    dispatch(actions.logoutUser());
+    naviate('/');
+  };
 
   return (
     <header className="flex justify-center bg-header h-16 fixed left-0 w-full z-10">
@@ -28,14 +37,9 @@ const Header: React.FC = () => {
             </li>
             <li className="p-2">
               {isUserAuthenticated ? (
-                'Sign out'
+                <button onClick={handleLogout}>Logout</button>
               ) : (
-                <NavLink
-                  to="/login"
-                  className={({ isActive }) => getClassNames(isActive)}
-                >
-                  Login
-                </NavLink>
+                <NavLink to="/auth/login">Login</NavLink>
               )}
             </li>
           </ul>
