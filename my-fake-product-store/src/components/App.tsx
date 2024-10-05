@@ -1,10 +1,8 @@
 import React, { ReactNode } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
-import ProductPage from '../pages/ProductPage';
-import LoginPage from '../pages/LoginPage';
-import NoMatch from '../pages/NoMatchPage';
 import Auth from './auth/Auth';
+import { LoginPage, ProductPage, CartPage, NoMatchPage } from '../pages';
 
 const App: React.FC = (): ReactNode => {
   return (
@@ -12,11 +10,12 @@ const App: React.FC = (): ReactNode => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<ProductPage />} />
+          <Route path="cart" element={<CartPage />} />
         </Route>
         <Route path="/auth" element={<Auth />}>
           <Route path="login" element={<LoginPage />} />
         </Route>
-        <Route path="*" element={<NoMatch />} />
+        <Route path="*" element={<NoMatchPage />} />
       </Routes>
     </BrowserRouter>
   );

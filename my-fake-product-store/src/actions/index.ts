@@ -7,6 +7,7 @@ import {
   FETCH_CATEGORIES,
   GET_LOCAL_PRODUCTS,
   GET_PRODUCTS,
+  GET_USER_CART,
   GET_USER_INFO,
   LOADING_PRODUCTS,
   LOGIN_USER_ERROR,
@@ -174,3 +175,11 @@ export const addProductToCart =
       payload: productId,
     });
   };
+
+export const getUserCart = (userId: number) => async (dispatch: Dispatch) => {
+  const response = await axios.get(`https://fakestoreapi.com/carts/${userId}`);
+  dispatch({
+    type: GET_USER_CART,
+    payload: response.data,
+  });
+};

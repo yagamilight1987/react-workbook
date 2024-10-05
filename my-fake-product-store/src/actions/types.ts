@@ -10,3 +10,4 @@ export const LOGIN_USER_SUCCESS = 'login_user_success';
 export const LOGOUT_USER = 'logout_user';
 export const GET_USER_INFO = 'get_user_info';
 export const ADD_PRODUCT_TO_CART = 'add_product_to_cart';
+export const GET_USER_CART = 'get_user_cart';
