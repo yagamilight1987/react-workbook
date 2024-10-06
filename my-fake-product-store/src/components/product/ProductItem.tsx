@@ -9,28 +9,31 @@ interface ProductItemProps {
 
 const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
   return (
-    <div className="bg-secondary rounded-lg shadow-md overflow-hidden">
-      <img src={product.image} alt={product.title} className="w-full h-80" />
-      <div className="p-4">
-        <h2 className="text-xl font-bold line-clamp-1">{product.title}</h2>
-        {/* <p className="text-zinc-300 mt-2 line-clamp-2 text-zinc-500">{product.description}</p> */}
-        <p className="mt-2 capitalize">Category: {product.category}</p>
-        <div className="flex items-center justify-between">
-          <p className="mt-2 text-lg font-semibold">
-            ${product.price.toFixed(2)}
-          </p>
-          <div className="flex items-center mt-2">
-            <span className="text-yellow-500">
-              {'★'.repeat(Math.floor(product.rating.rate))}
-              {'☆'.repeat(5 - Math.floor(product.rating.rate))}
-            </span>
-            <span className="ml-2">({product.rating.rate})</span>
+    <div className="card lg:card-side bg-base-100 shadow-xl mt-8 hover:bg-base-300">
+      <figure>
+        <img src={product.image} alt={product.title} />
+      </figure>
+      <div className="card-body justify-between">
+        <div>
+          <h2 className="card-title">{product.title}</h2>
+          <div className="badge badge-neutral capitalize">
+            {product.category}
+          </div>
+          <div className="flex items-center justify-between">
+            <p className="mt-2 text-lg font-semibold">
+              ${product.price.toFixed(2)}
+            </p>
+            <div className="flex items-center mt-2">
+              <span className="text-yellow-500">
+                {'★'.repeat(Math.floor(product.rating.rate))}
+                {'☆'.repeat(5 - Math.floor(product.rating.rate))}
+              </span>
+              <span className="ml-2">({product.rating.rate})</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="flex items-stretch">
-        <QuantitySelector productId={product.id} />
-        <div className="ml-4 flex-grow">
+        <div className="flex items-stretch card-actions justify-end">
+          <QuantitySelector productId={product.id} />
           <CartButton productId={product.id} />
         </div>
       </div>

@@ -3,15 +3,16 @@ module.exports = {
   content: [
     './src/**/*.{js,jsx,ts,tsx}', // Include all JavaScript and TypeScript files in the src folder
   ],
-  theme: {
-    extend: {
-      colors: {
-        primary: 'rgba(var(--color-primary), 0.95)',
-        secondary: 'rgba(var(--color-white), 0.07)',
-        header: 'rgba(var(--color-primary), 1)',
-        white: 'rgba(var(--color-white), 1)',
-      },
-    },
+  theme: {},
+  plugins: [require('daisyui')],
+  daisyui: {
+    themes: ['bumblebee', 'sunset'], // false: only light + dark | true: all themes | array: specific themes like this ["light", "dark", "cupcake"]
+    darkTheme: 'sunset', // name of one of the included themes for dark mode
+    base: true, // applies background color and foreground color for root element by default
+    styled: true, // include daisyUI colors and design decisions for all components
+    utils: true, // adds responsive and modifier utility classes
+    prefix: '', // prefix for daisyUI classnames (components, modifiers and responsive class names. Not colors)
+    logs: true, // Shows info about daisyUI version and used config in the console when building your CSS
+    themeRoot: ':root', // The element that receives theme color CSS variables
   },
-  plugins: [],
 };

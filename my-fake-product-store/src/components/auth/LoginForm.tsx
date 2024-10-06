@@ -63,7 +63,7 @@ class LoginForm extends Component<LoginFormProps> {
         <button
           type="submit"
           disabled={submitting}
-          className="bg-primary hover:opacity-75 p-4 rounded-lg disabled:opacity-50"
+          className="btn"
         >
           Sign in
         </button>

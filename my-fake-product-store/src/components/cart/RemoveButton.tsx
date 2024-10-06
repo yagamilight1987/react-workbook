@@ -15,7 +15,7 @@ const RemoveButton: React.FC<RemoveButtonProps> = ({ productId }) => {
 
   return (
     <button
-      className="bg-secondary hover:bg-primary p-4 w-full"
+      className="btn"
       onClick={handleClick}
     >
       Remove

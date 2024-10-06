@@ -11,7 +11,7 @@ const CartListItem: React.FC<CartListItemProps> = ({
   product,
 }: CartListItemProps) => {
   return (
-    <div className="bg-secondary shadow-md rounded-lg min-h-72 flex">
+    <div className="rounded-lg min-h-72 flex bg-base-100 shadow-xl hover:bg-base-300">
       <img src={product.image} alt={product.title} className="w-56 rounded" />
 
       <div className="flex-grow p-4 flex flex-col justify-between">

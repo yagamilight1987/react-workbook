@@ -9,6 +9,7 @@
     "@types/react": "^18.3.9",
     "@types/react-dom": "^18.3.0",
     "axios": "^1.7.7",
+    "classnames": "^2.5.1",
     "final-form": "^4.20.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -49,6 +50,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "cross-env": "^7.0.3",
+    "daisyui": "^4.12.12",
     "miragejs": "^0.2.0-alpha.3",
     "postcss": "^8.4.47",
     "react-devtools": "^4.28.5",

@@ -31,10 +31,9 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = (
       type="number"
       min={1}
       max={10}
-      defaultValue={1}
-      value={quantity}
+      value={quantity || 1}
       onChange={handleChange}
-      className="w-16 border border-secondary rounded text-center bg-secondary"
+      className="w-16 rounded text-center"
     />
   );
 };

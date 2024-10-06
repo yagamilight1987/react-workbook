@@ -1,71 +1,38 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { AppState } from '../interfaces';
-import * as actions from '../actions';
+import NavbarMenuItems from './NavbarMenuItems';
 
 const Header: React.FC = () => {
-  const dispatch = useDispatch();
-  const naviate = useNavigate();
-
-  const getClassNames = (isActive: boolean) => {
-    return ['mx-2 pb-2 rounded-sm', isActive ? 'border-b-2' : ''].join(' ');
-  };
-
-  const isUserAuthenticated = useSelector((state: AppState) =>
-    Boolean(state.authState.token)
-  );
-
-  const fullName = useSelector(
-    (state: AppState) =>
-      `${state.authState.userInfo?.name?.firstname} ${state.authState.userInfo?.name?.lastname}`
-  );
-
-  const cartCount = useSelector((state: AppState) => state.cartState.products?.length);
-
-  const handleLogout = () => {
-    dispatch(actions.logoutUser());
-    naviate('/');
-  };
-
   return (
-    <header className="flex justify-center bg-header h-16 fixed left-0 w-full z-10">
-      <div className="container px-2 flex justify-between items-center">
-        <div className="text-bold tracking-widest">My Fake Product Store</div>
-        <nav>
-          <ul className="flex">
-            <li className="p-2">
-              <NavLink
-                to="/"
-                className={({ isActive }) => getClassNames(isActive)}
-              >
-                Products
-              </NavLink>
-            </li>
-            <li className="p-2">
-              <NavLink
-                to="/cart"
-                className={({ isActive }) => getClassNames(isActive)}
-              >
-                Cart (<strong>{cartCount}</strong>)
-              </NavLink>
-            </li>
-            <li className="p-2">
-              {isUserAuthenticated ? (
-                <button onClick={handleLogout}>Logout</button>
-              ) : (
-                <NavLink to="/auth/login">Login</NavLink>
-              )}
-            </li>
-            {isUserAuthenticated && fullName && (
-              <li className="p-2">
-                Hi, <strong className="capitalize">{fullName}</strong>
-              </li>
-            )}
-          </ul>
-        </nav>
+    <div className="navbar bg-base-300 w-full">
+      <div className="flex-none md:hidden">
+        <label
+          htmlFor="my-drawer-3"
+          aria-label="open sidebar"
+          className="btn btn-square btn-ghost"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            className="inline-block h-6 w-6 stroke-current"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </label>
       </div>
-    </header>
+      <div className="mx-2 flex-1 px-2">My Fake Product Store</div>
+      <div className="flex-none">
+        <ul className="menu menu-horizontal">
+          {/* Navbar menu content here */}
+          <NavbarMenuItems />
+        </ul>
+      </div>
+    </div>
   );
 };
 

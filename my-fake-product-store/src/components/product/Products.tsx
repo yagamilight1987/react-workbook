@@ -26,13 +26,13 @@ class Products extends Component<ProductsProps> {
   }
 
   renderProductList(products: Product[] | undefined) {
-    return products && products.length > 0
-      ? products.map((product: Product) => (
-          <div key={product.id} className="m-4 w-64">
-            <ProductItem product={product} />
-          </div>
-        ))
-      : 'No products';
+    if (products && products.length > 0) {
+      return products.map((product: Product) => (
+        <ProductItem key={product.id} product={product} />
+      ));
+    } else {
+      return 'No products';
+    }
   }
 
   render() {
