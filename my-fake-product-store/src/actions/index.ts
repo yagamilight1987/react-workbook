@@ -176,7 +176,7 @@ export const addProductToCart =
     });
   };
 
-export const getUserCart = (userId: number) => async (dispatch: Dispatch) => {
+export const getUserCart = (userId: number | string): any => async (dispatch: Dispatch) => {
   const response = await axios.get(`https://fakestoreapi.com/carts/${userId}`);
   dispatch({
     type: GET_USER_CART,

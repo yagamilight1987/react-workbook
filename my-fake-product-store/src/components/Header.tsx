@@ -21,6 +21,8 @@ const Header: React.FC = () => {
       `${state.authState.userInfo?.name?.firstname} ${state.authState.userInfo?.name?.lastname}`
   );
 
+  const cartCount = useSelector((state: AppState) => state.cartState.products?.length);
+
   const handleLogout = () => {
     dispatch(actions.logoutUser());
     naviate('/');
@@ -45,7 +47,7 @@ const Header: React.FC = () => {
                 to="/cart"
                 className={({ isActive }) => getClassNames(isActive)}
               >
-                Cart
+                Cart (<strong>{cartCount}</strong>)
               </NavLink>
             </li>
             <li className="p-2">
