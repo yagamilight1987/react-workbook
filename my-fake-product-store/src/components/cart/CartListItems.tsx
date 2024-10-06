@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   AppState,
   CartListItemType,
@@ -15,19 +16,28 @@ interface CartListItemsProps {
 
 class CartListItems extends Component<CartListItemsProps> {
   render() {
+    if (this.props.cartProducts?.length > 0) {
+      return (
+        <div className="grid gap-6">
+          {this.props.cartProducts.map((item: CartListItemType) => (
+            <CartListItem key={item.id} product={item} />
+          ))}
+          {
+            <div className="my-8 text-right text-2xl font-light">
+              Subtotal ({this.props.subTotal.quantity} items):
+              <span className="font-black tracking-widest">
+                ${this.props.subTotal.totalPrice.toFixed(2)}
+              </span>
+            </div>
+          }
+        </div>
+      );
+    }
+
     return (
-      <div className="grid gap-6">
-        {this.props.cartProducts?.map((item: CartListItemType) => (
-          <CartListItem key={item.id} product={item} />
-        ))}
-        {
-          <div className="my-8 text-right text-2xl font-light">
-            Subtotal ({this.props.subTotal.quantity} items):
-            <span className="font-black tracking-widest">
-              ${this.props.subTotal.totalPrice.toFixed(2)}
-            </span>
-          </div>
-        }
+      <div>
+        Your cart is empty. Go to products page to add items. Click{' '}
+        {<Link to="/">here</Link>}
       </div>
     );
   }

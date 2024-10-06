@@ -1,5 +1,6 @@
 import { CartState, IActionCreator } from '../interfaces';
 import * as TYPES from '../actions/types';
+import products from './products';
 
 const INITIAL_STATE: CartState = {
   id: 1,
@@ -37,6 +38,18 @@ export default (state: CartState = INITIAL_STATE, action: IActionCreator) => {
       return {
         ...INITIAL_STATE,
       };
+
+    case TYPES.UPDATE_QUANTITY:
+      return {
+        ...state,
+        products: state.products.map(
+          (product) =>
+            product.productId === action.payload.productId
+              ? { ...product, quantity: action.payload.quantity } // Update quantity
+              : product // Keep the other products unchanged
+        ),
+      };
+
     default:
       return state;
   }

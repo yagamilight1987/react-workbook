@@ -14,6 +14,7 @@ import {
   LOGIN_USER_SUCCESS,
   LOGOUT_USER,
   REMOVE_PRODUCT_FROM_CART,
+  UPDATE_QUANTITY,
 } from './types';
 import { Dispatch } from 'redux';
 import { AppState, UserInfo } from '../interfaces';
@@ -177,7 +178,7 @@ export const addProductToCart =
     });
   };
 
-  export const removeProductFromCart =
+export const removeProductFromCart =
   (productId: number): any =>
   (dispatch: Dispatch) => {
     dispatch({
@@ -186,10 +187,23 @@ export const addProductToCart =
     });
   };
 
-export const getUserCart = (userId: number | string): any => async (dispatch: Dispatch) => {
-  const response = await axios.get(`https://fakestoreapi.com/carts/${userId}`);
-  dispatch({
-    type: GET_USER_CART,
-    payload: response.data,
-  });
-};
+export const getUserCart =
+  (userId: number | string): any =>
+  async (dispatch: Dispatch) => {
+    const response = await axios.get(
+      `https://fakestoreapi.com/carts/${userId}`
+    );
+    dispatch({
+      type: GET_USER_CART,
+      payload: response.data,
+    });
+  };
+
+export const updateQuantity =
+  (productId: number, quantity: number): any =>
+  (dispatch: Dispatch) => {
+    dispatch({
+      type: UPDATE_QUANTITY,
+      payload: { productId, quantity },
+    });
+  };
