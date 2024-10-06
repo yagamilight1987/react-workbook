@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { AppState } from '../../interfaces';
 import AddButton from './AddButton';
 import RemoveButton from './RemoveButton';
+import renderAuth from '../auth/renderAuth';
+import { AppState } from '../../interfaces';
 
 interface CartButtonProps {
   productId: number;
@@ -42,4 +43,4 @@ const CartButton: React.FC<CartButtonProps> = (props: CartButtonProps) => {
   );
 };
 
-export default CartButton;
+export default renderAuth(CartButton);

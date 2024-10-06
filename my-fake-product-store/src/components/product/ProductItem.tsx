@@ -1,6 +1,7 @@
 import React from 'react';
 import { Product } from '../../interfaces';
 import CartButton from '../cart/CartButton';
+import QuantitySelector from '../cart/QuantitySelector';
 
 interface ProductItemProps {
   product: Product;
@@ -27,7 +28,12 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
           </div>
         </div>
       </div>
-      <CartButton productId={product.id} />
+      <div className="flex items-stretch">
+        <QuantitySelector productId={product.id} />
+        <div className="ml-4 flex-grow">
+          <CartButton productId={product.id} />
+        </div>
+      </div>
     </div>
   );
 };

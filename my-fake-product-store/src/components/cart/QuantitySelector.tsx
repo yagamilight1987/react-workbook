@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../actions';
 import { AppState } from '../../interfaces';
+import renderAuth from '../auth/renderAuth';
 
 interface QuantitySelectorProps {
   productId: number;
@@ -30,6 +31,7 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = (
       type="number"
       min={1}
       max={10}
+      defaultValue={1}
       value={quantity}
       onChange={handleChange}
       className="w-16 border border-secondary rounded text-center bg-secondary"
@@ -37,4 +39,4 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = (
   );
 };
 
-export default QuantitySelector;
+export default renderAuth(QuantitySelector);

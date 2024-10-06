@@ -1,5 +1,5 @@
 import React from 'react';
-import requireAuth from '../components/auth/requireAuth';
+import redirectAuth from '../components/auth/redirectAuth';
 import CartListItems from '../components/cart/CartListItems';
 
 const CartPage: React.FC = () => {
@@ -12,4 +12,4 @@ const CartPage: React.FC = () => {
   );
 };
 
-export default requireAuth(CartPage);
+export default redirectAuth(CartPage);
