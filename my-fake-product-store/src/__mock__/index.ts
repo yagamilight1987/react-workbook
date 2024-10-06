@@ -37,7 +37,7 @@ export function makeServer({ environment = 'development' } = {}) {
 
           return new Response(400, {}, { errors: ['User not found'] });
         },
-        { timing: 4000 }
+        // { timing: 4000 }
       );
 
       this.get('/users', (schema) => {
@@ -89,7 +89,7 @@ export function makeServer({ environment = 'development' } = {}) {
         () => {
           return userCart;
         },
-        { timing: 4000 }
+        // { timing: 4000 }
       );
 
       this.passthrough('https://fakestoreapi.com/**');

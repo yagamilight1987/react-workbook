@@ -1,6 +1,6 @@
 import React from 'react';
-import { Product } from '../interfaces';
-import CartButton from './CartButton';
+import { Product } from '../../interfaces';
+import CartButton from '../cart/CartButton';
 
 interface ProductItemProps {
   product: Product;

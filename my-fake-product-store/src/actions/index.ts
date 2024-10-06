@@ -13,6 +13,7 @@ import {
   LOGIN_USER_ERROR,
   LOGIN_USER_SUCCESS,
   LOGOUT_USER,
+  REMOVE_PRODUCT_FROM_CART,
 } from './types';
 import { Dispatch } from 'redux';
 import { AppState, UserInfo } from '../interfaces';
@@ -172,6 +173,15 @@ export const addProductToCart =
   (dispatch: Dispatch) => {
     dispatch({
       type: ADD_PRODUCT_TO_CART,
+      payload: productId,
+    });
+  };
+
+  export const removeProductFromCart =
+  (productId: number): any =>
+  (dispatch: Dispatch) => {
+    dispatch({
+      type: REMOVE_PRODUCT_FROM_CART,
       payload: productId,
     });
   };

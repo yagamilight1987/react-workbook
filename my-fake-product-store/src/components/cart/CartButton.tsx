@@ -1,16 +1,15 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '../interfaces';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import * as actions from '../actions';
+import { AppState } from '../../interfaces';
+import AddButton from './AddButton';
+import RemoveButton from './RemoveButton';
 
 interface CartButtonProps {
   productId: number;
 }
 
-const CartButton: React.FC<CartButtonProps> = (
-  props: CartButtonProps
-) => {
+const CartButton: React.FC<CartButtonProps> = (props: CartButtonProps) => {
   const isUserAuthenticated = useSelector(
     (state: AppState) =>
       state.authState?.token !== '' && state.authState?.userInfo?.id !== ''
@@ -23,28 +22,23 @@ const CartButton: React.FC<CartButtonProps> = (
       ) !== undefined
   );
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleClickCapture = (event: any) => {
     if (!isUserAuthenticated) {
+      event.stopPropagation();
       navigate('/auth/login');
-    } else {
-      if (isProductAddedToCart) {
-        console.log('remove product');
-      } else {
-        dispatch(actions.addProductToCart(props.productId));
-      }
     }
   };
 
   return (
-    <button
-      className="bg-secondary hover:bg-primary p-4 w-full"
-      onClick={handleClick}
-    >
-      {isProductAddedToCart ? 'Remove' : 'Add to Cart'}
-    </button>
+    <div onClickCapture={handleClickCapture}>
+      {isProductAddedToCart ? (
+        <RemoveButton productId={props.productId} />
+      ) : (
+        <AddButton productId={props.productId} />
+      )}
+    </div>
   );
 };
 

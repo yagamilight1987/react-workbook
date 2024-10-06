@@ -1,9 +1,5 @@
 import { CartState, IActionCreator } from '../interfaces';
-import {
-  ADD_PRODUCT_TO_CART,
-  GET_USER_CART,
-  LOGOUT_USER,
-} from '../actions/types';
+import * as TYPES from '../actions/types';
 
 const INITIAL_STATE: CartState = {
   id: 1,
@@ -14,7 +10,7 @@ const INITIAL_STATE: CartState = {
 
 export default (state: CartState = INITIAL_STATE, action: IActionCreator) => {
   switch (action.type) {
-    case ADD_PRODUCT_TO_CART:
+    case TYPES.ADD_PRODUCT_TO_CART:
       return {
         ...state,
         products: [
@@ -23,13 +19,21 @@ export default (state: CartState = INITIAL_STATE, action: IActionCreator) => {
         ],
       };
 
-    case GET_USER_CART:
+    case TYPES.REMOVE_PRODUCT_FROM_CART:
+      return {
+        ...state,
+        products: state.products.filter(
+          (item) => item.productId.toString() !== action.payload.toString()
+        ),
+      };
+
+    case TYPES.GET_USER_CART:
       return {
         ...state,
         products: [...state.products, ...action.payload.products],
       };
 
-    case LOGOUT_USER:
+    case TYPES.LOGOUT_USER:
       return {
         ...INITIAL_STATE,
       };

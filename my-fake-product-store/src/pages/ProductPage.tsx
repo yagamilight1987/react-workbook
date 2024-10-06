@@ -1,5 +1,5 @@
 import React from 'react';
-import Products from '../components/Products';
+import Products from '../components/product/Products';
 import Sidebar from '../components/Sidebar';
 import ActiveFilters from '../components/ActiveFilters';
 

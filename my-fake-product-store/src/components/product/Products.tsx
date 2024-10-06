@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getProducts, setError, setLoading } from '../actions';
+import { getProducts, setError, setLoading } from '../../actions';
 import ProductItem from './ProductItem';
 import { AppState, Product } from '@/interfaces';
 
