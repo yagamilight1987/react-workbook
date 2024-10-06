@@ -36,7 +36,7 @@ export function makeServer({ environment = 'development' } = {}) {
           }
 
           return new Response(400, {}, { errors: ['User not found'] });
-        },
+        }
         // { timing: 4000 }
       );
 
@@ -56,7 +56,12 @@ export function makeServer({ environment = 'development' } = {}) {
           );
         }
 
-        return data;
+        return data?.length
+          ? data.map((item: Product) => {
+              item.id = Number(item.id);
+              return item;
+            })
+          : [];
       });
 
       this.get('/products/category/:id', (schema, request) => {
@@ -88,7 +93,7 @@ export function makeServer({ environment = 'development' } = {}) {
         '/carts/:id',
         () => {
           return userCart;
-        },
+        }
         // { timing: 4000 }
       );
 

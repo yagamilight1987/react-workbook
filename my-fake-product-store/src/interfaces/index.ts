@@ -72,7 +72,9 @@ export interface CartState {
   id: number;
   userId: number;
   date: string;
-  products: CartProduct;
+  products: CartProduct[];
 }
 
-export type CartProduct = Array<{ productId: string; quantity: string }>;
+export type CartProduct = { productId: number; quantity: number };
+
+export type CartListItemType = Product & CartProduct;

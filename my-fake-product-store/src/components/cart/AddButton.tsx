@@ -10,7 +10,6 @@ const AddButton: React.FC<AddButtonProps> = (props: AddButtonProps) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    console.log('add button handler');
     dispatch(actions.addProductToCart(props.productId));
   };
 
