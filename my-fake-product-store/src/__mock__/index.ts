@@ -35,9 +35,9 @@ export function makeServer({ environment = 'development' } = {}) {
             };
           }
 
-          return new Response(400, {}, { errors: ['User not found'] });
-        }
-        // { timing: 4000 }
+          return new Response(400, {}, { message: 'User not found' });
+        },
+        { timing: 4000 }
       );
 
       this.get('/users', (schema) => {
@@ -64,7 +64,7 @@ export function makeServer({ environment = 'development' } = {}) {
                 return item;
               })
             : [];
-        },
+        }
         // { timing: 5000 }
       );
 
@@ -96,6 +96,23 @@ export function makeServer({ environment = 'development' } = {}) {
       this.get('/carts/:id', () => {
         return userCart;
       });
+
+      this.post(
+        '/users',
+        (schema, request) => {
+          let attrs = JSON.parse(request.requestBody);
+          const { username } = attrs;
+          if (username === 'johnd') {
+            return new Response(400, {}, { errors: ['Username exists.'] });
+          }
+
+          return {
+            token:
+              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXIiOiJqb2huZCIsImlhdCI6MTcyNzY5OTY3N30.8z_n0rW0ij7eVIRwvWgRznoBT-J_Mb3a6HrLpThnods',
+          };
+        },
+        { timing: 10000 }
+      );
 
       this.passthrough('https://fakestoreapi.com/**');
     },

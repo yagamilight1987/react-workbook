@@ -13,3 +13,4 @@ export const ADD_PRODUCT_TO_CART = 'add_product_to_cart';
 export const REMOVE_PRODUCT_FROM_CART = 'remove_product_from_cart';
 export const GET_USER_CART = 'get_user_cart';
 export const UPDATE_QUANTITY = 'update_quantity';
+export const SIGNUP_USER = 'signup_user';

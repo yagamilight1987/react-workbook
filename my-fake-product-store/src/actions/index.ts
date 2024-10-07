@@ -14,6 +14,7 @@ import {
   LOGIN_USER_SUCCESS,
   LOGOUT_USER,
   REMOVE_PRODUCT_FROM_CART,
+  SIGNUP_USER,
   UPDATE_QUANTITY,
 } from './types';
 import { Dispatch } from 'redux';
@@ -136,6 +137,7 @@ export const loginUser =
           },
         }
       );
+
       dispatch({ type: LOGIN_USER_SUCCESS, payload: response.data });
 
       await dispatch(getUserInfo(username, password));
@@ -144,6 +146,11 @@ export const loginUser =
         type: LOGIN_USER_ERROR,
         payload: error.message,
       });
+
+      if(axios.isAxiosError(error)) {
+        throw new Error(error?.response?.data.message);
+      }
+
     }
   };
 
@@ -205,5 +212,24 @@ export const updateQuantity =
     dispatch({
       type: UPDATE_QUANTITY,
       payload: { productId, quantity },
+    });
+  };
+
+export const signupUser =
+  (formData: UserInfo): any =>
+  async (dispatch: Dispatch) => {
+    const response = await axios.post(
+      'https://fakestoreapi.com/users',
+      JSON.stringify(formData),
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    dispatch({
+      type: SIGNUP_USER,
+      payload: response.data,
     });
   };

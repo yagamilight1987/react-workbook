@@ -1,71 +1,87 @@
 import React, { Component } from 'react';
-import { Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 import { Form, Field } from 'react-final-form';
+import { FORM_ERROR } from 'final-form';
+import classNames from 'classnames';
 import * as actions from '../../actions';
 import { AppState } from '../../interfaces';
 
 interface LoginFormProps {
   isUserAuthenticated: boolean;
-  loginUser: (username: string, password: string) => void;
+  loginUser: (username: string, password: string) => Promise<void>;
 }
 
 class LoginForm extends Component<LoginFormProps> {
   required = (value: any) => (value ? undefined : 'Required');
 
   onSubmit = async (values: any) => {
-    this.props.loginUser(values.username, values.password);
+    try {
+      await this.props.loginUser(values.username, values.password);
+    } catch (error: any) {
+      return { [FORM_ERROR]: error?.message };
+    }
   };
 
-  renderForm = ({ handleSubmit, submitting }: any) => {
+  inputClassNames = (error: boolean, touched: boolean | undefined, submitError: boolean) =>
+    classNames({
+      'input input-bordered placeholder:text-xs': true,
+      'input-error placeholder:text-error': (error && touched) || submitError,
+    });
+
+  renderForm = ({ handleSubmit, submitting, submitError }: any) => {
     return (
       <form onSubmit={handleSubmit} className="flex flex-col gap-6 my-8">
-        <Field name="username" validate={this.required}>
-          {({ input, meta }) => (
-            <div>
-              <label className="text-center">Your username*</label>
-              <input
-                {...input}
-                type="text"
-                placeholder="Username"
-                className={`block px-3 py-3 w-full my-3 mx-auto rounded-lg border-2 text-primary ${
-                  meta.touched && meta.error
-                    ? 'border-red-600'
-                    : 'border-transparent'
-                }`}
-              />
-              {meta.error && meta.touched && (
-                <p className="text-red-600 text-xs">{meta.error}</p>
-              )}
-            </div>
+        <div className="flex gap-4 flex-col md:flex-row">
+          <Field name="username" validate={this.required}>
+            {(props) => {
+              return (
+                <div className="form-control flex-1">
+                  <input
+                    type="text"
+                    placeholder="Username"
+                    className={this.inputClassNames(
+                      props.meta.error,
+                      props.meta.touched,
+                      submitError
+                    )}
+                    disabled={props.meta.submitting}
+                    {...props.input}
+                  />
+                </div>
+              );
+            }}
+          </Field>
+
+          <Field name="password" validate={this.required}>
+            {(props) => {
+              return (
+                <div className="form-control flex-1">
+                  <input
+                    type="text"
+                    placeholder="Password"
+                    className={this.inputClassNames(
+                      props.meta.error,
+                      props.meta.touched,
+                      submitError
+                    )}
+                    disabled={props.meta.submitting}
+                    {...props.input}
+                  />
+                </div>
+              );
+            }}
+          </Field>
+        </div>
+
+        {submitError && <p className="text-error">{submitError}</p>}
+
+        <button type="submit" disabled={submitting} className="btn">
+          {submitting ? (
+            <span className="loading loading-bars loading-lg"></span>
+          ) : (
+            'Sign in'
           )}
-        </Field>
-        <Field name="password" validate={this.required}>
-          {({ input, meta }) => (
-            <div>
-              <label className="text-center">Password*</label>
-              <input
-                {...input}
-                type="password"
-                placeholder="Password"
-                className={`block px-3 py-3 w-full my-3 mx-auto rounded-lg border-2 text-primary ${
-                  meta.touched && meta.error
-                    ? 'border-red-600'
-                    : 'border-transparent'
-                }`}
-              />
-              {meta.error && meta.touched && (
-                <p className="text-red-600 text-xs">{meta.error}</p>
-              )}
-            </div>
-          )}
-        </Field>
-        <button
-          type="submit"
-          disabled={submitting}
-          className="btn"
-        >
-          Sign in
         </button>
       </form>
     );
