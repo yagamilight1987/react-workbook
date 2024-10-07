@@ -45,24 +45,28 @@ export function makeServer({ environment = 'development' } = {}) {
         return data;
       });
 
-      this.get('/products', (schema, request) => {
-        const data = (schema as any).products.all().models;
+      this.get(
+        '/products',
+        (schema, request) => {
+          const data = (schema as any).products.all().models;
 
-        if (request.queryParams.sort) {
-          data.sort((a: Product, b: Product) =>
-            request.queryParams.sort === 'asc'
-              ? a.title > b.title
-              : a.title < b.title
-          );
-        }
+          if (request.queryParams.sort) {
+            data.sort((a: Product, b: Product) =>
+              request.queryParams.sort === 'asc'
+                ? a.title > b.title
+                : a.title < b.title
+            );
+          }
 
-        return data?.length
-          ? data.map((item: Product) => {
-              item.id = Number(item.id);
-              return item;
-            })
-          : [];
-      });
+          return data?.length
+            ? data.map((item: Product) => {
+                item.id = Number(item.id);
+                return item;
+              })
+            : [];
+        },
+        // { timing: 5000 }
+      );
 
       this.get('/products/category/:id', (schema, request) => {
         const filtered = (schema as any).products.where(
@@ -89,13 +93,9 @@ export function makeServer({ environment = 'development' } = {}) {
         ];
       });
 
-      this.get(
-        '/carts/:id',
-        () => {
-          return userCart;
-        }
-        // { timing: 4000 }
-      );
+      this.get('/carts/:id', () => {
+        return userCart;
+      });
 
       this.passthrough('https://fakestoreapi.com/**');
     },

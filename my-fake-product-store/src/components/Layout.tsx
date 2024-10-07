@@ -5,6 +5,7 @@ import Header from './Header';
 import NavbarMenuItems from './NavbarMenuItems';
 import * as actions from '../actions';
 import { AppState } from '../interfaces';
+import Loading from './Loading';
 
 const Layout: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -16,15 +17,24 @@ const Layout: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchItems = async () => {
+    const loadProducts = async () => {
+      await dispatch(actions.getProducts());
+    };
+
+    const loadCart = async () => {
       if (userId) {
-        setLoading(true);
         await dispatch(actions.getUserCart(userId));
-        setLoading(false);
       }
     };
 
-    fetchItems();
+    const loadData = async () => {
+      setLoading(true);
+      await loadProducts();
+      await loadCart();
+      setLoading(false);
+    };
+
+    loadData();
   }, [dispatch, userId]);
 
   return (
@@ -35,7 +45,7 @@ const Layout: React.FC = () => {
         <Header />
         {/* Page content here */}
         {loading ? (
-          'Loading'
+          <Loading />
         ) : (
           <div className="px-6 py-8">
             <Outlet />

@@ -14,13 +14,13 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
         <img src={product.image} alt={product.title} className="h-64 w-full" />
       </figure>
       <div className="card-body justify-between">
-        <div>
-          <h2 className="card-title">{product.title}</h2>
-          <div className="badge badge-neutral capitalize">
+        <div className='flex flex-col gap-4'>
+          <h2 className="card-title line-clamp-1">{product.title}</h2>
+          <div className="badge badge-accent capitalize">
             {product.category}
           </div>
           <div className="flex items-center justify-between">
-            <p className="mt-2 text-lg font-semibold">
+            <p className="text-lg font-semibold">
               ${product.price.toFixed(2)}
             </p>
             <div className="flex items-center mt-2">
@@ -28,11 +28,11 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
                 {'★'.repeat(Math.floor(product.rating.rate))}
                 {'☆'.repeat(5 - Math.floor(product.rating.rate))}
               </span>
-              <span className="ml-2">({product.rating.rate})</span>
+              <span className="">({product.rating.rate})</span>
             </div>
           </div>
         </div>
-        <div className="flex items-stretch card-actions justify-end">
+        <div className="flex items-stretch card-actions justify-end mt-6">
           <QuantitySelector productId={product.id} />
           <CartButton productId={product.id} />
         </div>

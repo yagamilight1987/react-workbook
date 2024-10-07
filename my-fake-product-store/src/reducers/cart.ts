@@ -31,7 +31,7 @@ export default (state: CartState = INITIAL_STATE, action: IActionCreator) => {
     case TYPES.GET_USER_CART:
       return {
         ...state,
-        products: [...state.products, ...action.payload.products],
+        products: [...action.payload.products],
       };
 
     case TYPES.LOGOUT_USER:
