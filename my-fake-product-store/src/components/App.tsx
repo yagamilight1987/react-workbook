@@ -1,10 +1,17 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
 import Auth from './auth/Auth';
-import { LoginPage, SignupPage, SignupSuccessPage, ProductPage, CartPage, NoMatchPage } from '../pages';
+import {
+  LoginPage,
+  SignupPage,
+  SignupSuccessPage,
+  ProductPage,
+  CartPage,
+  NoMatchPage,
+} from '../pages';
 
-const App: React.FC = (): ReactNode => {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
