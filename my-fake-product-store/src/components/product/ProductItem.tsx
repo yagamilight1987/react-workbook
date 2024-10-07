@@ -9,9 +9,9 @@ interface ProductItemProps {
 
 const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
   return (
-    <div className="card lg:card-side bg-base-100 shadow-xl mt-8 hover:bg-base-300">
+    <div className="card w-80 bg-base-300 shadow-xl hover:bg-base-100">
       <figure>
-        <img src={product.image} alt={product.title} />
+        <img src={product.image} alt={product.title} className="h-64 w-full" />
       </figure>
       <div className="card-body justify-between">
         <div>

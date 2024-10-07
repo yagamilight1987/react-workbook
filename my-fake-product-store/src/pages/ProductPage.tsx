@@ -4,12 +4,7 @@ import Products from '../components/product/Products';
 // import ActiveFilters from '../components/ActiveFilters';
 
 const ProductPage: React.FC = () => {
-  return (
-    <div>
-      <h1 className="text-4xl">Products</h1>
-      <Products />
-    </div>
-  );
+  return <Products />;
   // return (
   //   <div className="flex">
   //     <aside className="p-4 w-64 bg-secondary h-full fixed">

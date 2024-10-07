@@ -27,9 +27,16 @@ class Products extends Component<ProductsProps> {
 
   renderProductList(products: Product[] | undefined) {
     if (products && products.length > 0) {
-      return products.map((product: Product) => (
-        <ProductItem key={product.id} product={product} />
-      ));
+      return (
+        <div>
+          <h1 className="text-3xl text-center md:text-left">Products({products.length})</h1>
+          <div className="flex flex-wrap gap-12 justify-center mt-12">
+            {products.map((product: Product) => (
+              <ProductItem key={product.id} product={product} />
+            ))}
+          </div>
+        </div>
+      );
     } else {
       return 'No products';
     }
