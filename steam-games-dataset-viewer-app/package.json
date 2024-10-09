@@ -1,0 +1,37 @@
+{
+  "name": "steam-games-dataset-viewer-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "migrate:up": "ley --dir src/database/migrations up",
+    "migrate:down": "ley --dir src/database/migrations down --all",
+    "load": "node src/database/load/index.js"
+  },
+  "dependencies": {
+    "@vercel/postgres": "^0.9.0",
+    "next": "14.2.14",
+    "pg": "^8.13.0",
+    "postgres": "^3.4.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "stream-json": "^1.8.0"
+  },
+  "devDependencies": {
+    "@neondatabase/serverless": "^0.9.3",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "dotenv": "^16.4.5",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.14",
+    "ley": "^0.8.1",
+    "pg-connection-string": "^2.7.0",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}
