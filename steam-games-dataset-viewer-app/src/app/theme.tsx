@@ -1,9 +1,11 @@
-// theme.ts (Version 2 needs to be a tsx file, due to usage of StyleFunctions)
 import { extendTheme } from '@chakra-ui/react';
-import { mode } from '@chakra-ui/theme-tools';
 import type { StyleFunctionProps } from '@chakra-ui/styled-system';
 
 const theme = extendTheme({
+  config: {
+    cssVarPrefix: 'yl',
+    initialColorMode: 'dark',
+  },
   styles: {
     global: (props: StyleFunctionProps) => ({
       body: {

@@ -1,17 +1,8 @@
-import Image from 'next/image';
-import {
-  Stack,
-  Text,
-  SimpleGrid,
-  Box,
-  Flex,
-  Badge,
-  Icon,
-} from '@chakra-ui/react';
+'use client';
+import { Stack, Text, SimpleGrid, Box, Flex, Badge, Icon, Image } from '@chakra-ui/react';
 import { Card, CardBody } from '@chakra-ui/react/card';
 import { FiThumbsUp } from 'react-icons/fi';
 import { FiThumbsDown } from 'react-icons/fi';
-import cardImage from '@/public/images/card-image.jpg';
 
 export default function ChakraUI() {
   return (
@@ -41,15 +32,7 @@ const Headings = function () {
 const Cards = function () {
   return (
     <Card maxW="sm">
-        {/* Image from chakraui does not work with local images */}
-      <Image
-        src={cardImage}
-        alt="Galactic Bowling"
-        style={{
-          borderTopRightRadius: 'var(--card-radius)',
-          borderTopLeftRadius: 'var(--card-radius)',
-        }}
-      />
+      <Image src="/images/card-image.jpg" alt="Galactic Bowling" rounded="md" />
       <CardBody>
         <Stack mt="6" spacing="3">
           <h5>Galactic Bowling</h5>
@@ -68,16 +51,11 @@ const Cards = function () {
           </Flex>
           <Flex gap={4}>
             <Box>
-                {/* Icon with as={} does not work */}
-              <Icon boxSize={10}>
-                <FiThumbsUp />
-              </Icon>
-              <p>6</p>
+              <Icon as={FiThumbsUp} boxSize={10} />
+              <span>6</span>
             </Box>
-            <Box>
-              <Icon boxSize={10}>
-                <FiThumbsDown />
-              </Icon>
+            <Box className='relative'>
+              <Icon as={FiThumbsDown} boxSize={10} />
               11
             </Box>
           </Flex>
