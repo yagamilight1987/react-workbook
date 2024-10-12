@@ -1,7 +1,8 @@
 export interface GameDetails {
   id: number;
+  short_description: string;
+  website?: string;
   game_id: string;
-  release_date: string;
   required_age: number;
   dlc_count: number;
   detailed_description: string;

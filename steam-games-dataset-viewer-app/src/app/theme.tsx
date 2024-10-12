@@ -14,8 +14,6 @@ const theme = extendTheme({
       },
       p: {
         fontSize: 'md',
-        pt: '4',
-        pb: '4',
       },
       h6: {
         fontSize: 'xl',
