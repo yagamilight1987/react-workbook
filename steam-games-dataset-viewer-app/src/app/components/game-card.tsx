@@ -26,7 +26,7 @@ type GameCardProps = {
   size: 'sm' | 'md' | 'lg';
 } & Partial<Game>;
 
-export default function GameCard({
+export default function ({
   size,
   header_image,
   name,

@@ -1,5 +1,5 @@
 import { Code, Divider, Grid, GridItem, Heading, Stack } from '@chakra-ui/react';
-import GameCard from '../components/game-card';
+import GameCard from '@/app/components/game-card';
 
 export default function () {
   const game = {
