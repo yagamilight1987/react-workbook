@@ -57,10 +57,9 @@ export default function GameCard({
   };
 
   return (
-    <Card maxW="xs" size={size} position="relative">
+    <Card maxW="100%" size={size} position="relative">
       <Box position="relative">
-        {/* <Image src={header_image} alt={name} roundedTopLeft="md" roundedTopRight="md" /> */}
-        <Image src="/images/card-image.jpg" alt={name} roundedTopLeft="md" roundedTopRight="md" />
+        <Image width="100%" src={header_image} alt={name} roundedTopLeft="md" roundedTopRight="md" />
         <Box
           position="absolute"
           top={0}

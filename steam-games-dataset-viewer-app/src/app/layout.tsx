@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { fonts } from './fonts';
+// import { fonts } from './fonts';
 import ChakraUIProvider from './charkraui-provider';
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={fonts.voces.className}>
+    <html lang="en">
       <body className="antialiased">
         <ChakraUIProvider>
           {children}

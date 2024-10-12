@@ -1,15 +1,45 @@
 'use client';
 
-import { SimpleGrid } from '@chakra-ui/react';
-import GameCard from './game-card';
+import {
+  Code,
+  Divider,
+  Grid,
+  GridItem,
+  Heading,
+  SimpleGrid,
+} from '@chakra-ui/react';
+import GameCard from '@/app/components/game-card';
 
 export default function GameListing() {
   return (
-    <SimpleGrid columns={2} spacing={10}>
-      {data.map((item) => (
-        <GameCard {...item} size="sm" />
-      ))}
-    </SimpleGrid>
+    <>
+      <Heading size="lg" marginBottom={4}>
+        Game Card - Listing
+        <Divider marginBlock={4} />
+      </Heading>
+
+      <Grid templateColumns="1fr 400px" gap={6}>
+        <GridItem>
+          <SimpleGrid spacing={4} templateColumns="repeat(auto-fill, minmax(16rem, 1fr))">
+            {data.map((item) => (
+              <GameCard {...item} size="sm" />
+            ))}
+          </SimpleGrid>
+        </GridItem>
+        <GridItem>
+          <Code children="const data = [];"></Code>
+          <Code>
+            {`
+      <SimpleGrid spacing={4} templateColumns="repeat(auto-fill, minmax(16rem, 1fr))">
+        {data.map((item) => (
+          <GameCard {...item} size="sm" />
+        ))}
+      </SimpleGrid>
+      `}
+          </Code>
+        </GridItem>
+      </Grid>
+    </>
   );
 }
 
