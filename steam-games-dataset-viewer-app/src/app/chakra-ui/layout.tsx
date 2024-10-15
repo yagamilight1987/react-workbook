@@ -24,21 +24,6 @@ const links = [
   },
 
   {
-    text: 'Headings',
-    href: '/chakra-ui/headings',
-  },
-
-  {
-    text: 'Game Card',
-    href: '/chakra-ui/game/card',
-  },
-
-  {
-    text: 'Game Listing',
-    href: '/chakra-ui/game/listing',
-  },
-
-  {
     text: 'Game Detail',
     href: '/chakra-ui/game/detail',
   },

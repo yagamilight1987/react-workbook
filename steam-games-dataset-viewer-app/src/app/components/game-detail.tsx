@@ -20,10 +20,15 @@ import {
   HStack,
   SimpleGrid,
 } from '@chakra-ui/react';
+import GameCard from './game/single-card';
 
 export default function ({ detail }: { detail: Partial<Game> & Partial<GameDetails> }) {
   return (
-    <Box>
+    <GameCard {...detail} />
+  );
+}
+
+{/* <Box>
       <VStack alignItems="flex-start">
         <Image
           width="100%"
@@ -141,6 +146,4 @@ export default function ({ detail }: { detail: Partial<Game> & Partial<GameDetai
           ))}
         </SimpleGrid>
       </VStack>
-    </Box>
-  );
-}
+    </Box> */}

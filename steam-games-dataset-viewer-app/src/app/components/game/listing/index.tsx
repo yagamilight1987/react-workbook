@@ -1,8 +1,8 @@
 'use client';
 
 import { SimpleGrid } from '@chakra-ui/react';
-import GameCard from './game-card';
-import { Game } from '../types/game';
+import GameCard from '../single-card';
+import { Game } from '../../../types/game';
 
 export default function ({ games }: { games: Array<Game> }) {
   return (

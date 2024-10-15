@@ -20,14 +20,14 @@ import { FiThumbsUp } from 'react-icons/fi';
 import { FiThumbsDown } from 'react-icons/fi';
 import { FaCalendar } from 'react-icons/fa';
 import { FaMoneyCheckDollar } from 'react-icons/fa6';
-import { Game } from '../types/game';
+import { Game } from '../../../types/game';
 
 type GameCardProps = {
-  size: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg';
 } & Partial<Game>;
 
 export default function ({
-  size,
+  size = 'sm',
   header_image,
   name,
   genres,
@@ -36,30 +36,16 @@ export default function ({
   price,
   release_date,
 }: GameCardProps) {
-  const getFormattedBadgeNumber = (value: number | undefined): string => {
-    if (!value) {
-      return "0";
-    }
-
-    if(value < 1000) {
-      return value.toString();
-    }
-
-    if (value >= 1000 && value < 10000) {
-      return `${value?.toString().substring(0, 1)}K`;
-    }
-
-    if (value >= 10000 && value < 100000) {
-      return `${value?.toString().substring(0, 2)}K`;
-    } else {
-      return `${value?.toString().substring(0, 1)}L`;
-    }
-  };
-
   return (
     <Card maxW="100%" size={size} position="relative">
       <Box position="relative">
-        <Image width="100%" src={header_image} alt={name} roundedTopLeft="md" roundedTopRight="md" />
+        <Image
+          width="100%"
+          src={header_image}
+          alt={name}
+          roundedTopLeft="md"
+          roundedTopRight="md"
+        />
         <Box
           position="absolute"
           top={0}
@@ -121,3 +107,23 @@ export default function ({
     </Card>
   );
 }
+
+const getFormattedBadgeNumber = (value: number | undefined): string => {
+  if (!value) {
+    return '0';
+  }
+
+  if (value < 1000) {
+    return value.toString();
+  }
+
+  if (value >= 1000 && value < 10000) {
+    return `${value?.toString().substring(0, 1)}K`;
+  }
+
+  if (value >= 10000 && value < 100000) {
+    return `${value?.toString().substring(0, 2)}K`;
+  } else {
+    return `${value?.toString().substring(0, 1)}L`;
+  }
+};

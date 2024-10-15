@@ -1,28 +1,17 @@
-'use client';
+import type { Meta, StoryObj } from '@storybook/react';
+import GameListing from '.';
 
-import { Code, Divider, Grid, GridItem, Heading } from '@chakra-ui/react';
-import GameListing from '@/app/components/game-listing';
+const meta: Meta<typeof GameListing> = {
+  component: GameListing,
+};
 
-export default function () {
-  return (
-    <>
-      <Heading size="lg" marginBottom={4}>
-        Game Card - Listing
-        <Divider marginBlock={4} />
-      </Heading>
+export default meta;
 
-      <Grid templateColumns="1fr 400px" gap={6}>
-        <GridItem>
-          <GameListing games={data} />
-        </GridItem>
-        <GridItem>
-          <Code children="const data = [];"></Code>
-          <Code children="<GamesListing  />"></Code>
-        </GridItem>
-      </Grid>
-    </>
-  );
-}
+type Story = StoryObj<typeof GameListing>;
+
+export const Basic: Story = {
+  render: () => <GameListing games={data} />,
+};
 
 const data = [
   {
