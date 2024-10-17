@@ -2,7 +2,7 @@
 
 import { Text, Box, VStack, Badge, Image, Heading, Divider, AvatarGroup, SimpleGrid, LinkOverlay, LinkBox } from '@chakra-ui/react';
 import HeaderImage from '@/app/components/header-image';
-import BaseDeails from '@/app/components/base-details';
+import BaseDetails from '@/app/components/base-details';
 import EmptyData from '@/app/components/EmptyData';
 import { Game } from '@/app/types/game';
 import { GameDetails } from '@/app/types/game-details';
@@ -24,10 +24,10 @@ export default function ({ detail }: { detail: Detail }) {
     return (
       <SimpleGrid spacing={4} columns={2}>
         <HeaderImage header_image={header_image} name={name} positive={positive} negative={negative} />
-        <BaseDeails name={name} genres={genres} price={price} release_date={release_date} listingType="single">
+        <BaseDetails name={name} genres={genres} price={price} release_date={release_date} listingType="single">
           <Divider />
           {short_description && <Text>{short_description}</Text>}
-        </BaseDeails>
+        </BaseDetails>
       </SimpleGrid>
     );
   };
