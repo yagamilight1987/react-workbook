@@ -1,8 +1,9 @@
 'use client';
 
 import { Component, ReactNode } from 'react';
-import { VStack, Text, Flex, Badge, Spacer, Heading, Divider, AvatarGroup, Tag, TagLeftIcon, TagLabel } from '@chakra-ui/react';
+import { VStack, Text, Flex, Badge, Spacer, Heading, Divider, AvatarGroup, Tag, TagLeftIcon, TagLabel, Center } from '@chakra-ui/react';
 import { FaCalendar, FaDollarSign } from 'react-icons/fa6';
+import BrowseType from './BrowseType';
 
 interface BaseDetailsProps {
   name?: string;
@@ -18,17 +19,11 @@ export default class BaseDeails extends Component<BaseDetailsProps> {
     const { name, genres, price, release_date, listingType = 'multiple', children } = this.props;
     return (
       <VStack flex={1} alignItems="flex-start" spacing="3">
-        <Heading as="h1" size={listingType === 'multiple' ? 'md' : 'xl'} noOfLines={listingType === 'multiple' ? 1 : Infinity} fontWeight="bold">
+        <Heading as="h1" size={listingType === 'multiple' ? 'md' : 'lg'} noOfLines={listingType === 'multiple' ? 1 : Infinity} fontWeight="bold">
           {name}
         </Heading>
-        <Flex gap={2}>
-          <AvatarGroup max={listingType === 'multiple' ? 1 : genres?.length} gap={6} size="sm" height="32px">
-            {genres?.map((item) => (
-              <Badge variant="outline" borderRadius="lg" paddingBlock="0.5" paddingInline="3" key={item}>
-                {item}
-              </Badge>
-            ))}
-          </AvatarGroup>
+        <Flex gap={2} alignItems="center">
+          <BrowseType heading="Genres" values={genres} max={listingType === 'multiple' ? 1 : genres?.length} />
         </Flex>
         <Divider />
         <Flex width="full">

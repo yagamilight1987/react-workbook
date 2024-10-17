@@ -10,7 +10,7 @@ type ReactionProps = {
 };
 
 export default function ({ bg, icon, value }: ReactionProps) {
-  function getFormattedBadgeNumber(positive: any) {
+  function getFormattedBadgeNumber(value: any) {
     if (!value) {
       return '0';
     }
