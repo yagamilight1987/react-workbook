@@ -4,9 +4,9 @@ export async function up(sql) {
       CREATE TABLE IF NOT EXISTS game_details (
           id SERIAL PRIMARY KEY,
           game_id NUMERIC UNIQUE NOT NULL,
-          release_date DATE,
           required_age INTEGER,
           dlc_count INTEGER,
+          website VARCHAR(255),
           detailed_description TEXT,
           about_the_game TEXT,
           reviews TEXT,

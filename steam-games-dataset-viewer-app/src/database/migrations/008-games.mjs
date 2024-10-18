@@ -7,7 +7,7 @@ export async function up(sql) {
           price NUMERIC(10, 2),
           short_description TEXT,
           header_image VARCHAR(255),
-          website VARCHAR(255),
+          release_date DATE,
           genres TEXT[],
           positive INTEGER,
           negative INTEGER
