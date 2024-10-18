@@ -8,6 +8,7 @@ import { Game } from '@/app/types/game';
 import { GameDetails } from '@/app/types/game-details';
 import BrowseType from '@/app/components/BrowseType';
 import OsSupport from '@/app/components/OsSupport';
+import { AllowedTypeValues } from '@/app/types/type-values';
 
 type Detail = Partial<Game> & Partial<GameDetails>;
 
@@ -70,11 +71,11 @@ export default function ({ detail }: { detail: Detail }) {
         )}
         {buildSupportedOsSection(detail)}
         {buildScreenshotSection(detail.screenshots)}
-        <BrowseType heading="Supported Languages" values={detail.supported_languages} />
-        <BrowseType heading="Audio Languages" values={detail.full_audio_languages} />
-        <BrowseType heading="Developers" values={detail.developers} />
-        <BrowseType heading="Publishers" values={detail.publishers} />
-        <BrowseType heading="Categories" values={detail.categories} />
+        <BrowseType type={AllowedTypeValues.SupportedLanguages} heading="Supported Languages" values={detail.supported_languages} />
+        <BrowseType type={AllowedTypeValues.AudioLanguages} heading="Audio Languages" values={detail.full_audio_languages} />
+        <BrowseType type={AllowedTypeValues.Developers} heading="Developers" values={detail.developers} />
+        <BrowseType type={AllowedTypeValues.Publishers} heading="Publishers" values={detail.publishers} />
+        <BrowseType type={AllowedTypeValues.Categories} heading="Categories" values={detail.categories} />
       </VStack>
     </Box>
   );

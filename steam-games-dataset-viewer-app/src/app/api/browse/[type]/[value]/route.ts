@@ -1,6 +1,8 @@
+import { NextResponse } from 'next/server';
 import { Client } from 'pg';
 import { db, VercelPoolClient } from '@/app/lib/db';
 import client from '@/app/lib/pg-db';
+import { AllowedTypeValues } from '@/app/types/type-values';
 import { appendFilter, appendNotNullName, appendOrderBy, appendPagination, getSearchParams } from '@/app/utils';
 
 export const dynamic = 'force-dynamic';
@@ -23,21 +25,26 @@ if (process.env.PG_CLIENT === 'true') {
   }
 }
 
-// http://localhost:3000/api/games?page=1&pageSize=1&filter=need%20for%20speed&orderBy=negative&orderDir=desc
-export async function GET(request: Request) {
+type Params = {
+  type: AllowedTypeValues;
+  value: string;
+};
+
+export async function GET(request: Request, context: { params: Params }) {
   try {
+    const { type, value } = context.params;
+
+    if (!Object.values(AllowedTypeValues).includes(type as AllowedTypeValues)) {
+      return NextResponse.json({ message: 'Type value not found.' }, { status: 404, statusText: 'Type value not found.' });
+    }
+
     const { page, pageSize, filter, orderBy, orderDir } = getSearchParams(request.url);
-    const whereQuery = `WHERE ${appendNotNullName()} ${appendFilter('name', filter)}`;
 
-    const selectQuery = `
-      SELECT *
-      FROM source_steam_games
-      ${whereQuery}
-      ${appendOrderBy(orderBy, orderDir)}
-      ${appendPagination(page, pageSize)}
-    `;
+    const whereQuery = `WHERE ${appendNotNullName()} ${appendFilter('name', filter)} and '${value}' ILIKE ANY(${type})`;
+
+    const selectQuery = `SELECT * FROM source_steam_games ${whereQuery} ${appendOrderBy(orderBy, orderDir)} ${appendPagination(page, pageSize)}`;
     const selectResponse = await client.query(selectQuery);
-
+    
     const totalCountQuery = `SELECT Count(*) FROM source_steam_games ${whereQuery}`;
     const totalCountResponse = await client.query(totalCountQuery);
 
@@ -47,7 +54,7 @@ export async function GET(request: Request) {
       data: selectResponse.rows,
     };
 
-    return Response.json(responseBody);
+    return NextResponse.json(responseBody);
   } catch (error: any) {
     console.error('Hi its error ' + error);
     return Response.json({ succes: false, error: error });

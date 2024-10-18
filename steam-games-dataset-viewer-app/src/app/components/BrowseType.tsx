@@ -3,8 +3,9 @@
 import NextLink from 'next/link';
 import { AvatarGroup, Badge, Heading, LinkBox, LinkOverlay } from '@chakra-ui/react';
 import EmptyData from './EmptyData';
+import { AllowedTypeValues } from '../types/type-values';
 
-type BrowseTypeProps = { heading: string; values: string[] | undefined; max?: number };
+type BrowseTypeProps = { type: AllowedTypeValues,heading: string; values: string[] | undefined; max?: number };
 
 export default function ({ heading, values, max }: BrowseTypeProps) {
   if (!values?.length) {

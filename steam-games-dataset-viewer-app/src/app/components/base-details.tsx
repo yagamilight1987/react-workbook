@@ -1,9 +1,10 @@
 'use client';
 
 import { Component, ReactNode } from 'react';
-import { VStack, Text, Flex, Badge, Spacer, Heading, Divider, AvatarGroup, Tag, TagLeftIcon, TagLabel, Center } from '@chakra-ui/react';
+import { VStack, Text, Flex, Spacer, Heading, Divider, Tag, TagLeftIcon, TagLabel } from '@chakra-ui/react';
 import { FaCalendar, FaDollarSign } from 'react-icons/fa6';
 import BrowseType from './BrowseType';
+import { AllowedTypeValues } from '../types/type-values';
 
 interface BaseDetailsProps {
   name?: string;
@@ -23,7 +24,7 @@ export default class BaseDeails extends Component<BaseDetailsProps> {
           {name}
         </Heading>
         <Flex gap={2} alignItems="center">
-          <BrowseType heading="Genres" values={genres} max={listingType === 'multiple' ? 1 : genres?.length} />
+          <BrowseType type={AllowedTypeValues.Genres} heading="Genres" values={genres} max={listingType === 'multiple' ? 1 : genres?.length} />
         </Flex>
         <Divider />
         <Flex width="full">
