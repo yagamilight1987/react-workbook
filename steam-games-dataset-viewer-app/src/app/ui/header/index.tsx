@@ -2,27 +2,24 @@
 
 import { usePathname } from 'next/navigation';
 import NextLink from 'next/link';
-import { Box, HStack, Link } from '@chakra-ui/react';
+import { Image, HStack, Link, Spacer, Flex } from '@chakra-ui/react';
 
 export default function ({ links }: { links: Array<{ text: string; href: string }> }) {
   const pathname = usePathname();
 
   return (
     <header>
-      <Box width="100%" background="blackAlpha.100" padding={4}>
-        <HStack spacing="24px" justifyContent="flex-end">
+      <Flex alignItems="center" width="100%" background="blackAlpha.100" padding={4}>
+        <Image src="images/logo.svg" alt="Logo" width="200px" height="50px" />
+        <Spacer />
+        <HStack spacing="24px">
           {links.map((link) => (
-            <Link
-              key={link.href}
-              as={NextLink}
-              href={link.href}
-              color={`${pathname === link.href ? 'blackAlpha.500' : 'initial'}`}
-            >
+            <Link key={link.href} as={NextLink} href={link.href} color={`${pathname === link.href ? 'blackAlpha.500' : 'initial'}`}>
               {link.text}
             </Link>
           ))}
         </HStack>
-      </Box>
+      </Flex>
     </header>
   );
 }

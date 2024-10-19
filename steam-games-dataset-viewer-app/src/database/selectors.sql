@@ -1,3 +1,28 @@
+/* IN THE SPOTLIGHT 2024 */
+SELECT
+    game_id,
+    name,
+    release_date,
+    price,
+    positive,
+    negative,
+    header_image,
+    SUM(owners_clean (estimated_owners)) AS sumowners
+FROM
+    source_steam_games
+WHERE
+    EXTRACT(
+        YEAR
+        FROM
+            release_date
+    ) = 2024
+GROUP BY
+    game_id
+ORDER BY
+    sumowners DESC
+LIMIT
+    10;
+
 /* top 10 most expensive games */
 SELECT
     game_id,
@@ -141,7 +166,9 @@ FROM
             game_id,
             name,
             price,
-            (negative::float / NULLIF((positive + negative), 0)) AS negative_ratio,
+            (
+                CAST(negative AS FLOAT) / NULLIF((positive + negative), 0)
+            ) AS negative_ratio,
             positive,
             negative
         FROM
