@@ -15,7 +15,7 @@ export default function ({ size = 'sm', game_id, header_image, name, genres, pos
   return (
     <LinkBox as="article">
       <LinkOverlay as={NextLink} href={`/game/${game_id}`}>
-        <Card maxW="100%" size={size}>
+        <Card maxW="100%" size={size} colorScheme='brand'>
           <HeaderImage header_image={header_image} name={name} positive={positive} negative={negative} borderRadius="md" imageBgOpacity={0.25} />
           <CardBody>
             <BaseDeails name={name} genres={genres} price={price} release_date={release_date} />

@@ -5,7 +5,7 @@ import { AvatarGroup, Badge, Heading, LinkBox, LinkOverlay } from '@chakra-ui/re
 import EmptyData from './EmptyData';
 import { AllowedTypeValues } from '../types/type-values';
 
-type BrowseTypeProps = { type: AllowedTypeValues,heading: string; values: string[] | undefined; max?: number };
+type BrowseTypeProps = { type: AllowedTypeValues; heading: string; values: string[] | undefined; max?: number };
 
 export default function ({ heading, values, max }: BrowseTypeProps) {
   if (!values?.length) {
@@ -22,7 +22,7 @@ export default function ({ heading, values, max }: BrowseTypeProps) {
         {values.map((item) => {
           return (
             <LinkBox as="article">
-              <Badge variant="outline" borderRadius="lg" paddingBlock="0.5" paddingInline="3" key={item}>
+              <Badge colorScheme='brand' variant="outline" borderRadius="lg" paddingBlock="0.5" paddingInline="3" key={item}>
                 <LinkOverlay as={NextLink} href={`/browse?type=${heading.toLowerCase()}&value=${item}`}>
                   {item}
                 </LinkOverlay>

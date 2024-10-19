@@ -9,12 +9,12 @@ export default function ({ links }: { links: Array<{ text: string; href: string 
 
   return (
     <header>
-      <Flex alignItems="center" width="100%" background="blackAlpha.100" padding={4}>
-        <Image src="images/logo.svg" alt="Logo" width="200px" height="50px" />
+      <Flex alignItems="center" width="100%" padding={4}>
+        <Image src="images/logo.svg" alt="Logo" width="200px" height="40px" />
         <Spacer />
         <HStack spacing="24px">
           {links.map((link) => (
-            <Link key={link.href} as={NextLink} href={link.href} color={`${pathname === link.href ? 'blackAlpha.500' : 'initial'}`}>
+            <Link key={link.href} as={NextLink} href={link.href} color={`${pathname === link.href ? 'brand.primary' : 'initial'}`} fontWeight={`${pathname === link.href ? 'bold' : 'initial'}`}>
               {link.text}
             </Link>
           ))}
