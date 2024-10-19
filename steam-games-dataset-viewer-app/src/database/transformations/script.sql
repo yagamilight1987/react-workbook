@@ -98,6 +98,104 @@ FROM
 ORDER BY
   distinct_item ASC;
 
+/* Handle null about_the_game column */
+UPDATE source_steam_games
+SET
+  about_the_game = 'This is a playtest game is the process by which a game designer tests a new game for bugs and design flaws before releasing it to market.'
+WHERE
+  name ILIKE '%playtest%'
+  AND about_the_game = '';
+
+UPDATE source_steam_games
+SET
+  about_the_game = 'this game is beta and still under testing'
+WHERE
+  (
+    name ILIKE '%beta%'
+    OR name ILIKE '%Beta%'
+    OR name ILIKE '%BETA%'
+  )
+  AND about_the_game = '';
+
+UPDATE source_steam_games
+SET
+  about_the_game = 'this game is Alpha and still under testing'
+WHERE
+  name ILIKE '%Alpha%'
+  AND about_the_game = '';
+
+UPDATE source_steam_games
+SET
+  about_the_game = 'this game is still under testing'
+WHERE
+  name ILIKE '%Test%'
+  AND about_the_game = '';
+
+UPDATE source_steam_games
+SET
+  about_the_game = 'Software Development Kit of the game'
+WHERE
+  name ILIKE '%SDK%'
+  AND about_the_game = '';
+
+UPDATE source_steam_games
+SET
+  about_the_game = 'this game is Demo and still under testing'
+WHERE
+  name ILIKE '%Demo%'
+  AND about_the_game = '';
+
+UPDATE source_steam_games
+SET
+  about_the_game = 'this is a Server for the game'
+WHERE
+  name ILIKE '%Server%'
+  AND about_the_game = '';
+
+UPDATE source_steam_games
+SET
+  about_the_game = 'this is an Editor for the game'
+WHERE
+  name ILIKE '%Editor%'
+  AND about_the_game = '';
+
+UPDATE source_steam_games
+SET
+  publishers = developers
+WHERE
+  developers != '{}'
+  AND (
+    publishers = '{}'
+    OR publishers = '{""}'
+  );
+
+UPDATE source_steam_games
+SET
+  developers = publishers
+WHERE
+  (
+    publishers != '{}'
+    AND publishers != '{""}'
+  )
+  AND (
+    developers = '{}'
+    OR developers = '{""}'
+  );
+
+UPDATE source_steam_games
+SET
+  publishers = NULL,
+  developers = NULL
+WHERE
+  (
+    developers = '{""}'
+    OR developers = '{}'
+  )
+  AND (
+    publishers = '{""}'
+    OR publishers = '{}'
+  )
+
 /* Insert into games table where name exists and short_description exists */
 INSERT INTO
   games (
