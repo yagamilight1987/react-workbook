@@ -21,10 +21,10 @@ const Pagination = ({ variant = 'prev/next', activeIndex = 0, totalItems = 1, on
   const renderPrevNextVariant = () => {
     return (
       <ButtonGroup variant="brandPrimary" spacing="6">
-        <Button disabled={activeIndex === 0} onClick={() => handleClick(activeIndex + 1)}>
+        <Button disabled={activeIndex === 0} onClick={() => handleClick(activeIndex - 1)}>
           Prev
         </Button>
-        <Button disabled={activeIndex === totalItems - 1} onClick={() => handleClick(activeIndex - 1)}>
+        <Button disabled={activeIndex === totalItems - 1} onClick={() => handleClick(activeIndex + 1)}>
           Next
         </Button>
       </ButtonGroup>
@@ -35,9 +35,20 @@ const Pagination = ({ variant = 'prev/next', activeIndex = 0, totalItems = 1, on
     const buttons = [];
     for (let index = 0; index < totalItems; index++) {
       buttons.push(
-        <Button variant={activeIndex === index ? 'brandPrimaryActive' : 'brandPrimary'} onClick={() => handleClick(index)}>
+        <Button key={index} variant={activeIndex === index ? 'brandPrimaryActive' : 'brandPrimary'} onClick={() => handleClick(index)}>
           {index + 1}
         </Button>,
+      );
+    }
+
+    return <ButtonGroup spacing="6">{buttons.map((button) => button)}</ButtonGroup>;
+  };
+
+  const renderCircleVariant = () => {
+    const buttons = [];
+    for (let index = 0; index < totalItems; index++) {
+      buttons.push(
+        <Button key={index} variant={activeIndex === index ? 'brandPrimaryActive' : 'brandPrimary'} onClick={() => handleClick(index)} padding="0" minWidth="3" w="3" h="3" borderRadius="full"></Button>,
       );
     }
 
@@ -50,7 +61,7 @@ const Pagination = ({ variant = 'prev/next', activeIndex = 0, totalItems = 1, on
     case 'number':
       return renderNumberVariant();
     case 'circle':
-
+      return renderCircleVariant();
     default:
       return renderPrevNextVariant();
   }

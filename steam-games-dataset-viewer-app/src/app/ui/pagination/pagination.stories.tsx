@@ -27,3 +27,12 @@ export const Number: Story = {
     return <Pagination variant="number" activeIndex={activeIndex} totalItems={5} onPageChange={(index: number) => setActiveIndex(index)} />;
   },
 };
+
+export const Circle: Story = {
+  render: () => {
+    const [activeIndex, setActiveIndex] = useState<number>(0);
+
+    return <Pagination variant="circle" activeIndex={activeIndex} totalItems={5} onPageChange={(index: number) => setActiveIndex(index)} />;
+  },
+};
+

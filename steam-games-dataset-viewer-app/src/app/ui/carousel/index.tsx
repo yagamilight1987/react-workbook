@@ -1,24 +1,29 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Flex } from '@chakra-ui/react';
 import Pagination from '../pagination';
 
-const Carousel = ({ children }: { children: React.ReactNode }) => {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+const Carousel = ({ children, activeIndex = 0 }: { children: React.ReactNode; activeIndex: number }) => {
+  let pagination: React.ReactNode | undefined = undefined;
 
   const renderChildren = () => (
     <Flex>
       {React.Children.map(children, (child, index) => {
-        return <Box display={activeIndex === index ? 'block' : 'none'}>{child}</Box>;
+        if (React.isValidElement(child)) {
+          if (child.type === Carousel.Pagination) {
+            pagination = child;
+          } else {
+            return <Box display={activeIndex === index ? 'block' : 'none'}>{child}</Box>;
+          }
+        }
       })}
     </Flex>
   );
 
   const renderPagination = () => {
-    const totalItems = React.Children.count(children);
-    if (totalItems > 1) {
-      return <Pagination activeIndex={activeIndex} totalItems={totalItems} onPageChange={(index: number) => setActiveIndex(index)} />;
+    if (pagination) {
+      return pagination;
     }
   };
 
@@ -29,5 +34,7 @@ const Carousel = ({ children }: { children: React.ReactNode }) => {
     </Flex>
   );
 };
+
+Carousel.Pagination = Pagination;
 
 export default Carousel;

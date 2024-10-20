@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Box } from '@chakra-ui/react';
 import Carousel from './index';
 import SpotlightCard from '../game/spotlight-card';
+import { useEffect, useState } from 'react';
 
 const meta: Meta<typeof Carousel> = {
   component: Carousel,
@@ -12,17 +13,22 @@ export default meta;
 type Story = StoryObj<typeof Carousel>;
 
 export const Basic: Story = {
-  render: () => (
-    <Carousel>
-      <Box id="box1" h="md" w="md" bg="green.500"></Box>
-      <Box id="box2" h="md" w="md" bg="teal.500"></Box>
-    </Carousel>
-  ),
+  render: () => {
+    const [activeIndex, setActiveIndex] = useState<number>(0);
+
+    return (
+      <Carousel activeIndex={activeIndex}>
+        <Box id="box1" h="md" w="md" bg="green.500"></Box>
+        <Box id="box2" h="md" w="md" bg="teal.500"></Box>
+        <Carousel.Pagination activeIndex={activeIndex} totalItems={2} onPageChange={(index: number) => setActiveIndex(index)} />
+      </Carousel>
+    );
+  },
 };
 
 export const SingleItem: Story = {
   render: () => (
-    <Carousel>
+    <Carousel activeIndex={0}>
       <Box id="box1" h="md" w="md" bg="green.500"></Box>
     </Carousel>
   ),
@@ -30,15 +36,32 @@ export const SingleItem: Story = {
 
 export const SpotlightCardCarousel: Story = {
   name: 'Spotlight Card',
-  render: () => (
-    <Box boxSize={'xl'}>
-      <Carousel>
-        {games.map((game) => (
-          <SpotlightCard {...game} />
-        ))}
-      </Carousel>
-    </Box>
-  ),
+  render: () => {
+    const [activeIndex, setActiveIndex] = useState<number>(0);
+
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        if (activeIndex < games.length - 1) {
+          setActiveIndex(activeIndex + 1);
+        } else if (activeIndex === games.length - 1) {
+          setActiveIndex(0);
+        }
+      }, 1500);
+
+      return () => clearTimeout(timer);
+    });
+
+    return (
+      <Box boxSize={'xl'}>
+        <Carousel activeIndex={activeIndex}>
+          {games.map((game) => (
+            <SpotlightCard key={game.game_id} {...game} />
+          ))}
+          <Carousel.Pagination variant="circle" activeIndex={activeIndex} totalItems={games.length} onPageChange={(index: number) => setActiveIndex(index)} />
+        </Carousel>
+      </Box>
+    );
+  },
 };
 
 const games = [
