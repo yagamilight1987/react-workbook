@@ -14,7 +14,7 @@ export default function ({ links }: { links: Array<{ text: string; href: string 
         <Spacer />
         <HStack spacing="24px">
           {links.map((link) => (
-            <Link key={link.href} as={NextLink} href={link.href} color={`${pathname === link.href ? 'brand.primary' : 'initial'}`} fontWeight={`${pathname === link.href ? 'bold' : 'initial'}`}>
+            <Link key={link.href} as={NextLink} href={link.href} color={`${pathname === link.href ? 'brand.primary' : 'brand-secondary'}`} fontWeight={`${pathname === link.href ? 'bold' : 'initial'}`}>
               {link.text}
             </Link>
           ))}
