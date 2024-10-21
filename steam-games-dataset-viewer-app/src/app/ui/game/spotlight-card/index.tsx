@@ -8,7 +8,7 @@ import { FaDollarSign } from 'react-icons/fa6';
 
 type SpotlightCardProps = {} & Partial<Game>;
 
-export default function ({ game_id, name, release_date, price, positive, negative, header_image }: SpotlightCardProps) {
+export default function ({ game_id, name, price, header_image }: SpotlightCardProps) {
   return (
     <LinkBox as="article">
       <LinkOverlay as={NextLink} href={`/game/${game_id}`}>
