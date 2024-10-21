@@ -1,0 +1,27 @@
+{
+  "succes": true,
+  "data": [
+    { "game_id": "570", "name": "Dota 2", "price": "0.00", "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/570/header.jpg?t=1658774750", "median": 50000000 },
+    {
+      "game_id": "2358720",
+      "name": "Black Myth: Wukong",
+      "price": "59.99",
+      "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg?t=1725007201",
+      "median": 25000000
+    },
+    { "game_id": "730", "name": "Counter-Strike: Global Offensive", "price": "0.00", "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg?t=1641233427", "median": 25000000 },
+    { "game_id": "1063730", "name": "New World", "price": "39.99", "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/1063730/header.jpg?t=1653580979", "median": 25000000 },
+    { "game_id": "578080", "name": "PUBG: BATTLEGROUNDS", "price": "0.00", "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/578080/header.jpg?t=1658287469", "median": 25000000 },
+    { "game_id": "440", "name": "Team Fortress 2", "price": "0.00", "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/440/header.jpg?t=1592263852", "median": 25000000 },
+    { "game_id": "1172470", "name": "Apex Legends™", "price": "0.00", "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/1172470/header.jpg?t=1657217209", "median": 15000000 },
+    { "game_id": "1085660", "name": "Destiny 2", "price": "0.00", "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/1085660/header.jpg?t=1657835870", "median": 15000000 },
+    {
+      "game_id": "359550",
+      "name": "Tom Clancy's Rainbow Six® Siege",
+      "price": "19.99",
+      "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/359550/header.jpg?t=1655223333",
+      "median": 15000000
+    },
+    { "game_id": "304930", "name": "Unturned", "price": "0.00", "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/304930/header.jpg?t=1642457764", "median": 15000000 }
+  ]
+}

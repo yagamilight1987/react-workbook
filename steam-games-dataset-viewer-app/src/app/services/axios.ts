@@ -1,8 +1,13 @@
-import { Axios } from 'axios';
+import axios, { AxiosInstance } from 'axios';
+import setupAxiosMock from './axios.mock';
 
-const instance = new Axios({
+const instance: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
+
+if (process.env.NEXT_USE_API_MOCK) {
+  setupAxiosMock(instance);
+}
 
 // Add a request interceptor
 instance.interceptors.request.use(
@@ -17,7 +22,7 @@ instance.interceptors.request.use(
 // Add a response interceptor
 instance.interceptors.response.use(
   function (response) {
-    console.log(response);
+    console.log('From axios interceptor: ', response);
     return response;
   },
   function (error) {

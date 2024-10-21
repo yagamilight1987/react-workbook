@@ -1,5 +1,8 @@
 import type { Preview } from '@storybook/react';
 import theme from '../src/app/theme';
+const dotenv = require('dotenv');
+
+dotenv.config({ path: '.env.local' });
 
 const preview: Preview = {
   parameters: {
