@@ -1,7 +1,6 @@
 'use client';
 
-import { Text, Box, VStack, Badge, Image, Heading, Divider, AvatarGroup, SimpleGrid, LinkOverlay, LinkBox } from '@chakra-ui/react';
-import HeaderImage from '@/app/components/header-image';
+import { Text, Box, VStack, Image, Heading, Divider, Card, CardBody, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Link } from '@chakra-ui/react';
 import BaseDetails from '@/app/components/base-details';
 import EmptyData from '@/app/components/EmptyData';
 import { Game } from '@/app/types/game';
@@ -9,6 +8,9 @@ import { GameDetails } from '@/app/types/game-details';
 import BrowseType from '@/app/components/BrowseType';
 import OsSupport from '@/app/components/OsSupport';
 import { AllowedTypeValues } from '@/app/types/type-values';
+import Carousel from '@/app/ui/carousel';
+import { useState } from 'react';
+import { FaChevronRight } from 'react-icons/fa6';
 
 type Detail = Partial<Game> & Partial<GameDetails>;
 
@@ -23,26 +25,32 @@ export default function ({ detail }: { detail: Detail }) {
 
   const buildTopSection = ({ header_image, name, positive, negative, genres, price, release_date, short_description }: Detail) => {
     return (
-      <SimpleGrid spacing={4} columns={2}>
-        <HeaderImage header_image={header_image} name={name} positive={positive} negative={negative} />
-        <BaseDetails name={name} genres={genres} price={price} release_date={release_date} listingType="single">
-          <Divider />
-          {short_description && <Text>{short_description}</Text>}
-        </BaseDetails>
-      </SimpleGrid>
+      <Card variant="unstyled" bg="inherit" color="inherit" gap={10}>
+        <Image width="100%" src={header_image} alt={name} rounded="inherit" height="full" />
+        <CardBody>
+          <BaseDetails name={name} genres={genres} price={price} release_date={release_date} listingType="single">
+            <Divider />
+            {short_description && <Text>{short_description}</Text>}
+          </BaseDetails>
+        </CardBody>
+      </Card>
     );
   };
 
   const buildScreenshotSection = (screenshots: string[] | undefined) => {
+    const [screenshotActiveIndex, setScreenshotActiveIndex] = useState<number>(0);
     return (
       <>
         {buildSectionHeading('Screenshots')}
         {screenshots?.length ? (
-          <SimpleGrid spacing={4} templateColumns="repeat(auto-fill, minmax(16rem, 1fr))">
-            {screenshots?.map((item) => (
-              <Image src={item} alt={item} />
-            ))}
-          </SimpleGrid>
+          <Box width="full" height="lg">
+            <Carousel activeIndex={screenshotActiveIndex}>
+              {screenshots?.map((item) => (
+                <Image key={item} src={item} alt={item} height="full" width="full" />
+              ))}
+              <Carousel.Pagination variant="inline" activeIndex={screenshotActiveIndex} totalItems={screenshots.length} onPageChange={(index: number) => setScreenshotActiveIndex(index)} />
+            </Carousel>
+          </Box>
         ) : (
           <EmptyData />
         )}
@@ -59,9 +67,26 @@ export default function ({ detail }: { detail: Detail }) {
     );
   };
 
+  function buildBreadcrumb(game_id: number | undefined): React.ReactNode {
+    return (
+      <Breadcrumb spacing="8px" separator={<FaChevronRight color="brand.primary" size="10" />} paddingBlock={5}>
+        <BreadcrumbItem>
+          <BreadcrumbLink as={Link} href="/">
+            Home
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+
+        <BreadcrumbItem isCurrentPage>
+          <BreadcrumbLink as={Link} href={`/game/${game_id}`} color="brand.primary">[{game_id}]</BreadcrumbLink>
+        </BreadcrumbItem>
+      </Breadcrumb>
+    );
+  }
+
   return (
     detail && (
       <Box>
+        {buildBreadcrumb(detail.game_id)}
         {buildTopSection(detail)}
         <VStack gap={10} paddingBlock={10} alignItems="flex-start">
           {detail.detailed_description && (

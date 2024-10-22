@@ -23,20 +23,23 @@ const theme = extendTheme({
       primary: '#F7436E',
       secondary: '#535353',
       tertiary: '#CCCCCC',
+
+      dark: {
+        bg: '#2F4858'
+      }
     },
   },
   styles: {
     global: {
       body: {
-        bg: 'brand.bg',
-        color: 'brand.text',
+        // bg: 'brand.bg',
+        // color: 'brand.text',
       },
     },
   },
   components: {
     Tag: tagTheme,
     Button: buttonTheme,
-    Badge,
   },
 });
 

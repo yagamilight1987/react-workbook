@@ -1,3 +1,30 @@
+/* Get game by id */
+SELECT
+  g.game_id,
+  g.header_image,
+  g.name,
+  g.positive,
+  g.negative,
+  g.genres,
+  g.price,
+  g.release_date,
+  g.short_description,
+  gd.detailed_description,
+  gd.windows,
+  gd.mac,
+  gd.linux,
+  gd.screenshots,
+  gd.supported_languages,
+  gd.full_audio_languages,
+  gd.developers,
+  gd.publishers,
+  gd.categories
+FROM
+  games AS g
+  INNER JOIN game_details gd ON g.game_id = gd.game_id
+WHERE
+  g.game_id = 570;
+
 /* IN THE SPOTLIGHT 2024 */
 SELECT
   g.game_id,

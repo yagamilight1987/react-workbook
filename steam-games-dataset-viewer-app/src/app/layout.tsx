@@ -25,8 +25,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <body className="antialiased">
         <ChakraUIProvider>
+          <Box shadow="md">
+            <Container maxW="container.xl" padding={0}>
+              <Header links={mainLinks} />
+            </Container>
+          </Box>
           <Container maxW="container.xl" padding={0}>
-            <Header links={mainLinks} />
             <Box paddingInline={4}>{children}</Box>
           </Container>
         </ChakraUIProvider>

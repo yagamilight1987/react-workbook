@@ -13,8 +13,7 @@ const setupAxiosMock = (instance: AxiosInstance) => {
 
   mock.onGet(MOST_DOWNLOADED_GAMES_URL).reply(200, MostDownloadedGamesJson);
 
-  const regex = `/${GAME_DETAILS_URL}\d+/`;
-  mock.onGet(`${GAME_DETAILS_URL}570`).reply(200, GameDetailsJson);
+  mock.onGet(new RegExp(`${GAME_DETAILS_URL}/*`)).reply(200, GameDetailsJson);
 };
 
 export default setupAxiosMock;

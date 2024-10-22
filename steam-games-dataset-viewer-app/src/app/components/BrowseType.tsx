@@ -8,29 +8,28 @@ import { AllowedTypeValues } from '../types/type-values';
 type BrowseTypeProps = { type: AllowedTypeValues; heading: string; values: string[] | undefined; max?: number };
 
 export default function ({ heading, values, max }: BrowseTypeProps) {
-  if (!values?.length) {
-    return <EmptyData />;
-  }
-
   return (
     <>
       <Heading as="h2" size="md">
         {heading}
       </Heading>
-
-      <AvatarGroup max={max} gap={6} size="sm" height="32px">
-        {values.map((item) => {
-          return (
-            <LinkBox as="article">
-              <Badge colorScheme='brand' variant="outline" borderRadius="lg" paddingBlock="0.5" paddingInline="3" key={item}>
-                <LinkOverlay as={NextLink} href={`/browse?type=${heading.toLowerCase()}&value=${item}`}>
-                  {item}
-                </LinkOverlay>
-              </Badge>
-            </LinkBox>
-          );
-        })}
-      </AvatarGroup>
+      {!values?.length ? (
+        <EmptyData />
+      ) : (
+        <AvatarGroup max={max} gap={6} size="sm" flexWrap="wrap">
+          {values.map((item) => {
+            return (
+              <LinkBox as="article" key={item}>
+                <Badge variant="outline" borderRadius="lg" paddingBlock="0.5" paddingInline="3" key={item}>
+                  <LinkOverlay as={NextLink} href={`/browse?type=${heading.toLowerCase()}&value=${item}`}>
+                    {item}
+                  </LinkOverlay>
+                </Badge>
+              </LinkBox>
+            );
+          })}
+        </AvatarGroup>
+      )}
     </>
   );
 }
