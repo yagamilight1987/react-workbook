@@ -1,10 +1,11 @@
 'use client';
 
-import { Button, ButtonGroup } from '@chakra-ui/react';
+import { Button, ButtonGroup, Icon } from '@chakra-ui/react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 type PaginationProps = {
   totalItems: number;
-  variant?: 'prev/next' | 'circle' | 'number';
+  variant?: 'prev/next' | 'circle' | 'number' | 'inline';
   activeIndex?: number;
   onPageChange: (index: number) => void;
 };
@@ -48,11 +49,33 @@ const Pagination = ({ variant = 'prev/next', activeIndex = 0, totalItems = 1, on
     const buttons = [];
     for (let index = 0; index < totalItems; index++) {
       buttons.push(
-        <Button key={index} variant={activeIndex === index ? 'brandPrimaryActive' : 'brandPrimary'} onClick={() => handleClick(index)} padding="0" minWidth="3" w="3" h="3" borderRadius="full"></Button>,
+        <Button
+          key={index}
+          variant={activeIndex === index ? 'brandPrimaryActive' : 'brandPrimary'}
+          onClick={() => handleClick(index)}
+          padding="0"
+          minWidth="3"
+          w="3"
+          h="3"
+          borderRadius="full"
+        ></Button>,
       );
     }
 
     return <ButtonGroup spacing="6">{buttons.map((button) => button)}</ButtonGroup>;
+  };
+
+  const renderInlineVariant = () => {
+    return (
+      <>
+        <Button disabled={activeIndex === 0} onClick={() => handleClick(activeIndex - 1)} variant="carouselButton" position="absolute" left="0">
+          <Icon boxSize="8" as={FaChevronLeft} />
+        </Button>
+        <Button disabled={activeIndex === totalItems - 1} onClick={() => handleClick(activeIndex + 1)} variant="carouselButton" position="absolute" right="0">
+          <Icon boxSize="8" as={FaChevronRight} />
+        </Button>
+      </>
+    );
   };
 
   switch (variant) {
@@ -62,6 +85,8 @@ const Pagination = ({ variant = 'prev/next', activeIndex = 0, totalItems = 1, on
       return renderNumberVariant();
     case 'circle':
       return renderCircleVariant();
+    case 'inline':
+      return renderInlineVariant();
     default:
       return renderPrevNextVariant();
   }

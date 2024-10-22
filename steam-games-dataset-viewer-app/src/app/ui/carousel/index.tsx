@@ -8,13 +8,13 @@ const Carousel = ({ children, activeIndex = 0 }: { children: React.ReactNode; ac
   let pagination: React.ReactNode | undefined = undefined;
 
   const renderChildren = () => (
-    <Flex>
+    <Flex width="full" height="full">
       {React.Children.map(children, (child, index) => {
         if (React.isValidElement(child)) {
           if (child.type === Carousel.Pagination) {
             pagination = child;
           } else {
-            return <Box display={activeIndex === index ? 'block' : 'none'}>{child}</Box>;
+            return <Box width="full" display={activeIndex === index ? 'block' : 'none'}>{child}</Box>;
           }
         }
       })}
@@ -28,7 +28,7 @@ const Carousel = ({ children, activeIndex = 0 }: { children: React.ReactNode; ac
   };
 
   return (
-    <Flex direction="column" alignItems="center" gap={4}>
+    <Flex direction="column" alignItems="center" gap={4} position="relative" width="full" height="full">
       {renderChildren()}
       {renderPagination()}
     </Flex>

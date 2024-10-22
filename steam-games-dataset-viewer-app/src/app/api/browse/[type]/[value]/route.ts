@@ -1,29 +1,9 @@
 import { NextResponse } from 'next/server';
-import { Client } from 'pg';
-import { db, VercelPoolClient } from '@/app/lib/db';
 import client from '@/app/lib/pg-db';
 import { AllowedTypeValues } from '@/app/types/type-values';
 import { appendFilter, appendNotNullName, appendOrderBy, appendPagination, getSearchParams } from '@/app/utils';
 
 export const dynamic = 'force-dynamic';
-
-let myclient: Client | VercelPoolClient = client;
-
-if (process.env.PG_CLIENT === 'true') {
-  try {
-    await myclient.connect();
-    console.log('connected from pg client');
-  } catch (error: any) {
-    console.error('Hi its error from pg client ' + error.message);
-  }
-} else {
-  try {
-    myclient = await db.connect();
-    console.log('connected from vercel client');
-  } catch (error: any) {
-    console.error('Hi its error from vercel client ' + error.message);
-  }
-}
 
 type Params = {
   type: AllowedTypeValues;
@@ -33,6 +13,8 @@ type Params = {
 // http://localhost:3000/api/browse/genres/Strategy
 export async function GET(request: Request, context: { params: Params }) {
   try {
+    await client.connect();
+
     const { type, value } = context.params;
 
     if (!Object.values(AllowedTypeValues).includes(type as AllowedTypeValues)) {

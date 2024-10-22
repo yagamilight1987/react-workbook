@@ -22,6 +22,19 @@ const brandPrimaryActive = defineStyle({
   },
 });
 
+const carouselButton = defineStyle({
+  background: 'whiteAlpha.600',
+  padding: '0',
+  height: 'full',
+  borderRadius: '0',
+  _hover: {
+    background: 'whiteAlpha.800',
+    _disabled: {
+      background: 'whiteAlpha.600',
+    },
+  },
+});
+
 export const buttonTheme = defineStyleConfig({
-  variants: { brandPrimary, brandPrimaryActive },
+  variants: { brandPrimary, brandPrimaryActive, carouselButton },
 });

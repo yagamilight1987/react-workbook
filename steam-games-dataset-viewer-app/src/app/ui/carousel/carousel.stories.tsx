@@ -38,6 +38,7 @@ export const SpotlightCardCarousel: Story = {
   name: 'Spotlight Card',
   render: () => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
+    const [activeIndex1, setActiveIndex1] = useState<number>(0);
 
     useEffect(() => {
       const timer = setTimeout(() => {
@@ -52,12 +53,73 @@ export const SpotlightCardCarousel: Story = {
     });
 
     return (
-      <Box boxSize={'xl'}>
+      <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" gap={20} flexWrap="wrap" maxW="full">
+        <Box width="full" height="sm">
+          <Carousel activeIndex={activeIndex1}>
+            {games.map((game) => (
+              <SpotlightCard key={game.game_id} {...game} />
+            ))}
+            <Carousel.Pagination variant="number" activeIndex={activeIndex1} totalItems={games.length} onPageChange={(index: number) => setActiveIndex1(index)} />
+          </Carousel>
+        </Box>
+        <Box maxW="container.sm">
+          <Carousel activeIndex={activeIndex}>
+            {games.map((game) => (
+              <SpotlightCard key={game.game_id} {...game} />
+            ))}
+            <Carousel.Pagination variant="circle" activeIndex={activeIndex} totalItems={games.length} onPageChange={(index: number) => setActiveIndex(index)} />
+          </Carousel>
+        </Box>
+        <Box width="400px" height="100px">
+          <Carousel activeIndex={activeIndex1}>
+            {games.map((game) => (
+              <SpotlightCard key={game.game_id} {...game} />
+            ))}
+            <Carousel.Pagination variant="inline" activeIndex={activeIndex1} totalItems={games.length} onPageChange={(index: number) => setActiveIndex1(index)} />
+          </Carousel>
+        </Box>
+        <Box width="60" height="80">
+          <Carousel activeIndex={activeIndex1}>
+            {games.map((game) => (
+              <SpotlightCard key={game.game_id} {...game} />
+            ))}
+            <Carousel.Pagination activeIndex={activeIndex1} totalItems={games.length} onPageChange={(index: number) => setActiveIndex1(index)} />
+          </Carousel>
+        </Box>
+        <Box width="full" height="container.md">
+          <Carousel activeIndex={activeIndex1}>
+            {games.map((game) => (
+              <SpotlightCard key={game.game_id} {...game} />
+            ))}
+            <Carousel.Pagination variant="inline" activeIndex={activeIndex1} totalItems={games.length} onPageChange={(index: number) => setActiveIndex1(index)} />
+          </Carousel>
+        </Box>
+      </Box>
+    );
+  },
+};
+
+export const InlineCaoursel: Story = {
+  name: 'Inline Slider/Carousel',
+  render: () => {
+    const [activeIndex, setActiveIndex] = useState<number>(0);
+
+    return (
+      <Box display="flex" alignItems="center" justifyContent="center" gap={10} flexWrap="wrap" maxW="container.md">
         <Carousel activeIndex={activeIndex}>
-          {games.map((game) => (
-            <SpotlightCard key={game.game_id} {...game} />
-          ))}
-          <Carousel.Pagination variant="circle" activeIndex={activeIndex} totalItems={games.length} onPageChange={(index: number) => setActiveIndex(index)} />
+          <Box id="box1" h="14" w="md" bg="green.500"></Box>
+          <Box id="box2" h="14" w="md" bg="teal.500"></Box>
+          <Carousel.Pagination variant="inline" activeIndex={activeIndex} totalItems={2} onPageChange={(index: number) => setActiveIndex(index)} />
+        </Carousel>
+        <Carousel activeIndex={activeIndex}>
+          <Box id="box1" h="xs" w="md" bg="orange.500"></Box>
+          <Box id="box2" h="xs" w="md" bg="blue.500"></Box>
+          <Carousel.Pagination variant="inline" activeIndex={activeIndex} totalItems={2} onPageChange={(index: number) => setActiveIndex(index)} />
+        </Carousel>
+        <Carousel activeIndex={activeIndex}>
+          <Box id="box1" h="lg" w="md" bg="purple.500"></Box>
+          <Box id="box2" h="lg" w="md" bg="gray.500"></Box>
+          <Carousel.Pagination variant="inline" activeIndex={activeIndex} totalItems={2} onPageChange={(index: number) => setActiveIndex(index)} />
         </Carousel>
       </Box>
     );
