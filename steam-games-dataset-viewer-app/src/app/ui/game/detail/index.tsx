@@ -60,23 +60,25 @@ export default function ({ detail }: { detail: Detail }) {
   };
 
   return (
-    <Box>
-      {buildTopSection(detail)}
-      <VStack gap={10} paddingBlock={10} alignItems="flex-start">
-        {detail.detailed_description && (
-          <>
-            {buildSectionHeading('About the game')}
-            <Text>{detail.detailed_description}</Text>
-          </>
-        )}
-        {buildSupportedOsSection(detail)}
-        {buildScreenshotSection(detail.screenshots)}
-        <BrowseType type={AllowedTypeValues.SupportedLanguages} heading="Supported Languages" values={detail.supported_languages} />
-        <BrowseType type={AllowedTypeValues.AudioLanguages} heading="Audio Languages" values={detail.full_audio_languages} />
-        <BrowseType type={AllowedTypeValues.Developers} heading="Developers" values={detail.developers} />
-        <BrowseType type={AllowedTypeValues.Publishers} heading="Publishers" values={detail.publishers} />
-        <BrowseType type={AllowedTypeValues.Categories} heading="Categories" values={detail.categories} />
-      </VStack>
-    </Box>
+    detail && (
+      <Box>
+        {buildTopSection(detail)}
+        <VStack gap={10} paddingBlock={10} alignItems="flex-start">
+          {detail.detailed_description && (
+            <>
+              {buildSectionHeading('About the game')}
+              <Text>{detail.detailed_description}</Text>
+            </>
+          )}
+          {buildSupportedOsSection(detail)}
+          {buildScreenshotSection(detail.screenshots)}
+          <BrowseType type={AllowedTypeValues.SupportedLanguages} heading="Supported Languages" values={detail.supported_languages} />
+          <BrowseType type={AllowedTypeValues.AudioLanguages} heading="Audio Languages" values={detail.full_audio_languages} />
+          <BrowseType type={AllowedTypeValues.Developers} heading="Developers" values={detail.developers} />
+          <BrowseType type={AllowedTypeValues.Publishers} heading="Publishers" values={detail.publishers} />
+          <BrowseType type={AllowedTypeValues.Categories} heading="Categories" values={detail.categories} />
+        </VStack>
+      </Box>
+    )
   );
 }

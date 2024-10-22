@@ -13,8 +13,6 @@ type Params = {
 // http://localhost:3000/api/browse/genres/Strategy
 export async function GET(request: Request, context: { params: Params }) {
   try {
-    await client.connect();
-
     const { type, value } = context.params;
 
     if (!Object.values(AllowedTypeValues).includes(type as AllowedTypeValues)) {

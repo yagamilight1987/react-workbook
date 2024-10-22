@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { Box, Heading, SimpleGrid, Skeleton } from '@chakra-ui/react';
 import Carousel from './ui/carousel';

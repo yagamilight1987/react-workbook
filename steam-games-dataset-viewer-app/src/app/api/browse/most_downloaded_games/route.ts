@@ -6,8 +6,6 @@ export const dynamic = 'force-dynamic';
 // http://localhost:3000/api/browse/most_downloaded_games
 export async function GET(request: Request) {
   try {
-    await client.connect();
-
     const query = `
       SELECT
         g.game_id,

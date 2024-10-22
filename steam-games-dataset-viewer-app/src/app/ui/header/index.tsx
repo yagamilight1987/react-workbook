@@ -10,7 +10,7 @@ export default function ({ links }: { links: Array<{ text: string; href: string 
   return (
     <header>
       <Flex alignItems="center" width="100%" padding={4}>
-        <Image src="images/logo.svg" alt="Logo" width="200px" height="40px" />
+        <Image src="/images/logo.svg" alt="Logo" width="200px" height="40px" />
         <Spacer />
         <HStack spacing="24px">
           {links.map((link) => (

@@ -6,8 +6,6 @@ export const dynamic = 'force-dynamic';
 // http://localhost:3000/api/browse/in_the_spotlight
 export async function GET(request: Request) {
   try {
-    await client.connect();
-
     const selectQuery = `
       SELECT
         g.game_id,

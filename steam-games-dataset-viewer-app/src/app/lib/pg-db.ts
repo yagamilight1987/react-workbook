@@ -7,4 +7,6 @@ if (process.env.PG_CLIENT === 'true') {
   });
 }
 
+await client.connect();
+
 export default client;
