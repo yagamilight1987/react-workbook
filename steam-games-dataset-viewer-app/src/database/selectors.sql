@@ -25,6 +25,36 @@ FROM
 WHERE
   g.game_id = 570;
 
+/* Select a random game and then a random image from screenshots column */
+SELECT
+  g.game_id,
+  g.header_image,
+  g.name,
+  UNNEST (gd.screenshots) as screenshot
+FROM
+  games AS g
+  INNER JOIN (
+    SELECT
+      game_id,
+      screenshots
+    FROM
+      (
+        SELECT
+          game_id,
+          screenshots
+        FROM
+          game_details TABLESAMPLE SYSTEM (2)
+      )
+    WHERE
+      screenshots != '{}'
+    LIMIT
+      1
+  ) AS gd ON g.game_id = gd.game_id
+ORDER BY
+  RANDOM ()
+LIMIT
+  1;
+
 /* IN THE SPOTLIGHT 2024 */
 SELECT
   g.game_id,

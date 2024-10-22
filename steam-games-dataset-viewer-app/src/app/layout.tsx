@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import ChakraUIProvider from './charkraui-provider';
-import { Box, Container } from '@chakra-ui/react';
 import Header from './ui/header';
 
 export const metadata: Metadata = {
@@ -25,14 +24,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <body className="antialiased">
         <ChakraUIProvider>
-          <Box shadow="md">
-            <Container maxW="container.xl" padding={0}>
-              <Header links={mainLinks} />
-            </Container>
-          </Box>
-          <Container maxW="container.xl" padding={0}>
-            <Box paddingInline={4}>{children}</Box>
-          </Container>
+          <Header links={mainLinks} />
+          {children}
         </ChakraUIProvider>
       </body>
     </html>

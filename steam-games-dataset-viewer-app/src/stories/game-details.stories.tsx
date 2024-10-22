@@ -15,12 +15,8 @@ export const Basic: Story = {
   render: () => {
     return (
       <>
-        <Container maxW="container.xl" padding={0}>
-          <Header links={[]} />
-          <Box paddingInline={4}>
-            <GameDetailsPage params={{ id: 570 }} />
-          </Box>
-        </Container>
+        <Header links={[]} />
+        <GameDetailsPage params={{ id: 570 }} />
       </>
     );
   },

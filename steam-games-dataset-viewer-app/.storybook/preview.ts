@@ -12,15 +12,15 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-    backgrounds: {
-      values: [
-        // 👇 Default values
-        { name: 'Dark', value: 'var(--yl-colors-brand-bg)' },
-        { name: 'Light', value: 'var(--yl-colors-brand-bg)' },
-      ],
-      // 👇 Specify which background is shown by default
-      default: 'Light',
-    },
+    // backgrounds: {
+    //   values: [
+    //     // 👇 Default values
+    //     { name: 'Dark', value: 'var(--yl-colors-brand-bg)' },
+    //     { name: 'Light', value: 'var(--yl-colors-brand-bg)' },
+    //   ],
+    //   // 👇 Specify which background is shown by default
+    //   default: 'Light',
+    // },
     chakra: {
       theme,
     },
