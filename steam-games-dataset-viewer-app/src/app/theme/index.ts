@@ -1,6 +1,5 @@
 import { extendTheme, type ThemeConfig } from '@chakra-ui/react';
 import { fonts } from '@/app/fonts';
-import { tagTheme } from './components/Tag';
 import { buttonTheme } from './components/Button';
 
 const config: ThemeConfig = {
@@ -31,13 +30,10 @@ const theme = extendTheme({
   styles: {
     global: {
       body: {
-        // bg: 'brand.bg',
-        // color: 'brand.text',
       },
     },
   },
   components: {
-    // Tag: tagTheme,
     Button: buttonTheme,
   },
 });
