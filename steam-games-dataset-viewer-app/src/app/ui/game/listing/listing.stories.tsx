@@ -9,8 +9,12 @@ export default meta;
 
 type Story = StoryObj<typeof GameListing>;
 
-export const Basic: Story = {
+export const GameCard: Story = {
   render: () => <GameListing games={data} />,
+};
+
+export const SpotlightCard: Story = {
+  render: () => <GameListing games={data} cardType="spotlight" />,
 };
 
 const data = [

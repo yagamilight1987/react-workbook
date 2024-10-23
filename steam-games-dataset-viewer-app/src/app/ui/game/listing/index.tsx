@@ -5,7 +5,7 @@ import GameCard from '../single-card';
 import { Game } from '../../../types/game';
 import SpotlightCard from '../spotlight-card';
 
-export default function GameListing({ games, cardType = 'game' }: { games: Array<Partial<Game>>; cardType: 'game' | 'spotlight' }) {
+export default function GameListing({ games, cardType = 'game' }: { games: Array<Partial<Game>>; cardType?: 'game' | 'spotlight' }) {
   return (
     <SimpleGrid spacing={4} columns={[1, null, 2, 4, 5]}>
       {games?.map((game) => {
