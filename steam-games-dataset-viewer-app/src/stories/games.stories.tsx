@@ -1,21 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import GameDetailsPage from '@/app/games/[id]/page';
 import Header from '@/app/ui/header';
+import GamesPage from '@/app/games/page';
 
-const meta: Meta<typeof GameDetailsPage> = {
-  component: GameDetailsPage,
+const meta: Meta<typeof GamesPage> = {
+  component: GamesPage,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof GameDetailsPage>;
+type Story = StoryObj<typeof GamesPage>;
 
 export const Basic: Story = {
   render: () => {
     return (
       <>
         <Header links={[]} />
-        <GameDetailsPage params={{ id: 570 }} />
+        <GamesPage />
       </>
     );
   },

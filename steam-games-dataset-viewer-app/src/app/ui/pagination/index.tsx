@@ -5,12 +5,15 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 type PaginationProps = {
   totalItems: number;
+  pageSize?: number;
   variant?: 'prev/next' | 'circle' | 'number' | 'inline';
   activeIndex?: number;
   onPageChange: (index: number) => void;
 };
 
-const Pagination = ({ variant = 'prev/next', activeIndex = 0, totalItems = 1, onPageChange }: PaginationProps) => {
+const Pagination = ({ variant = 'prev/next', activeIndex = 0, totalItems = 1, pageSize = 1, onPageChange }: PaginationProps) => {
+  const totalPages = Math.ceil(totalItems / pageSize);
+
   const handleClick = (index: number): void => {
     if (index === activeIndex) {
       return;
@@ -25,7 +28,7 @@ const Pagination = ({ variant = 'prev/next', activeIndex = 0, totalItems = 1, on
         <Button disabled={activeIndex === 0} onClick={() => handleClick(activeIndex - 1)}>
           Prev
         </Button>
-        <Button disabled={activeIndex === totalItems - 1} onClick={() => handleClick(activeIndex + 1)}>
+        <Button disabled={activeIndex === totalPages - 1} onClick={() => handleClick(activeIndex + 1)}>
           Next
         </Button>
       </ButtonGroup>
@@ -34,7 +37,7 @@ const Pagination = ({ variant = 'prev/next', activeIndex = 0, totalItems = 1, on
 
   const renderNumberVariant = () => {
     const buttons = [];
-    for (let index = 0; index < totalItems; index++) {
+    for (let index = 0; index < totalPages; index++) {
       buttons.push(
         <Button key={index} variant={activeIndex === index ? 'brandPrimaryActive' : 'brandPrimary'} onClick={() => handleClick(index)}>
           {index + 1}
@@ -47,7 +50,7 @@ const Pagination = ({ variant = 'prev/next', activeIndex = 0, totalItems = 1, on
 
   const renderCircleVariant = () => {
     const buttons = [];
-    for (let index = 0; index < totalItems; index++) {
+    for (let index = 0; index < totalPages; index++) {
       buttons.push(
         <Button
           key={index}
@@ -71,7 +74,7 @@ const Pagination = ({ variant = 'prev/next', activeIndex = 0, totalItems = 1, on
         <Button disabled={activeIndex === 0} onClick={() => handleClick(activeIndex - 1)} variant="carouselButton" position="absolute" left="0">
           <Icon boxSize="8" as={FaChevronLeft} />
         </Button>
-        <Button disabled={activeIndex === totalItems - 1} onClick={() => handleClick(activeIndex + 1)} variant="carouselButton" position="absolute" right="0">
+        <Button disabled={activeIndex === totalPages - 1} onClick={() => handleClick(activeIndex + 1)} variant="carouselButton" position="absolute" right="0">
           <Icon boxSize="8" as={FaChevronRight} />
         </Button>
       </>

@@ -11,7 +11,7 @@ export default function GameDetailsPage({ params }: { params: { id: number } }) 
     <Container maxW="container.xl" padding={0}>
       <Box paddingInline={4}>
         <Skeleton height="container.sm" isLoaded={!gameDetailsResponse.isLoading} fadeDuration={2}>
-          <GameDetail detail={gameDetailsResponse.data} />
+          <GameDetail detail={gameDetailsResponse.data?.data} />
         </Skeleton>
       </Box>
     </Container>

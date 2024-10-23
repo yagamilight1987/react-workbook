@@ -12,16 +12,17 @@ import GameListing from './ui/game/listing';
 export default function Home() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  const { data, isLoading }: InTheSpotlight = useInTheSpotlight();
+  const inTheSpotlightResponse: InTheSpotlight = useInTheSpotlight();
 
   const mostDownloadedGamesResponse = useMostDownloadedGames();
 
   useEffect(() => {
-    if (data?.length) {
+    const length = inTheSpotlightResponse.data?.data?.length;
+    if (length) {
       const timer = setTimeout(() => {
-        if (activeIndex < data.length - 1) {
+        if (activeIndex < length - 1) {
           setActiveIndex(activeIndex + 1);
-        } else if (activeIndex === data.length - 1) {
+        } else if (activeIndex === length - 1) {
           setActiveIndex(0);
         }
       }, 1500);
@@ -40,13 +41,13 @@ export default function Home() {
               <Heading as="h1" fontSize={{ base: '4xl', sm: '5xl', md: '6xl' }} fontWeight="bold" textAlign={{ base: 'center', md: 'left' }}>
                 In The Spotlight
               </Heading>
-              {isLoading && <Skeleton />}
-              {data?.length && (
+              {inTheSpotlightResponse.isLoading && <Skeleton />}
+              {inTheSpotlightResponse.data?.data?.length && (
                 <Carousel activeIndex={activeIndex}>
-                  {data.map((game) => (
+                  {inTheSpotlightResponse.data.data.map((game) => (
                     <SpotlightCard key={game.game_id} {...game} />
                   ))}
-                  <Carousel.Pagination variant="circle" activeIndex={activeIndex} totalItems={data.length} onPageChange={(index: number) => setActiveIndex(index)} />
+                  <Carousel.Pagination variant="circle" activeIndex={activeIndex} totalItems={inTheSpotlightResponse.data.data.length} onPageChange={(index: number) => setActiveIndex(index)} />
                 </Carousel>
               )}
             </SimpleGrid>
@@ -56,7 +57,7 @@ export default function Home() {
               Most Downloaded Games
             </Heading>
             {mostDownloadedGamesResponse.isLoading && <Skeleton />}
-            {mostDownloadedGamesResponse.data?.length && <GameListing games={mostDownloadedGamesResponse.data} cardType="spotlight" />}
+            {mostDownloadedGamesResponse.data?.data?.length && <GameListing games={mostDownloadedGamesResponse.data.data} cardType="spotlight" />}
           </Box>
         </Box>
       </Container>

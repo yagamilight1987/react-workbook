@@ -11,7 +11,7 @@ type SpotlightCardProps = {} & Partial<Game>;
 export default function SpotlightCard({ game_id, name, price, header_image }: SpotlightCardProps) {
   return (
     <LinkBox as="article" height="full">
-      <LinkOverlay as={NextLink} href={`/game/${game_id}`}>
+      <LinkOverlay as={NextLink} href={`/games/${game_id}`}>
         <Card maxW="100%" position="relative" height="full">
           <Image width="full" height="full" src={header_image} alt={name} rounded="md" minH={40} />
           <CardBody position="absolute" bottom="10px" right="10px" marginLeft="10px" width="fit-content" padding={0}>

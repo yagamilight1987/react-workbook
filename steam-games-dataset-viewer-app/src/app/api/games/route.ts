@@ -10,15 +10,15 @@ export async function GET(request: Request) {
     const whereQuery = `WHERE ${appendNotNullName()} ${appendFilter('name', filter)}`;
 
     const selectQuery = `
-      SELECT *
-      FROM source_steam_games
+      SELECT game_id::integer, name, price::numeric::float, genres, positive, negative, header_image, release_date
+      FROM games
       ${whereQuery}
       ${appendOrderBy(orderBy, orderDir)}
       ${appendPagination(page, pageSize)}
     `;
     const selectResponse = await pool.query(selectQuery);
 
-    const totalCountQuery = `SELECT Count(*) FROM source_steam_games ${whereQuery}`;
+    const totalCountQuery = `SELECT Count(*) FROM games ${whereQuery}`;
     const totalCountResponse = await pool.query(totalCountQuery);
 
     const responseBody = {
