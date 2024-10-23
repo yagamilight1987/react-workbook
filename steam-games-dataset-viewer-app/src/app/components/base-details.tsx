@@ -1,10 +1,11 @@
 'use client';
 
 import { Component, ReactNode } from 'react';
-import { VStack, Text, Flex, Spacer, Heading, Divider, Tag, TagLeftIcon, TagLabel } from '@chakra-ui/react';
-import { FaCalendar, FaDollarSign } from 'react-icons/fa6';
+import { VStack, Flex, Spacer, Heading, Divider, Tag, TagLeftIcon, TagLabel } from '@chakra-ui/react';
+import { FaCalendar } from 'react-icons/fa6';
 import BrowseType from './BrowseType';
 import { AllowedTypeValues } from '../types/type-values';
+import PriceLabel from './PriceLabel';
 
 interface BaseDetailsProps {
   name?: string;
@@ -17,30 +18,29 @@ interface BaseDetailsProps {
 
 export default class BaseDeails extends Component<BaseDetailsProps> {
   render() {
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short' };
     const { name, genres, price, release_date, listingType = 'multiple', children } = this.props;
+    const formattedDate = release_date ? new Date(release_date).toLocaleString('default', options) : release_date;
     return (
       <VStack flex={1} alignItems="flex-start" spacing="3">
-        <Heading as="h1" size={listingType === 'multiple' ? 'md' : 'lg'} noOfLines={listingType === 'multiple' ? 1 : Infinity} fontWeight="bold">
+        <Heading as="h1" size={listingType === 'multiple' ? 'xs' : 'lg'} noOfLines={listingType === 'multiple' ? 1 : Infinity} fontWeight="bold">
           {name}
         </Heading>
-        <Flex gap={2} alignItems="center">
-          <BrowseType type={AllowedTypeValues.Genres} heading="Genres" values={genres} max={listingType === 'multiple' ? 1 : genres?.length} />
-        </Flex>
+        {genres && (
+          <Flex gap={2} alignItems="center">
+            <BrowseType type={AllowedTypeValues.Genres} values={genres} max={listingType === 'multiple' ? 1 : genres?.length} />
+          </Flex>
+        )}
         <Divider />
         <Flex width="full">
-          <Tag size="md" variant="solid">
-            <TagLeftIcon as={FaDollarSign} />
-            <TagLabel>
-              <Text fontWeight="bold">{price}</Text>
-            </TagLabel>
-          </Tag>
+          <PriceLabel price={price} />
           <Spacer />
-          <Tag size="md" variant="solid">
-            <TagLeftIcon as={FaCalendar} />
-            <TagLabel>
-              <Text fontWeight="bold">{release_date}</Text>
-            </TagLabel>
-          </Tag>
+          {formattedDate && (
+            <Tag size="md" variant="subtle">
+              <TagLeftIcon as={FaCalendar} />
+              <TagLabel fontSize="sm">{formattedDate}</TagLabel>
+            </Tag>
+          )}
         </Flex>
         {children}
       </VStack>

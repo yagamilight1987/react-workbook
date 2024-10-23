@@ -37,7 +37,7 @@ const theme = extendTheme({
     },
   },
   components: {
-    Tag: tagTheme,
+    // Tag: tagTheme,
     Button: buttonTheme,
   },
 });

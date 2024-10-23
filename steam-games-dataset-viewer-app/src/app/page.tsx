@@ -7,7 +7,7 @@ import SpotlightCard from './ui/game/spotlight-card';
 import { useMostDownloadedGames, useInTheSpotlight } from './services/swr/fetcher';
 import { InTheSpotlight } from './types/fetcher';
 import Hero from './ui/hero';
-import { Game } from './types/game';
+import GameListing from './ui/game/listing';
 
 export default function Home() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -35,9 +35,9 @@ export default function Home() {
       <Hero />
       <Container maxW="container.xl" padding={0}>
         <Box paddingInline={4}>
-          <Box as="section" paddingBlock="24">
-            <SimpleGrid columns={2} marginBlock={10} alignItems="center">
-              <Heading as="h1" fontSize="8xl" fontWeight="bold">
+          <Box as="section">
+            <SimpleGrid columns={{ base: 1, md: 2 }} marginBlock={10} alignItems="center" gap={10}>
+              <Heading as="h1" fontSize={{ base: '4xl', sm: '5xl', md: '6xl' }} fontWeight="bold" textAlign={{ base: 'center', md: 'left' }}>
                 In The Spotlight
               </Heading>
               {isLoading && <Skeleton />}
@@ -51,18 +51,12 @@ export default function Home() {
               )}
             </SimpleGrid>
           </Box>
-          <Box as="section" paddingBlock="24">
-            <Heading as="h2" fontSize="6xl" fontWeight="bold" marginBottom={10}>
+          <Box as="section">
+            <Heading as="h2" fontSize={{ base: '4xl', sm: '5xl', md: '6xl' }} fontWeight="bold" textAlign={{ base: 'center', md: 'left' }} marginBottom={10}>
               Most Downloaded Games
             </Heading>
             {mostDownloadedGamesResponse.isLoading && <Skeleton />}
-            {mostDownloadedGamesResponse.data?.length && (
-              <SimpleGrid minChildWidth={['full', 'sm']} spacing={10}>
-                {mostDownloadedGamesResponse.data.map((game: Partial<Game>) => (
-                  <SpotlightCard key={game.game_id} {...game} />
-                ))}
-              </SimpleGrid>
-            )}
+            {mostDownloadedGamesResponse.data?.length && <GameListing games={mostDownloadedGamesResponse.data} cardType="spotlight" />}
           </Box>
         </Box>
       </Container>

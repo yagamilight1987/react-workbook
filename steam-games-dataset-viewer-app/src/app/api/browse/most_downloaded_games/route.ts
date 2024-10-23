@@ -8,9 +8,9 @@ export async function GET() {
   try {
     const query = `
       SELECT
-        g.game_id,
+        g.game_id::integer,
         g.name,
-        g.price,
+        g.price::numeric::float,
         g.header_image,
         gd.median
       FROM

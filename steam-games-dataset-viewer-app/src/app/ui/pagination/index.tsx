@@ -54,15 +54,15 @@ const Pagination = ({ variant = 'prev/next', activeIndex = 0, totalItems = 1, on
           variant={activeIndex === index ? 'brandPrimaryActive' : 'brandPrimary'}
           onClick={() => handleClick(index)}
           padding="0"
-          minWidth="3"
-          w="3"
-          h="3"
+          minWidth={{ base: 2, md: 3 }}
+          w={{ base: 2, md: 3 }}
+          h={{ base: 2, md: 3 }}
           borderRadius="full"
         ></Button>,
       );
     }
 
-    return <ButtonGroup spacing="6">{buttons.map((button) => button)}</ButtonGroup>;
+    return <ButtonGroup spacing={{ base: 4, md: 6 }}>{buttons.map((button) => button)}</ButtonGroup>;
   };
 
   const renderInlineVariant = () => {

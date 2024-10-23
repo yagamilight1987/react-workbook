@@ -2,8 +2,8 @@
   "status": true,
   "data": {
     "game_id": "1610860",
-    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/1610860/header.jpg?t=1632485222",
+    "header_image": "/images/card-detail.jpg",
     "name": "Merek's Market",
-    "screenshot": "https://cdn.akamai.steamstatic.com/steam/apps/1610860/ss_ddf8151e10cf27057c266125bcf3feff956ca51c.1920x1080.jpg?t=1632485222"
+    "screenshot": "/images/card-detail.jpg"
   }
 }

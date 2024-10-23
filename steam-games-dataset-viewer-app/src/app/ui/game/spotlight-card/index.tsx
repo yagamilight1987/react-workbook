@@ -1,10 +1,10 @@
 'use client';
 
 import NextLink from 'next/link';
-import { Heading, LinkBox, LinkOverlay, VStack, Text, TagLabel, Tag, TagLeftIcon, Image } from '@chakra-ui/react';
+import { Heading, LinkBox, LinkOverlay, Tag, Image, VStack } from '@chakra-ui/react';
 import { Card, CardBody } from '@chakra-ui/react/card';
 import { Game } from '../../../types/game';
-import { FaDollarSign } from 'react-icons/fa6';
+import PriceLabel from '@/app/components/PriceLabel';
 
 type SpotlightCardProps = {} & Partial<Game>;
 
@@ -13,21 +13,16 @@ export default function SpotlightCard({ game_id, name, price, header_image }: Sp
     <LinkBox as="article" height="full">
       <LinkOverlay as={NextLink} href={`/game/${game_id}`}>
         <Card maxW="100%" position="relative" height="full">
-          <Image width="full" height="full" src={header_image} alt={name} rounded="md" />
+          <Image width="full" height="full" src={header_image} alt={name} rounded="md" minH={40} />
           <CardBody position="absolute" bottom="10px" right="10px" marginLeft="10px" width="fit-content" padding={0}>
-            <VStack flex={1} alignItems="flex-start" spacing="0">
-              <Tag size="md" variant="solid">
-                <Heading as="h1" fontSize="md" noOfLines={1} fontWeight="bold">
+            <Tag size="md" variant="subtle">
+              <VStack alignItems="flex-end" gap="0">
+                <Heading as="h1" fontSize="sm" noOfLines={1} fontWeight="bold">
                   {name}
                 </Heading>
-                <TagLeftIcon as={FaDollarSign} marginInlineEnd={0} marginInlineStart={2} />
-                <TagLabel>
-                  <Text fontWeight="bolder" fontSize="md">
-                    {price}
-                  </Text>
-                </TagLabel>
-              </Tag>
-            </VStack>
+                <PriceLabel price={price} />
+              </VStack>
+            </Tag>
           </CardBody>
         </Card>
       </LinkOverlay>

@@ -2,7 +2,7 @@
   "succes": true,
   "data": {
     "game_id": "730",
-    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg?t=1641233427",
+    "header_image": "/images/card-image.jpg",
     "name": "Counter-Strike: Global Offensive",
     "positive": 5764420,
     "negative": 766677,
