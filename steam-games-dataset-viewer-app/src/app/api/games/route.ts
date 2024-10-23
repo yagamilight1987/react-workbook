@@ -1,4 +1,4 @@
-import client from '@/app/lib/pg-db';
+import pool from '@/app/lib/pg-db';
 import { appendFilter, appendNotNullName, appendOrderBy, appendPagination, getSearchParams } from '@/app/utils';
 
 export const dynamic = 'force-dynamic';
@@ -16,10 +16,10 @@ export async function GET(request: Request) {
       ${appendOrderBy(orderBy, orderDir)}
       ${appendPagination(page, pageSize)}
     `;
-    const selectResponse = await client.query(selectQuery);
+    const selectResponse = await pool.query(selectQuery);
 
     const totalCountQuery = `SELECT Count(*) FROM source_steam_games ${whereQuery}`;
-    const totalCountResponse = await client.query(totalCountQuery);
+    const totalCountResponse = await pool.query(totalCountQuery);
 
     const responseBody = {
       succes: true,

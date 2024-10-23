@@ -1,7 +1,7 @@
 export enum AllowedTypeValues {
   Genres = 'genres',
-  SupportedLanguages = 'supported-languages',
-  AudioLanguages = 'audio-languages',
+  SupportedLanguages = 'supported_languages',
+  AudioLanguages = 'full_audio_languages',
   Developers = 'developers',
   Publishers = 'publishers',
   Categories = 'categories',

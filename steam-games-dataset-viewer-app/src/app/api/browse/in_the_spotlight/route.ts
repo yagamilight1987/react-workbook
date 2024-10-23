@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import client from '@/app/lib/pg-db';
+import pool from '@/app/lib/pg-db';
 
 export const dynamic = 'force-dynamic';
 
@@ -38,7 +38,7 @@ export async function GET() {
       LIMIT
         10;
       `;
-    const selectQueryResponse = await client.query(selectQuery);
+    const selectQueryResponse = await pool.query(selectQuery);
 
     const responseBody = {
       succes: true,

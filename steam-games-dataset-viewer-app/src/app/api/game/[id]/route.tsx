@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import client from '@/app/lib/pg-db';
+import pool from '@/app/lib/pg-db';
 
 export const dynamic = 'force-dynamic';
 
@@ -39,7 +39,7 @@ export async function GET(request: Request, context: { params: Params }) {
       WHERE
       g.game_id = ${id};
     `;
-    const selectResponse = await client.query(selectQuery);
+    const selectResponse = await pool.query(selectQuery);
 
     if (selectResponse.rows?.length) {
       const responseBody = {

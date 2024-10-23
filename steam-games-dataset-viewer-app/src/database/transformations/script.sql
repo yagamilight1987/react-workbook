@@ -194,7 +194,7 @@ WHERE
   AND (
     publishers = '{""}'
     OR publishers = '{}'
-  )
+  );
 
 /* Insert into games table where name exists and short_description exists */
 INSERT INTO
