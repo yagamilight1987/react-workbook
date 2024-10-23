@@ -51,8 +51,10 @@ export async function GET(request: Request, context: { params: Params }) {
     }
 
     return Response.json({ success: false, error: `Not found with id: ${id}` }, { status: 404, statusText: 'Not found.' });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Hi its error ' + error);
-    return Response.json({ succes: false, error: error });
+    if (error instanceof Error) {
+      return Response.json({ succes: false, error: error });
+    }
   }
 }

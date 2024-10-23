@@ -14,7 +14,9 @@ import { FaChevronRight } from 'react-icons/fa6';
 
 type Detail = Partial<Game> & Partial<GameDetails>;
 
-export default function ({ detail }: { detail: Detail }) {
+export default function GameDetail({ detail }: { detail: Detail }) {
+  const [screenshotActiveIndex, setScreenshotActiveIndex] = useState<number>(0);
+
   const buildSectionHeading = (text: string) => {
     return (
       <Heading as="h2" size="md">
@@ -23,7 +25,7 @@ export default function ({ detail }: { detail: Detail }) {
     );
   };
 
-  const buildTopSection = ({ header_image, name, positive, negative, genres, price, release_date, short_description }: Detail) => {
+  const buildTopSection = ({ header_image, name, genres, price, release_date, short_description }: Detail) => {
     return (
       <Card variant="unstyled" bg="inherit" color="inherit" gap={10}>
         <Image width="100%" src={header_image} alt={name} rounded="inherit" height="full" />
@@ -38,7 +40,6 @@ export default function ({ detail }: { detail: Detail }) {
   };
 
   const buildScreenshotSection = (screenshots: string[] | undefined) => {
-    const [screenshotActiveIndex, setScreenshotActiveIndex] = useState<number>(0);
     return (
       <>
         {buildSectionHeading('Screenshots')}
@@ -77,7 +78,9 @@ export default function ({ detail }: { detail: Detail }) {
         </BreadcrumbItem>
 
         <BreadcrumbItem isCurrentPage>
-          <BreadcrumbLink as={Link} href={`/game/${game_id}`} color="brand.primary">[{game_id}]</BreadcrumbLink>
+          <BreadcrumbLink as={Link} href={`/game/${game_id}`} color="brand.primary">
+            [{game_id}]
+          </BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
     );

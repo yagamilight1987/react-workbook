@@ -25,7 +25,7 @@ export async function GET(request: Request, context: { params: Params }) {
 
     const selectQuery = `SELECT * FROM source_steam_games ${whereQuery} ${appendOrderBy(orderBy, orderDir)} ${appendPagination(page, pageSize)}`;
     const selectResponse = await client.query(selectQuery);
-    
+
     const totalCountQuery = `SELECT Count(*) FROM source_steam_games ${whereQuery}`;
     const totalCountResponse = await client.query(totalCountQuery);
 
@@ -36,8 +36,10 @@ export async function GET(request: Request, context: { params: Params }) {
     };
 
     return NextResponse.json(responseBody);
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Hi its error ' + error);
-    return Response.json({ succes: false, error: error });
+    if (error instanceof Error) {
+      return Response.json({ succes: false, error: error });
+    }
   }
 }

@@ -2,7 +2,6 @@ import { extendTheme, type ThemeConfig } from '@chakra-ui/react';
 import { fonts } from '@/app/fonts';
 import { tagTheme } from './components/Tag';
 import { buttonTheme } from './components/Button';
-import Badge from './components/Badge';
 
 const config: ThemeConfig = {
   cssVarPrefix: 'yl',

@@ -1,27 +1,7 @@
-import { Client } from 'pg';
-import { db, VercelPoolClient } from '@/app/lib/db';
 import client from '@/app/lib/pg-db';
 import { appendFilter, appendNotNullName, appendOrderBy, appendPagination, getSearchParams } from '@/app/utils';
 
 export const dynamic = 'force-dynamic';
-
-let myclient: Client | VercelPoolClient = client;
-
-if (process.env.PG_CLIENT === 'true') {
-  try {
-    await myclient.connect();
-    console.log('connected from pg client');
-  } catch (error: any) {
-    console.error('Hi its error from pg client ' + error.message);
-  }
-} else {
-  try {
-    myclient = await db.connect();
-    console.log('connected from vercel client');
-  } catch (error: any) {
-    console.error('Hi its error from vercel client ' + error.message);
-  }
-}
 
 // http://localhost:3000/api/games?page=1&pageSize=1&filter=need%20for%20speed&orderBy=negative&orderDir=desc
 export async function GET(request: Request) {
@@ -48,8 +28,10 @@ export async function GET(request: Request) {
     };
 
     return Response.json(responseBody);
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Hi its error ' + error);
-    return Response.json({ succes: false, error: error });
+    if (error instanceof Error) {
+      return Response.json({ succes: false, error: error });
+    }
   }
 }

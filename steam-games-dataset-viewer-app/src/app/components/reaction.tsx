@@ -5,12 +5,12 @@ import { Avatar, AvatarBadge, Text } from '@chakra-ui/react';
 
 type ReactionProps = {
   bg: string;
-  icon: ReactElement<any, string | JSXElementConstructor<any>> | undefined;
+  icon: ReactElement<unknown, string | JSXElementConstructor<unknown>> | undefined;
   value: number | undefined;
 };
 
-export default function ({ bg, icon, value }: ReactionProps) {
-  function getFormattedBadgeNumber(value: any) {
+export default function Reaction({ bg, icon, value }: ReactionProps) {
+  function getFormattedBadgeNumber(value: number | undefined) {
     if (!value) {
       return '0';
     }

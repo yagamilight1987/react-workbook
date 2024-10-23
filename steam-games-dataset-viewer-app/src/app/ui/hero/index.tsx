@@ -1,11 +1,11 @@
 'use client';
 
 import NextLink from 'next/link';
-import { Box, Container, Heading, Image, LinkBox, LinkOverlay, Skeleton } from '@chakra-ui/react';
+import { Box, Image, LinkBox, LinkOverlay, Skeleton } from '@chakra-ui/react';
 import { useRandomGame } from '@/app/services/swr/fetcher';
 
-export default function () {
-  const { data, isLoading, error } = useRandomGame();
+export default function Hero() {
+  const { data } = useRandomGame();
 
   return (
     <LinkBox as="article">

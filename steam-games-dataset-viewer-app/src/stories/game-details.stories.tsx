@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Box, Container } from '@chakra-ui/react';
 import GameDetailsPage from '@/app/game/[id]/page';
 import Header from '@/app/ui/header';
 

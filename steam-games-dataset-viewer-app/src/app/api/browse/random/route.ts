@@ -4,7 +4,7 @@ import client from '@/app/lib/pg-db';
 export const dynamic = 'force-dynamic';
 
 // http://localhost:3000/api/browse/random
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const query = `
       SELECT
@@ -45,8 +45,10 @@ export async function GET(request: Request) {
     };
 
     return NextResponse.json(responseBody);
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Hi its error ' + error);
-    return Response.json({ succes: false, error: error });
+    if (error instanceof Error) {
+      return Response.json({ succes: false, error: error });
+    }
   }
 }

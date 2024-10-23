@@ -4,16 +4,17 @@ import { useEffect, useState } from 'react';
 import { Box, Container, Heading, SimpleGrid, Skeleton } from '@chakra-ui/react';
 import Carousel from './ui/carousel';
 import SpotlightCard from './ui/game/spotlight-card';
-import { uesMostDownloadedGames, useInTheSpotlight } from './services/swr/fetcher';
+import { useMostDownloadedGames, useInTheSpotlight } from './services/swr/fetcher';
 import { InTheSpotlight } from './types/fetcher';
 import Hero from './ui/hero';
+import { Game } from './types/game';
 
 export default function Home() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  const { data, isLoading, error }: InTheSpotlight = useInTheSpotlight();
+  const { data, isLoading }: InTheSpotlight = useInTheSpotlight();
 
-  const mostDownloadedGamesResponse = uesMostDownloadedGames();
+  const mostDownloadedGamesResponse = useMostDownloadedGames();
 
   useEffect(() => {
     if (data?.length) {
@@ -57,7 +58,7 @@ export default function Home() {
             {mostDownloadedGamesResponse.isLoading && <Skeleton />}
             {mostDownloadedGamesResponse.data?.length && (
               <SimpleGrid minChildWidth={['full', 'sm']} spacing={10}>
-                {mostDownloadedGamesResponse.data.map((game: any) => (
+                {mostDownloadedGamesResponse.data.map((game: Partial<Game>) => (
                   <SpotlightCard key={game.game_id} {...game} />
                 ))}
               </SimpleGrid>

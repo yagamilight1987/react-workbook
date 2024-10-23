@@ -11,7 +11,7 @@ type GameCardProps = {
   size?: 'sm' | 'md' | 'lg';
 } & Partial<Game>;
 
-export default function ({ size = 'sm', game_id, header_image, name, genres, positive, negative, price, release_date }: GameCardProps) {
+export default function GameCard({ size = 'sm', game_id, header_image, name, genres, positive, negative, price, release_date }: GameCardProps) {
   return (
     <LinkBox as="article">
       <LinkOverlay as={NextLink} href={`/game/${game_id}`}>

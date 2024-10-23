@@ -19,7 +19,7 @@ export interface GameDetails {
   recommendations: number;
   notes: string;
   supported_languages: string[];
-  full_audio_languages: any[];
+  full_audio_languages: string[];
 //   packages: Package[];
   developers: string[];
   publishers: string[];

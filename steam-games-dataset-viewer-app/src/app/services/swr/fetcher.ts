@@ -7,11 +7,11 @@ export const fetcher = (url: string) =>
   axiosInstance
     .get(url)
     .then((response) => response.data)
-    .then(({ success, data }) => data);
+    .then(({ data }) => data);
 
 export const useInTheSpotlight = (): InTheSpotlight => useSWR(IN_THE_SPOTLIGHT_URL, fetcher);
 
-export const uesMostDownloadedGames = () => useSWR(MOST_DOWNLOADED_GAMES_URL, fetcher);
+export const useMostDownloadedGames = () => useSWR(MOST_DOWNLOADED_GAMES_URL, fetcher);
 
 export const useGameDetails = (id: number) => useSWR(`${GAME_DETAILS_URL}/${id}`, fetcher)
 

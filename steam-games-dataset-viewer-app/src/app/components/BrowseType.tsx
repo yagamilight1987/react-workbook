@@ -7,7 +7,7 @@ import { AllowedTypeValues } from '../types/type-values';
 
 type BrowseTypeProps = { type: AllowedTypeValues; heading: string; values: string[] | undefined; max?: number };
 
-export default function ({ heading, values, max }: BrowseTypeProps) {
+export default function BrowseType({ heading, values, max }: BrowseTypeProps) {
   return (
     <>
       <Heading as="h2" size="md">
