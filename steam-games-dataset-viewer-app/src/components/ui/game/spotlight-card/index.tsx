@@ -3,8 +3,8 @@
 import NextLink from 'next/link';
 import { Heading, LinkBox, LinkOverlay, Tag, Image, VStack } from '@chakra-ui/react';
 import { Card, CardBody } from '@chakra-ui/react/card';
-import { Game } from '../../../types/game';
-import PriceLabel from '@/app/components/PriceLabel';
+import { Game } from '@/types/game';
+import PriceLabel from '@/components/PriceLabel';
 
 type SpotlightCardProps = {} & Partial<Game>;
 

@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation';
 import NextLink from 'next/link';
 import { Image, HStack, Link, Spacer, Flex, Box, Container, LinkBox, LinkOverlay } from '@chakra-ui/react';
-import ColorModeToggle from '@/app/components/ColorModeToggle';
+import ColorModeToggle from '@/components/ColorModeToggle';
 
 export default function Header({ links }: { links: Array<{ text: string; href: string }> }) {
   const pathname = usePathname();

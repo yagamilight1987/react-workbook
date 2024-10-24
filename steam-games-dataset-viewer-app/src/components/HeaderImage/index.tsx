@@ -1,7 +1,7 @@
 'use client';
 
 import { Box, Image, Flex } from '@chakra-ui/react';
-import Reaction from './reaction';
+import Reaction from '../Reaction';
 import { FiThumbsDown, FiThumbsUp } from 'react-icons/fi';
 
 type HeaderImageProps = {

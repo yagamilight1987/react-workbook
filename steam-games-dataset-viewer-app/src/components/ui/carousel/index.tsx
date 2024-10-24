@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Box, Flex } from '@chakra-ui/react';
-import Pagination from '../pagination';
+import Pagination from '@/components/ui/pagination';
 
 const Carousel = ({ children, activeIndex = 0 }: { children: React.ReactNode; activeIndex: number }) => {
   let pagination: React.ReactNode | undefined = undefined;

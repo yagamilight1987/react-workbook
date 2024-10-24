@@ -32,35 +32,33 @@ export default function Home() {
   });
 
   return (
-    <>
-      <Hero />
-      <Container maxW="container.xl" padding={0}>
-        <Box paddingInline={4}>
-          <Box as="section">
-            <SimpleGrid columns={{ base: 1, md: 2 }} marginBlock={10} alignItems="center" gap={10}>
-              <Heading as="h1" fontSize={{ base: '4xl', sm: '5xl', md: '6xl' }} fontWeight="bold" textAlign={{ base: 'center', md: 'left' }}>
-                In The Spotlight
-              </Heading>
-              {inTheSpotlightResponse.isLoading && <Skeleton />}
-              {inTheSpotlightResponse.data?.data?.length && (
-                <Carousel activeIndex={activeIndex}>
-                  {inTheSpotlightResponse.data.data.map((game) => (
-                    <SpotlightCard key={game.game_id} {...game} />
-                  ))}
-                  <Carousel.Pagination variant="circle" activeIndex={activeIndex} totalItems={inTheSpotlightResponse.data.data.length} onPageChange={(index: number) => setActiveIndex(index)} />
-                </Carousel>
-              )}
-            </SimpleGrid>
-          </Box>
-          <Box as="section">
-            <Heading as="h2" fontSize={{ base: '4xl', sm: '5xl', md: '6xl' }} fontWeight="bold" textAlign={{ base: 'center', md: 'left' }} marginBottom={10}>
-              Most Downloaded Games
+    <Container maxW="container.xl" padding={0}>
+      <Box paddingInline={4}>
+        <Hero />
+        <Box as="section">
+          <SimpleGrid columns={{ base: 1, md: 2 }} marginBlock={10} alignItems="center" gap={10}>
+            <Heading as="h1" fontSize={{ base: '4xl', sm: '5xl', md: '6xl' }} fontWeight="bold" textAlign={{ base: 'center', md: 'left' }}>
+              In The Spotlight
             </Heading>
-            {mostDownloadedGamesResponse.isLoading && <Skeleton />}
-            {mostDownloadedGamesResponse.data?.data?.length && <GameListing games={mostDownloadedGamesResponse.data.data} cardType="spotlight" />}
-          </Box>
+            {inTheSpotlightResponse.isLoading && <Skeleton />}
+            {inTheSpotlightResponse.data?.data?.length && (
+              <Carousel activeIndex={activeIndex}>
+                {inTheSpotlightResponse.data.data.map((game) => (
+                  <SpotlightCard key={game.game_id} {...game} />
+                ))}
+                <Carousel.Pagination variant="circle" activeIndex={activeIndex} totalItems={inTheSpotlightResponse.data.data.length} onPageChange={(index: number) => setActiveIndex(index)} />
+              </Carousel>
+            )}
+          </SimpleGrid>
         </Box>
-      </Container>
-    </>
+        <Box as="section">
+          <Heading as="h2" fontSize={{ base: '4xl', sm: '5xl', md: '6xl' }} fontWeight="bold" textAlign={{ base: 'center', md: 'left' }} marginBottom={10}>
+            Most Downloaded Games
+          </Heading>
+          {mostDownloadedGamesResponse.isLoading && <Skeleton />}
+          {mostDownloadedGamesResponse.data?.data?.length && <GameListing games={mostDownloadedGamesResponse.data.data} cardType="spotlight" />}
+        </Box>
+      </Box>
+    </Container>
   );
 }

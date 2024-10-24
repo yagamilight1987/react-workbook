@@ -2,8 +2,8 @@
 
 import NextLink from 'next/link';
 import { AvatarGroup, Badge, Heading, LinkBox, LinkOverlay } from '@chakra-ui/react';
-import EmptyData from './EmptyData';
-import { AllowedTypeValues } from '../types/type-values';
+import EmptyData from '../EmptyData';
+import { AllowedTypeValues } from '@/types/type-values';
 
 type BrowseTypeProps = { type: AllowedTypeValues; heading?: string; values: string[] | undefined; max?: number };
 

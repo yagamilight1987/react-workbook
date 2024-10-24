@@ -48,11 +48,3 @@ export const Inline: Story = {
     );
   },
 };
-
-export const NumberBigTotalItems: Story = {
-  render: () => {
-    const [activeIndex, setActiveIndex] = useState<number>(0);
-
-    return <Pagination variant="number" activeIndex={activeIndex} totalItems={97000} pageSize={10} onPageChange={(index: number) => setActiveIndex(index)} />;
-  },
-};

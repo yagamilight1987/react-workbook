@@ -2,7 +2,7 @@
 
 import NextLink from 'next/link';
 import { Box, Image, LinkBox, LinkOverlay, Skeleton } from '@chakra-ui/react';
-import { useRandomGame } from '@/app/services/swr/fetcher';
+import { useRandomGame } from '@/services/swr/fetcher';
 
 export default function Hero() {
   const { data } = useRandomGame();

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import BrowseType from './BrowseType';
+import BrowseType from '.';
 
 const meta: Meta<typeof BrowseType> = {
   component: BrowseType,

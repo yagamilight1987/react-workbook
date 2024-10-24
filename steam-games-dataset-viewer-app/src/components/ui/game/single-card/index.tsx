@@ -1,9 +1,9 @@
 'use client';
 
 import { Card, CardBody } from '@chakra-ui/react/card';
-import HeaderImage from '@/app/components/header-image';
-import BaseDeails from '@/app/components/base-details';
-import { Game } from '../../../types/game';
+import HeaderImage from '@/components/HeaderImage';
+import BaseDeails from '@/components/BaseDetails';
+import { Game } from '@/types/game';
 
 type GameCardProps = {
   size?: 'sm' | 'md' | 'lg';

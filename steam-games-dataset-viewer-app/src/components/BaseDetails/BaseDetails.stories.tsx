@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import BaseDetails from './base-details';
+import BaseDetails from '.';
 
 const detail = {
   game_id: 2238430,

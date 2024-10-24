@@ -4,9 +4,9 @@ import NextLink from 'next/link';
 import { Component, ReactNode } from 'react';
 import { VStack, Flex, Spacer, Heading, Divider, Tag, TagLeftIcon, TagLabel, LinkBox, LinkOverlay } from '@chakra-ui/react';
 import { FaCalendar } from 'react-icons/fa6';
-import BrowseType from './BrowseType';
-import { AllowedTypeValues } from '../types/type-values';
-import PriceLabel from './PriceLabel';
+import BrowseType from '../BrowseType';
+import { AllowedTypeValues } from '@/types/type-values';
+import PriceLabel from '../PriceLabel';
 
 interface BaseDetailsProps {
   game_id?: number;
@@ -18,7 +18,7 @@ interface BaseDetailsProps {
   children?: ReactNode;
 }
 
-export default class BaseDeails extends Component<BaseDetailsProps> {
+export default class BaseDetails extends Component<BaseDetailsProps> {
   render() {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short' };
     const { game_id, name, genres, price, release_date, listingType = 'multiple', children } = this.props;

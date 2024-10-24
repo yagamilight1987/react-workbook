@@ -1,14 +1,14 @@
 'use client';
 
 import { Text, Box, VStack, Image, Heading, Divider, Card, CardBody, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Link } from '@chakra-ui/react';
-import BaseDetails from '@/app/components/base-details';
-import EmptyData from '@/app/components/EmptyData';
+import BaseDetails from '@/components/BaseDetails';
+import EmptyData from '@/components/EmptyData';
 import { Game } from '@/types/game';
 import { GameDetails } from '@/types/game-details';
-import BrowseType from '@/app/components/BrowseType';
-import OsSupport from '@/app/components/OsSupport';
+import BrowseType from '@/components/BrowseType';
+import OsSupport from '@/components/OsSupport';
 import { AllowedTypeValues } from '@/types/type-values';
-import Carousel from '@/app/ui/carousel';
+import Carousel from '@/components/ui/carousel';
 import { useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa6';
 
