@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Header from '@/app/ui/header';
+import Header from '@/components/ui/header';
 import GamesPage from '@/app/games/page';
 
 const meta: Meta<typeof GamesPage> = {

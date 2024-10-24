@@ -1,5 +1,5 @@
-import pool from '@/app/lib/pg-db';
-import { appendFilter, appendNotNullName, appendOrderBy, appendPagination, getSearchParams } from '@/app/utils';
+import pool from '@/lib/pg-db';
+import { appendFilter, appendNotNullName, appendOrderBy, appendPagination, getSearchParams } from '@/lib/utils';
 
 export const dynamic = 'force-dynamic';
 

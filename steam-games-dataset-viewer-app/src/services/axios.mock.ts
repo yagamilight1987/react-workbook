@@ -28,7 +28,7 @@ const setupAxiosMock = (instance: AxiosInstance) => {
       {
         success: PaginatedGames.succes,
         total_records: PaginatedGames.total_count,
-        data: sortByName(paginatedData),
+        data: sortByName(paginatedData, orderBy, orderDir),
       },
     ];
   });
@@ -38,13 +38,16 @@ const setupAxiosMock = (instance: AxiosInstance) => {
 
 export default setupAxiosMock;
 
-const sortByName = (array: Array<Game>) => {
+const sortByName = (array: Array<Game>, orderBy: keyof Game, orderDir: 'asc' | 'desc') => {
   return array.sort((a: Game, b: Game) => {
-    if (a.name < b.name) {
-      return -1; // a comes before b
+    if (a[orderBy] === undefined || b[orderBy] === undefined) {
+      return 0;
+    }
+    if (a[orderBy] < b[orderBy]) {
+      return orderDir === 'asc' ? -1 : 1; // a comes before b
     }
     if (a.name > b.name) {
-      return 1; // a comes after b
+      return orderDir === 'asc' ? 1 : -1; // a comes after b
     }
     return 0; // a and b are equal
   });

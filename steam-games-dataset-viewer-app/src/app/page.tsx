@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import { Box, Container, Heading, SimpleGrid, Skeleton } from '@chakra-ui/react';
-import Carousel from './ui/carousel';
-import SpotlightCard from './ui/game/spotlight-card';
-import { useMostDownloadedGames, useInTheSpotlight } from './services/swr/fetcher';
-import { InTheSpotlight } from './types/fetcher';
-import Hero from './ui/hero';
-import GameListing from './ui/game/listing';
+import Carousel from '@/components/ui/carousel';
+import SpotlightCard from '@/components/ui/game/spotlight-card';
+import { useMostDownloadedGames, useInTheSpotlight } from '@/services/swr/fetcher';
+import { InTheSpotlight } from '../types/fetcher';
+import Hero from '@/components/ui/hero';
+import GameListing from '@/components/ui/game/listing';
 
 export default function Home() {
   const [activeIndex, setActiveIndex] = useState<number>(0);

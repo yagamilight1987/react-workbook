@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import pool from '@/app/lib/pg-db';
-import { AllowedTypeValues } from '@/app/types/type-values';
+import pool from '@/lib/pg-db';
+import { AllowedTypeValues } from '@/types/type-values';
 
 export const dynamic = 'force-dynamic';
 

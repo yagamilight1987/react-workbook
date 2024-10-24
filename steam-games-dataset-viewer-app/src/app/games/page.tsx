@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { useGames } from '../services/swr/fetcher';
-import GameListing from '../ui/game/listing';
+import { useGames } from '@/services/swr/fetcher';
+import GameListing from '@/components/ui/game/listing';
 import { Box, Container, Skeleton } from '@chakra-ui/react';
-import { Game } from '@/app/types/game';
-import Pagination from '../ui/pagination';
-import { GamesSWRType } from '../types/fetcher';
+import { Game } from '@/types/game';
+import Pagination from '@/components/ui/pagination';
+import { GamesSWRType } from '@/types/fetcher';
 
 const INITIAL_STATE = {
   page: 1,

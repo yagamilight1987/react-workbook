@@ -1,4 +1,4 @@
-import { GamesSWRType, InTheSpotlight } from '@/app/types/fetcher';
+import { GamesSWRType, InTheSpotlight } from '@/types/fetcher';
 import useSWR from 'swr';
 import axiosInstance from '../axios';
 import * as URLS from '../constants';

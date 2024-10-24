@@ -1,8 +1,8 @@
 'use client';
 
 import { Box, Container, Skeleton } from '@chakra-ui/react';
-import GameDetail from '@/app/ui/game/detail';
-import { useGameDetails } from '@/app/services/swr/fetcher';
+import GameDetail from '@/components/ui/game/detail';
+import { useGameDetails } from '@/services/swr/fetcher';
 
 export default function GameDetailsPage({ params }: { params: { id: number } }) {
   const gameDetailsResponse = useGameDetails(params.id);

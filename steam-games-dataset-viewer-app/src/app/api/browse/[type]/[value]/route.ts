@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import pool from '@/app/lib/pg-db';
-import { AllowedTypeValues } from '@/app/types/type-values';
-import { appendFilter, appendNotNullName, appendOrderBy, appendPagination, getSearchParams } from '@/app/utils';
+import pool from '@/lib/pg-db';
+import { AllowedTypeValues } from '@/types/type-values';
+import { appendFilter, appendNotNullName, appendOrderBy, appendPagination, getSearchParams } from '@/lib/utils';
 
 export const dynamic = 'force-dynamic';
 

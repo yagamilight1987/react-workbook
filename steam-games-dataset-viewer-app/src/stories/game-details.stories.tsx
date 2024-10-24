@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import GameDetailsPage from '@/app/games/[id]/page';
-import Header from '@/app/ui/header';
+import Header from '@/components/ui/header';
 
 const meta: Meta<typeof GameDetailsPage> = {
   component: GameDetailsPage,

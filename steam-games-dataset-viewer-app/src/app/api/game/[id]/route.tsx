@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import pool from '@/app/lib/pg-db';
+import pool from '@/lib/pg-db';
 
 export const dynamic = 'force-dynamic';
 
