@@ -1,0 +1,36 @@
+.pagination {
+  display: flex;
+  list-style: none;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pagination li a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: var(--yl-sizes-9);
+  min-width: var(--yl-sizes-9);
+  font-size: var(--yl-fontSizes-sm);
+  font-weight: var(--yl-fontWeights-medium);
+  color: var(--yl-colors-chakra-body-text);
+  border-radius: var(--yl-radii-base);
+  border: var(--yl-borders-1px) var(--yl-colors-transparent);
+  line-height: 1.25rem;
+}
+
+.pagination li a:hover {
+  border-color: var(--yl-colors-chakra-border-color);
+}
+
+.pagination li.active a {
+  border-color: var(--yl-colors-chakra-border-color);
+}
+
+.pagination li.disabled a {
+  cursor: not-allowed;
+  opacity: .5;
+}
+

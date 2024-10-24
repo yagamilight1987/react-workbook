@@ -5,18 +5,18 @@ import { useGames } from '@/services/swr/fetcher';
 import GameListing from '@/components/ui/game/listing';
 import { Box, Container, Skeleton } from '@chakra-ui/react';
 import { Game } from '@/types/game';
-import Pagination from '@/components/ui/pagination';
+import NumberPagination from '@/components/NumberPagination';
 import { GamesSWRType } from '@/types/fetcher';
 
 const INITIAL_STATE = {
   page: 1,
-  pageSize: 2,
+  pageSize: 10,
   orderBy: 'name',
   orderDir: 'asc',
 };
 
 type GamesDataSWR = {
-  data: { total_records: number; data: Array<Partial<Game>> };
+  data: { total_count: number; data: Array<Partial<Game>> };
   isLoading: boolean;
   error: unknown;
 };
@@ -24,13 +24,11 @@ type GamesDataSWR = {
 export default function GamesPage() {
   const [params, setParams] = useState<GamesSWRType>(INITIAL_STATE);
   const gamesData: GamesDataSWR = useGames(params);
-  const [activeIndex, setActiveIndex] = useState(0);
 
   function handleOnPageChange(index: number) {
-    setActiveIndex(index);
     setParams({
       ...params,
-      page: index + 1,
+      page: index,
     });
   }
 
@@ -42,7 +40,7 @@ export default function GamesPage() {
         ) : (
           <Box>
             <GameListing games={gamesData.data.data} />
-            <Pagination variant="number" activeIndex={activeIndex} pageSize={params.pageSize} totalItems={gamesData.data.total_records} onPageChange={(index: number) => handleOnPageChange(index)} />
+            <NumberPagination pageCount={gamesData.data.total_count / params.pageSize} onPageChange={(selectedItem: { selected: number }) => handleOnPageChange(selectedItem.selected)} />
           </Box>
         )}
       </Box>

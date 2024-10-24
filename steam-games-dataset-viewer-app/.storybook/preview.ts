@@ -1,6 +1,7 @@
 import type { Preview } from '@storybook/react';
 import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 import theme from '../src/theme';
+import '../src/app/globals.css';
 const dotenv = require('dotenv');
 
 dotenv.config({ path: '.env.local' });

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import ChakraUIProvider from './charkraui-provider';
 import Header from '@/components/ui/header';
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
