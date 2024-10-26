@@ -42,7 +42,7 @@ export default function GameDetail({ detail }: { detail: Detail }) {
   const buildScreenshotSection = (screenshots: string[] | undefined) => {
     return (
       <>
-        {buildSectionHeading('Screenshots')}
+        {buildSectionHeading(`Screenshots (${screenshots?.length})`)}
         {screenshots?.length ? (
           <Box width="full" height="lg">
             <Carousel activeIndex={screenshotActiveIndex}>
