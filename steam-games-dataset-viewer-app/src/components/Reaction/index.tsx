@@ -1,5 +1,3 @@
-'use client';
-
 import { JSXElementConstructor, ReactElement } from 'react';
 import { Avatar, AvatarBadge, Text } from '@chakra-ui/react';
 

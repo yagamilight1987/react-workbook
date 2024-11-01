@@ -1,5 +1,3 @@
-'use client';
-
 import { Alert, AlertIcon } from '@chakra-ui/react';
 import { PiEmptyBold } from 'react-icons/pi';
 

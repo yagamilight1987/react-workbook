@@ -1,22 +1,13 @@
-'use client';
-
-import { Text, Box, VStack, Image, Heading, Divider, Card, CardBody, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Link } from '@chakra-ui/react';
-import BaseDetails from '@/components/BaseDetails';
+import { Text, Box, VStack, Image, Heading, Card, CardBody, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Link } from '@chakra-ui/react';
 import EmptyData from '@/components/EmptyData';
 import { Game } from '@/types/game';
 import { GameDetails } from '@/types/game-details';
-import BrowseType from '@/components/BrowseType';
 import OsSupport from '@/components/OsSupport';
-import { AllowedTypeValues } from '@/types/type-values';
-import Carousel from '@/components/ui/carousel';
-import { useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa6';
 
 type Detail = Partial<Game> & Partial<GameDetails>;
 
 export default function GameDetail({ detail }: { detail: Detail }) {
-  const [screenshotActiveIndex, setScreenshotActiveIndex] = useState<number>(0);
-
   const buildSectionHeading = (text: string) => {
     return (
       <Heading as="h2" size="md">
@@ -29,12 +20,7 @@ export default function GameDetail({ detail }: { detail: Detail }) {
     return (
       <Card variant="unstyled" bg="inherit" color="inherit" gap={10}>
         <Image width="100%" src={header_image} alt={name} rounded="inherit" height="full" />
-        <CardBody>
-          <BaseDetails name={name} genres={genres} price={price} release_date={release_date} listingType="single">
-            <Divider />
-            {short_description && <Text>{short_description}</Text>}
-          </BaseDetails>
-        </CardBody>
+        <CardBody>{name}{genres}{price}{release_date}{short_description}</CardBody>
       </Card>
     );
   };
@@ -45,12 +31,9 @@ export default function GameDetail({ detail }: { detail: Detail }) {
         {buildSectionHeading(`Screenshots (${screenshots?.length})`)}
         {screenshots?.length ? (
           <Box width="full" height="lg">
-            <Carousel activeIndex={screenshotActiveIndex}>
-              {screenshots?.map((item) => (
-                <Image key={item} src={item} alt={item} height="full" width="full" />
-              ))}
-              <Carousel.Pagination variant="inline" activeIndex={screenshotActiveIndex} totalItems={screenshots.length} onPageChange={(index: number) => setScreenshotActiveIndex(index)} />
-            </Carousel>
+            {screenshots?.map((item) => (
+              <Image key={item} src={item} alt={item} height="full" width="full" />
+            ))}
           </Box>
         ) : (
           <EmptyData />
@@ -100,11 +83,6 @@ export default function GameDetail({ detail }: { detail: Detail }) {
           )}
           {buildSupportedOsSection(detail)}
           {buildScreenshotSection(detail.screenshots)}
-          <BrowseType type={AllowedTypeValues.SupportedLanguages} heading="Supported Languages" values={detail.supported_languages} />
-          <BrowseType type={AllowedTypeValues.AudioLanguages} heading="Audio Languages" values={detail.full_audio_languages} />
-          <BrowseType type={AllowedTypeValues.Developers} heading="Developers" values={detail.developers} />
-          <BrowseType type={AllowedTypeValues.Publishers} heading="Publishers" values={detail.publishers} />
-          <BrowseType type={AllowedTypeValues.Categories} heading="Categories" values={detail.categories} />
         </VStack>
       </Box>
     )

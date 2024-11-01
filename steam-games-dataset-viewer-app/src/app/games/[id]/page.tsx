@@ -1,5 +1,3 @@
-'use client';
-
 import { Box, Container, Skeleton } from '@chakra-ui/react';
 import GameDetail from '@/components/ui/game/detail';
 import { useGameDetails } from '@/services/swr/fetcher';
