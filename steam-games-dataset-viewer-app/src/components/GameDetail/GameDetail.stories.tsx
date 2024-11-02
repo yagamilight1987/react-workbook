@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import GameDetail from './index';
+import GameDetail from '.';
 
 const meta: Meta<typeof GameDetail> = {
   component: GameDetail,
@@ -27,7 +27,7 @@ const detail = {
   short_description:
     'Defeat the Devil Kings! You have been guided to the land of fairies where the Dragon King’s Tower housed the hidden treasures that had brought peace to the land. But one day, the Seven Devil Kings stole all of the treasures, and used their powers to turn the tower into a terrible dungeon!',
   reviews: '',
-  header_image: 'https://cdn.akamai.steamstatic.com/steam/apps/2238430/header.jpg?t=1695279689',
+  header_image: '/images/card-detail.jpg',
   website: '',
   support_url: '',
   support_email: 'support@aksysgames.com',
@@ -59,13 +59,7 @@ const detail = {
   publishers: ['Aksys Games'],
   categories: ['Single-player', 'Steam Achievements', 'Full controller support'],
   genres: ['RPG'],
-  screenshots: [
-    'https://cdn.akamai.steamstatic.com/steam/apps/2238430/ss_121a6bc56068581e530ea438d34111aea3981e4f.1920x1080.jpg?t=1695279689',
-    'https://cdn.akamai.steamstatic.com/steam/apps/2238430/ss_44a1587c3ed1d629e9a329740c2f9482587719a6.1920x1080.jpg?t=1695279689',
-    'https://cdn.akamai.steamstatic.com/steam/apps/2238430/ss_2feef0783ec37f068e13f64f770b029d3a9763f8.1920x1080.jpg?t=1695279689',
-    'https://cdn.akamai.steamstatic.com/steam/apps/2238430/ss_b0a9ac936d758ada71fd46a948cb4ca15f3d1cc3.1920x1080.jpg?t=1695279689',
-    'https://cdn.akamai.steamstatic.com/steam/apps/2238430/ss_1c4917bcbd33340912ff3a4d6d6bf08e3e093494.1920x1080.jpg?t=1695279689',
-  ],
+  screenshots: ['/images/card-detail.jpg', '/images/card-detail.jpg', '/images/card-detail.jpg', '/images/card-detail.jpg', '/images/card-detail.jpg'],
   movies: ['http://cdn.akamai.steamstatic.com/steam/apps/256956887/movie_max.mp4?t=1689231620'],
   user_score: 0,
   score_rank: '',

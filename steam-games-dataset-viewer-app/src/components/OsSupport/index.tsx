@@ -7,11 +7,11 @@ import { FcLinux } from 'react-icons/fc';
 
 interface OsSupportProps {
   windows?: boolean;
-  apple?: boolean;
+  mac?: boolean;
   linux?: boolean;
 }
 
-const OsSupport = ({ windows, apple, linux }: OsSupportProps) => {
+const OsSupport = ({ windows, mac, linux }: OsSupportProps) => {
   const renderBadge = (value: boolean | undefined) => {
     return (
       <AvatarBadge borderColor="white" bg="white" borderWidth={0.5}>
@@ -26,8 +26,8 @@ const OsSupport = ({ windows, apple, linux }: OsSupportProps) => {
         {renderBadge(windows)}
       </Avatar>
 
-      <Avatar size="md" icon={<Icon as={FaApple} color="white" boxSize="8" />} boxSize="16" bg="black">
-        {renderBadge(apple)}
+      <Avatar size="md" icon={<Icon as={FaApple} color="black" boxSize="8" />} boxSize="16" bg="white">
+        {renderBadge(mac)}
       </Avatar>
 
       <Avatar size="md" icon={<Icon as={FcLinux} color="white" boxSize="10" />} boxSize="16" bg="white">

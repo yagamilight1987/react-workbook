@@ -1,5 +1,5 @@
 import { Box, Container, Skeleton } from '@chakra-ui/react';
-import GameDetail from '@/components/ui/game/detail';
+import GameDetail from '@/components/GameDetail';
 import { useGameDetails } from '@/services/swr/fetcher';
 
 export default function GameDetailsPage({ params }: { params: { id: number } }) {

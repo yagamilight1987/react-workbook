@@ -46,7 +46,7 @@ export default function GameDetail({ detail }: { detail: Detail }) {
     return (
       <>
         {buildSectionHeading('Supported Operating Systems')}
-        <OsSupport windows={windows} apple={mac} linux={linux} />
+        <OsSupport windows={windows} mac={mac} linux={linux} />
       </>
     );
   };
