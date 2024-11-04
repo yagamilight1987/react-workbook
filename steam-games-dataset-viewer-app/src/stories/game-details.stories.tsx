@@ -3,6 +3,7 @@ import GameDetailsPage from '@/app/games/[id]/page';
 import Header from '@/components/ui/header';
 
 const meta: Meta<typeof GameDetailsPage> = {
+  title: 'Pages/Game Details',
   component: GameDetailsPage,
 };
 

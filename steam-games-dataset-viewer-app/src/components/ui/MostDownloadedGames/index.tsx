@@ -30,7 +30,7 @@ const MostDownloadedGames = () => {
               {data?.data.map((game: Partial<Game> & { median: number }, index: number) => (
                 <Tr key={game.game_id}>
                   <Td>{index + 1}</Td>
-                  <Td>
+                  <Td width={64}>
                     <Image src={game.header_image} alt={game.name} width="full" height={10} borderRadius="md" />
                   </Td>
                   <Td>
