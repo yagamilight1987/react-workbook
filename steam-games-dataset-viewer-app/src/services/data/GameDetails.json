@@ -15,17 +15,17 @@
     "mac": true,
     "linux": true,
     "screenshots": [
-      "https://cdn.akamai.steamstatic.com/steam/apps/730/ss_118cb022b9a43f70d2e5a2df7427f29088b6b191.1920x1080.jpg?t=1641233427",
-      "https://cdn.akamai.steamstatic.com/steam/apps/730/ss_d196d945c6170e9cadaf67a6dea675bd5fa7a046.1920x1080.jpg?t=1641233427",
-      "https://cdn.akamai.steamstatic.com/steam/apps/730/ss_8c9cce9a9dde7b9c020837dcbd4615efe6f77d66.1920x1080.jpg?t=1641233427",
-      "https://cdn.akamai.steamstatic.com/steam/apps/730/ss_2b9e362287b509bb3864fa7bad654fe1fda0f7ed.1920x1080.jpg?t=1641233427",
-      "https://cdn.akamai.steamstatic.com/steam/apps/730/ss_855c016cde14b7cec5c3d2523589b9054c030010.1920x1080.jpg?t=1641233427",
-      "https://cdn.akamai.steamstatic.com/steam/apps/730/ss_34090867f1a02b6c17652ba9043e3f622ed985a9.1920x1080.jpg?t=1641233427",
-      "https://cdn.akamai.steamstatic.com/steam/apps/730/ss_77215ea1b454c08a75351a74585a5b089142da3e.1920x1080.jpg?t=1641233427",
-      "https://cdn.akamai.steamstatic.com/steam/apps/730/ss_110be563b66dde31b3b00dcf7d2f644c50374f07.1920x1080.jpg?t=1641233427",
-      "https://cdn.akamai.steamstatic.com/steam/apps/730/ss_92c05c1cb1319beb15ed92c63b6b1d6f261d2f64.1920x1080.jpg?t=1641233427",
-      "https://cdn.akamai.steamstatic.com/steam/apps/730/ss_3cef516c1a3c338f2554f3f11790aba3b7c0add7.1920x1080.jpg?t=1641233427",
-      "https://cdn.akamai.steamstatic.com/steam/apps/730/ss_60b4f959497899515f46012df805b0006ef21af6.1920x1080.jpg?t=1641233427"
+      "/images/card-image.jpg",
+      "/images/card-image.jpg",
+      "/images/card-image.jpg",
+      "/images/card-image.jpg",
+      "/images/card-image.jpg",
+      "/images/card-image.jpg",
+      "/images/card-image.jpg",
+      "/images/card-image.jpg",
+      "/images/card-image.jpg",
+      "/images/card-image.jpg",
+      "/images/card-image.jpg"
     ],
     "supported_languages": [
       "Czech",

@@ -9,7 +9,7 @@
       "genres": ["Action", "Indie", "RPG", "Early Access"],
       "positive": 1,
       "negative": 1,
-      "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/2556940/header.jpg?t=1697794808",
+      "header_image": "/images/card-image.jpg",
       "release_date": "2023-10-12T18:30:00.000Z"
     },
     {
@@ -19,7 +19,7 @@
       "genres": ["Action", "Adventure", "Casual", "Indie"],
       "positive": 26,
       "negative": 62,
-      "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/449940/header.jpg?t=1655143213",
+      "header_image": "/images/card-detail.jpg",
       "release_date": "2016-03-02T18:30:00.000Z"
     },
     {
@@ -29,7 +29,7 @@
       "genres": ["Action", "Adventure", "Casual"],
       "positive": 41,
       "negative": 22,
-      "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/1287250/header.jpg?t=1658469423",
+      "header_image": "/images/card-image.jpg",
       "release_date": "2020-04-27T18:30:00.000Z"
     },
     {
@@ -39,7 +39,7 @@
       "genres": ["Adventure", "Casual", "Indie"],
       "positive": 246,
       "negative": 113,
-      "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/866510/header_alt_assets_0.jpg?t=1657609719",
+      "header_image": "/images/card-detail.jpg",
       "release_date": "2018-06-05T18:30:00.000Z"
     },
     {
@@ -49,7 +49,7 @@
       "genres": ["Adventure", "Casual", "Indie", "RPG"],
       "positive": 21,
       "negative": 27,
-      "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/870990/header.jpg?t=1528898762",
+      "header_image": "/images/card-image.jpg",
       "release_date": "2018-06-12T18:30:00.000Z"
     },
     {
@@ -59,7 +59,7 @@
       "genres": ["Casual", "Indie", "Strategy", "Early Access"],
       "positive": 11,
       "negative": 0,
-      "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/1673650/header.jpg?t=1650288487",
+      "header_image": "/images/card-detail.jpg",
       "release_date": "2022-03-17T18:30:00.000Z"
     },
     {
@@ -69,7 +69,7 @@
       "genres": ["Casual", "Strategy"],
       "positive": 1,
       "negative": 0,
-      "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/451590/header.jpg?t=1590672155",
+      "header_image": "/images/card-image.jpg",
       "release_date": "2019-08-13T18:30:00.000Z"
     },
     {
@@ -79,7 +79,7 @@
       "genres": ["Action", "Adventure", "Casual", "Indie", "Massively Multiplayer", "Racing", "Sports", "Strategy"],
       "positive": 526,
       "negative": 109,
-      "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/755980/header.jpg?t=1656228549",
+      "header_image": "/images/card-detail.jpg",
       "release_date": "2018-04-09T18:30:00.000Z"
     },
     {
@@ -89,7 +89,7 @@
       "genres": ["Action", "Adventure", "Casual", "Indie", "Massively Multiplayer", "RPG", "Strategy"],
       "positive": 703,
       "negative": 353,
-      "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/395570/header.jpg?t=1650530693",
+      "header_image": "/images/card-image.jpg",
       "release_date": "2016-02-24T18:30:00.000Z"
     }
   ]

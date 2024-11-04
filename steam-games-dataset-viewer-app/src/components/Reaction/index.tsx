@@ -1,5 +1,3 @@
-'use client';
-
 import { JSXElementConstructor, ReactElement } from 'react';
 import { Avatar, AvatarBadge, Text } from '@chakra-ui/react';
 
@@ -31,8 +29,8 @@ export default function Reaction({ bg, icon, value }: ReactionProps) {
   }
 
   return (
-    <Avatar size="md" showBorder={true} bg={bg} icon={icon}>
-      <AvatarBadge boxSize="1.25em" bg={bg} borderWidth={1}>
+    <Avatar size="md" bg={bg} icon={icon}>
+      <AvatarBadge borderColor="white" boxSize="1.25em" bg={bg} borderWidth={0.5}>
         <Text fontSize="2xs">{getFormattedBadgeNumber(value)}</Text>
       </AvatarBadge>
     </Avatar>

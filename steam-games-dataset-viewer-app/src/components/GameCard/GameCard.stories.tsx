@@ -1,18 +1,55 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import GameCard, { DefaultGameCard } from '.';
+import { Box, SimpleGrid } from '@chakra-ui/react';
+import Slider from 'react-slick';
 
-import SpotlightCard from './index';
-import { Box } from '@chakra-ui/react';
-
-const meta: Meta<typeof SpotlightCard> = {
-  component: SpotlightCard,
+const meta: Meta<typeof GameCard> = {
+  component: GameCard,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof SpotlightCard>;
+type Story = StoryObj<typeof GameCard>;
 
-export const Basic: Story = {
-  render: () => <Box boxSize={'2xl'}><SpotlightCard {...games[6]} /></Box>,
+export const CarouselSingleCard: Story = {
+  render: () => (
+    <Box borderColor="blue.500" borderWidth={2} padding={16} width="3xl">
+      <Slider autoplay dots infinite speed={500} slidesToShow={1} slidesToScroll={1}>
+        {games.map((game) => (
+          <GameCard game={game} key={game.game_id}></GameCard>
+        ))}
+      </Slider>
+    </Box>
+  ),
+};
+
+export const CarouselGridCard: Story = {
+  render: () => (
+    <Box borderColor="blue.500" borderWidth={2} paddingBlock={16} paddingInline={16}>
+      <Slider dots infinite speed={500} slidesToShow={3} slidesToScroll={3}>
+        {games.map((game) => (
+          <Box paddingInline={8} key={game.game_id}>
+            <GameCard game={game}></GameCard>
+          </Box>
+        ))}
+      </Slider>
+    </Box>
+  ),
+};
+
+export const Default: Story = {
+  render: () => (
+    <Box borderColor="blue.500" borderWidth={2} paddingBlock={16}>
+      <SimpleGrid columns={[1, 3]} gap={16} paddingInline={{ lg: 16 }}>
+        <DefaultGameCard game={games[0]} />
+        <DefaultGameCard game={games[1]} />
+        <DefaultGameCard game={games[0]} />
+        <DefaultGameCard game={games[1]} />
+        <DefaultGameCard game={games[0]} />
+        <DefaultGameCard game={games[1]} />
+      </SimpleGrid>
+    </Box>
+  ),
 };
 
 const games = [
@@ -23,7 +60,7 @@ const games = [
     price: 59.99,
     positive: 663109,
     negative: 28700,
-    header_image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg?t=1725007201',
+    header_image: '/images/card-image.jpg',
     sumowners: 25000000,
   },
   {
@@ -33,7 +70,7 @@ const games = [
     price: 26.99,
     positive: 12877,
     negative: 1028,
-    header_image: 'https://cdn.akamai.steamstatic.com/steam/apps/1623730/header.jpg?t=1705662211',
+    header_image: '/images/card-image.jpg',
     sumowners: 1500000,
   },
   {
@@ -43,7 +80,7 @@ const games = [
     price: 26.99,
     positive: 6209,
     negative: 1224,
-    header_image: 'https://cdn.akamai.steamstatic.com/steam/apps/1203620/header.jpg?t=1706370679',
+    header_image: '/images/card-image.jpg',
     sumowners: 500000,
   },
   {
@@ -53,7 +90,7 @@ const games = [
     price: 69.99,
     positive: 24305,
     negative: 23379,
-    header_image: 'https://cdn.akamai.steamstatic.com/steam/apps/2054970/header.jpg?t=1711067553',
+    header_image: '/images/card-image.jpg',
     sumowners: 500000,
   },
   {
@@ -63,7 +100,7 @@ const games = [
     price: 29.99,
     positive: 22995,
     negative: 1294,
-    header_image: 'https://cdn.akamai.steamstatic.com/steam/apps/1145350/header.jpg?t=1715021715',
+    header_image: '/images/card-image.jpg',
     sumowners: 250000,
   },
   {
@@ -73,7 +110,7 @@ const games = [
     price: 4.99,
     positive: 8,
     negative: 1,
-    header_image: 'https://cdn.akamai.steamstatic.com/steam/apps/2795640/header.jpg?t=1711817674',
+    header_image: '/images/card-image.jpg',
     sumowners: 250000,
   },
   {
@@ -83,7 +120,7 @@ const games = [
     price: 35.01,
     positive: 1152,
     negative: 4428,
-    header_image: 'https://cdn.akamai.steamstatic.com/steam/apps/2446550/header.jpg?t=1710392101',
+    header_image: '/images/card-image.jpg',
     sumowners: 250000,
   },
   {
@@ -93,7 +130,7 @@ const games = [
     price: 26.99,
     positive: 3946,
     negative: 2684,
-    header_image: 'https://cdn.akamai.steamstatic.com/steam/apps/1928980/header.jpg?t=1708532666',
+    header_image: '/images/card-image.jpg',
     sumowners: 250000,
   },
   {
@@ -103,7 +140,7 @@ const games = [
     price: 34.99,
     positive: 17335,
     negative: 8291,
-    header_image: 'https://cdn.akamai.steamstatic.com/steam/apps/2479810/header.jpg?t=1714668079',
+    header_image: '/images/card-image.jpg',
     sumowners: 250000,
   },
   {
@@ -113,7 +150,7 @@ const games = [
     price: 12.74,
     positive: 68,
     negative: 0,
-    header_image: 'https://cdn.akamai.steamstatic.com/steam/apps/1405500/header.jpg?t=1705081375',
+    header_image: '/images/card-image.jpg',
     sumowners: 150000,
   },
 ];

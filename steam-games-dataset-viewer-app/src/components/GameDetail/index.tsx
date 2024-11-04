@@ -1,22 +1,15 @@
-'use client';
-
-import { Text, Box, VStack, Image, Heading, Divider, Card, CardBody, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Link } from '@chakra-ui/react';
-import BaseDetails from '@/components/BaseDetails';
+import { Text, Box, VStack, Image, Heading, Card, CardBody, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Link, Tag, TagLabel } from '@chakra-ui/react';
 import EmptyData from '@/components/EmptyData';
 import { Game } from '@/types/game';
 import { GameDetails } from '@/types/game-details';
-import BrowseType from '@/components/BrowseType';
 import OsSupport from '@/components/OsSupport';
-import { AllowedTypeValues } from '@/types/type-values';
-import Carousel from '@/components/ui/carousel';
-import { useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa6';
+import Slider from 'react-slick';
+import PriceLabel from '../PriceLabel';
 
 type Detail = Partial<Game> & Partial<GameDetails>;
 
 export default function GameDetail({ detail }: { detail: Detail }) {
-  const [screenshotActiveIndex, setScreenshotActiveIndex] = useState<number>(0);
-
   const buildSectionHeading = (text: string) => {
     return (
       <Heading as="h2" size="md">
@@ -25,15 +18,31 @@ export default function GameDetail({ detail }: { detail: Detail }) {
     );
   };
 
-  const buildTopSection = ({ header_image, name, genres, price, release_date, short_description }: Detail) => {
+  const buildTopSection = ({ header_image, name, genres, price, release_date }: Detail) => {
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short' };
+    const formattedDate = release_date ? new Date(release_date).toLocaleString('default', options) : release_date;
+
     return (
       <Card variant="unstyled" bg="inherit" color="inherit" gap={10}>
         <Image width="100%" src={header_image} alt={name} rounded="inherit" height="full" />
         <CardBody>
-          <BaseDetails name={name} genres={genres} price={price} release_date={release_date} listingType="single">
-            <Divider />
-            {short_description && <Text>{short_description}</Text>}
-          </BaseDetails>
+          <Heading as="h1" fontSize="4xl" display="flex" justifyContent="space-between" alignItems="center" paddingBottom={2}>
+            <Text fontSize="inherit" noOfLines={1}>
+              {name}
+            </Text>
+            <PriceLabel price={price} />
+          </Heading>
+          <Text paddingBlock={1}>
+            Released: <b>{formattedDate}</b>
+          </Text>
+          <Box paddingBlock={1} fontSize="md" noOfLines={1}>
+            Genres:
+            {genres?.map((genre) => (
+              <Tag variant="subtle" marginInline={1} key={genre}>
+                <TagLabel fontWeight="bold">{genre}</TagLabel>
+              </Tag>
+            ))}
+          </Box>
         </CardBody>
       </Card>
     );
@@ -45,12 +54,11 @@ export default function GameDetail({ detail }: { detail: Detail }) {
         {buildSectionHeading(`Screenshots (${screenshots?.length})`)}
         {screenshots?.length ? (
           <Box width="full" height="lg">
-            <Carousel activeIndex={screenshotActiveIndex}>
-              {screenshots?.map((item) => (
-                <Image key={item} src={item} alt={item} height="full" width="full" />
+            <Slider speed={500} slidesToShow={1} slidesToScroll={1}>
+              {screenshots.map((item) => (
+                <Image key={item} src={item} alt={item} rounded="md" />
               ))}
-              <Carousel.Pagination variant="inline" activeIndex={screenshotActiveIndex} totalItems={screenshots.length} onPageChange={(index: number) => setScreenshotActiveIndex(index)} />
-            </Carousel>
+            </Slider>
           </Box>
         ) : (
           <EmptyData />
@@ -63,7 +71,7 @@ export default function GameDetail({ detail }: { detail: Detail }) {
     return (
       <>
         {buildSectionHeading('Supported Operating Systems')}
-        <OsSupport windows={windows} apple={mac} linux={linux} />
+        <OsSupport windows={windows} mac={mac} linux={linux} />
       </>
     );
   };
@@ -100,11 +108,6 @@ export default function GameDetail({ detail }: { detail: Detail }) {
           )}
           {buildSupportedOsSection(detail)}
           {buildScreenshotSection(detail.screenshots)}
-          <BrowseType type={AllowedTypeValues.SupportedLanguages} heading="Supported Languages" values={detail.supported_languages} />
-          <BrowseType type={AllowedTypeValues.AudioLanguages} heading="Audio Languages" values={detail.full_audio_languages} />
-          <BrowseType type={AllowedTypeValues.Developers} heading="Developers" values={detail.developers} />
-          <BrowseType type={AllowedTypeValues.Publishers} heading="Publishers" values={detail.publishers} />
-          <BrowseType type={AllowedTypeValues.Categories} heading="Categories" values={detail.categories} />
         </VStack>
       </Box>
     )

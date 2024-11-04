@@ -3,6 +3,7 @@ import HomePage from '@/app/page';
 import Header from '@/components/ui/header';
 
 const meta: Meta<typeof HomePage> = {
+  title: 'Pages/Home',
   component: HomePage,
 };
 
