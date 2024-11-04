@@ -18,7 +18,7 @@ export default function GameDetail({ detail }: { detail: Detail }) {
     );
   };
 
-  const buildTopSection = ({ header_image, name, genres, price, release_date, short_description }: Detail) => {
+  const buildTopSection = ({ header_image, name, genres, price, release_date }: Detail) => {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short' };
     const formattedDate = release_date ? new Date(release_date).toLocaleString('default', options) : release_date;
 
@@ -38,12 +38,11 @@ export default function GameDetail({ detail }: { detail: Detail }) {
           <Box paddingBlock={1} fontSize="md" noOfLines={1}>
             Genres:
             {genres?.map((genre) => (
-              <Tag variant="subtle" marginInline={1}>
+              <Tag variant="subtle" marginInline={1} key={genre}>
                 <TagLabel fontWeight="bold">{genre}</TagLabel>
               </Tag>
             ))}
           </Box>
-          {/* <Text>{short_description}</Text> */}
         </CardBody>
       </Card>
     );

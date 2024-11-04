@@ -16,7 +16,7 @@ export const CarouselSingleCard: Story = {
     <Box borderColor="blue.500" borderWidth={2} padding={16} width="3xl">
       <Slider autoplay dots infinite speed={500} slidesToShow={1} slidesToScroll={1}>
         {games.map((game) => (
-          <GameCard game={game}></GameCard>
+          <GameCard game={game} key={game.game_id}></GameCard>
         ))}
       </Slider>
     </Box>
@@ -28,7 +28,7 @@ export const CarouselGridCard: Story = {
     <Box borderColor="blue.500" borderWidth={2} paddingBlock={16} paddingInline={16}>
       <Slider dots infinite speed={500} slidesToShow={3} slidesToScroll={3}>
         {games.map((game) => (
-          <Box paddingInline={8}>
+          <Box paddingInline={8} key={game.game_id}>
             <GameCard game={game}></GameCard>
           </Box>
         ))}
