@@ -2,8 +2,6 @@ import type { Metadata } from 'next';
 import ChakraUIProvider from './charkraui-provider';
 import Header from '@/components/ui/header';
 import './globals.css';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 
 export const metadata: Metadata = {
   title: 'Create Next App',

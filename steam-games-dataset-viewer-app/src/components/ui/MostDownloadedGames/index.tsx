@@ -1,10 +1,12 @@
+import Numeral from '@/components/Numeral';
 import PriceLabel from '@/components/PriceLabel';
 import { useMostDownloadedGames } from '@/services/swr/fetcher';
+import { MostDownloadedGamesType } from '@/types/fetcher';
 import { Game } from '@/types/game';
 import { Table, Thead, Tbody, Tr, Th, Td, TableContainer, LinkBox, LinkOverlay, Text, Image, Heading, Skeleton, Box } from '@chakra-ui/react';
 
 const MostDownloadedGames = () => {
-  const { data, isLoading } = useMostDownloadedGames();
+  const { data, isLoading }: MostDownloadedGamesType = useMostDownloadedGames();
 
   return (
     <Box as="section" paddingBlock={16}>
@@ -21,11 +23,11 @@ const MostDownloadedGames = () => {
                 <Th>Image</Th>
                 <Th>Name</Th>
                 <Th>Price</Th>
-                <Th>Average Downloads</Th>
+                <Th>Downloads</Th>
               </Tr>
             </Thead>
             <Tbody>
-              {data?.data.map((game: Partial<Game> & { median: string }, index: number) => (
+              {data?.data.map((game: Partial<Game> & { median: number }, index: number) => (
                 <Tr key={game.game_id}>
                   <Td>{index + 1}</Td>
                   <Td>
@@ -43,7 +45,9 @@ const MostDownloadedGames = () => {
                   <Td>
                     <PriceLabel price={game.price} />
                   </Td>
-                  <Td>{game.median}</Td>
+                  <Td>
+                    <Numeral value={game.median} />
+                  </Td>
                 </Tr>
               ))}
             </Tbody>

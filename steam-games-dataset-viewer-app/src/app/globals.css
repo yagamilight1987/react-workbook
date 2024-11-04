@@ -1,3 +1,4 @@
+/* React Paginate Styles */
 .pagination {
   display: flex;
   list-style: none;
@@ -31,6 +32,34 @@
 
 .pagination li.disabled a {
   cursor: not-allowed;
-  opacity: .5;
+  opacity: 0.5;
 }
 
+/* React Slick Slider Styles */
+@import 'slick-carousel/slick/slick.css';
+@import 'slick-carousel/slick/slick-theme.css';
+
+.slick-list {
+  padding-block: 8px;
+}
+
+.slick-prev {
+  z-index: 1;
+  left: 12px;
+}
+
+.slick-next {
+  right: 12px;
+}
+
+.slick-dots {
+  bottom: -32px;
+}
+
+.slick-dots li {
+  margin-inline: 8px;
+}
+
+.slick-dots li button:before {
+  font-size: 12px;
+}
