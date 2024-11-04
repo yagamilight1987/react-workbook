@@ -23,36 +23,36 @@ const useGameCard = () => useContext<GameProps>(GameCardContext);
 const GameCard = ({ game, children }: GameCardProps) => {
   return (
     <GameCardContext.Provider value={game}>
-      <Card variant="elevated" height="full" width="full" colorScheme="blue">
-        <GameCard.HeaderImage />
-        {children && <CardBody>{children}</CardBody>}
-      </Card>
+      <LinkBox as="article">
+        <LinkOverlay as={NextLink} href={`/games/${game.game_id}`}>
+          <Card variant="elevated" height="full" width="full" colorScheme="blue">
+            <GameCard.HeaderImage />
+            {children && <CardBody>{children}</CardBody>}
+          </Card>
+        </LinkOverlay>
+      </LinkBox>
     </GameCardContext.Provider>
   );
 };
 
-GameCard.HeaderImage = () => {
+GameCard.HeaderImage = ({ minHeight = '56' }) => {
   const { header_image } = useGameCard();
-  return <Image src={header_image} width="full" borderTopLeftRadius="inherit" borderTopRightRadius="inherit" />;
+  return <Image src={header_image} width="full" borderTopLeftRadius="inherit" borderTopRightRadius="inherit" minHeight={minHeight} />;
 };
 
 GameCard.Name = () => {
-  const { name, game_id } = useGameCard();
+  const { name } = useGameCard();
   return (
-    <LinkBox as="article">
-      <LinkOverlay as={NextLink} href={`/games/${game_id}`}>
-        <Heading fontSize={{ base: 14, lg: 16 }} noOfLines={1}>
-          {name}
-        </Heading>
-      </LinkOverlay>
-    </LinkBox>
+    <Heading fontSize={{ base: 14, lg: 16 }} noOfLines={1}>
+      {name}
+    </Heading>
   );
 };
 
 GameCard.Price = () => {
   const { price } = useGameCard();
   return (
-    <Box paddingBlock={1}>
+    <Box paddingBlock={2}>
       <PriceLabel price={price} />
     </Box>
   );

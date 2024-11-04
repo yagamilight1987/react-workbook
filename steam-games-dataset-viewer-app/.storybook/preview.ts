@@ -2,7 +2,8 @@ import type { Preview } from '@storybook/react';
 import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 import theme from '../src/theme';
 import '../src/app/globals.css';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const dotenv = require('dotenv');
 dotenv.config({ path: '.env.local' });

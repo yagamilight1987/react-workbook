@@ -1,11 +1,11 @@
-import { GamesSWRType, InTheSpotlight } from '@/types/fetcher';
+import { GamesSWRType, InTheSpotlightType } from '@/types/fetcher';
 import useSWR from 'swr';
 import axiosInstance from '../axios';
 import * as URLS from '../constants';
 
 export const fetcher = (url: string, params?: GamesSWRType) => axiosInstance.get(url, { params }).then((response) => response.data);
 
-export const useInTheSpotlight = (): InTheSpotlight => useSWR(URLS.IN_THE_SPOTLIGHT_URL, fetcher);
+export const useInTheSpotlight = (): InTheSpotlightType => useSWR(URLS.IN_THE_SPOTLIGHT_URL, fetcher);
 
 export const useMostDownloadedGames = () => useSWR(URLS.MOST_DOWNLOADED_GAMES_URL, fetcher);
 

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import GameCard, { DefaultGameCard } from '.';
-import { Box, Flex, SimpleGrid } from '@chakra-ui/react';
-import { Carousel } from 'react-responsive-carousel';
+import { Box, SimpleGrid } from '@chakra-ui/react';
+import Slider from 'react-slick';
 
 const meta: Meta<typeof GameCard> = {
   component: GameCard,
@@ -14,35 +14,25 @@ type Story = StoryObj<typeof GameCard>;
 export const CarouselSingleCard: Story = {
   render: () => (
     <Box borderColor="blue.500" borderWidth={2} padding={16} width="3xl">
-      <Carousel autoPlay infiniteLoop showStatus={false} showThumbs={false}>
+      <Slider autoplay dots infinite speed={500} slidesToShow={1} slidesToScroll={1}>
         {games.map((game) => (
           <GameCard game={game}></GameCard>
         ))}
-      </Carousel>
+      </Slider>
     </Box>
   ),
 };
 
 export const CarouselGridCard: Story = {
   render: () => (
-    <Box borderColor="blue.500" borderWidth={2} paddingBlock={16}>
-      <Carousel autoPlay infiniteLoop showStatus={false} showThumbs={false}>
-        <SimpleGrid columns={3} gap={16} paddingInline={{ lg: 16 }}>
-          <GameCard game={games[0]}></GameCard>
-          <GameCard game={games[1]}></GameCard>
-          <GameCard game={games[0]}></GameCard>
-        </SimpleGrid>
-        <SimpleGrid columns={3} gap={16} paddingInline={{ lg: 16 }}>
-          <GameCard game={games[1]}></GameCard>
-          <GameCard game={games[0]}></GameCard>
-          <GameCard game={games[1]}></GameCard>
-        </SimpleGrid>
-        <SimpleGrid columns={3} gap={16} paddingInline={{ lg: 16 }}>
-          <GameCard game={games[0]}></GameCard>
-          <GameCard game={games[1]}></GameCard>
-          <GameCard game={games[0]}></GameCard>
-        </SimpleGrid>
-      </Carousel>
+    <Box borderColor="blue.500" borderWidth={2} paddingBlock={16} paddingInline={16}>
+      <Slider dots infinite speed={500} slidesToShow={3} slidesToScroll={3}>
+        {games.map((game) => (
+          <Box paddingInline={8}>
+            <GameCard game={game}></GameCard>
+          </Box>
+        ))}
+      </Slider>
     </Box>
   ),
 };
