@@ -1,0 +1,76 @@
+{
+  "hero": {
+    "title": "Your partner in seamless website maintenance and small changes.",
+    "subtitle": "Take the pressure off your in-house team—focus on your business, we'll handle your web needs.",
+    "cta": "Get Started Today"
+  },
+  "whatWeDo": {
+    "title": "What We Do",
+    "description": "At Agilify Tech Labs, we specialize in the maintenance of existing websites and implementation of small changes. Whether it's a text update, color change, or a feature enhancement, we've got you covered. Our services streamline your workflow and allow your team to focus on what matters most."
+  },
+  "expertise": {
+    "title": "Our Expertise",
+    "items": {
+      "support": {
+        "title": "Dedicated Support",
+        "description": "We prioritize your needs and offer personalized service."
+      },
+      "cost": {
+        "title": "Cost-Effective Solutions",
+        "description": "Focus on what matters; let us handle your website."
+      },
+      "scalable": {
+        "title": "Scalable Services",
+        "description": "As your business grows, so do our offerings."
+      },
+      "proven": {
+        "title": "Proven Track Record",
+        "description": "Many startups and small companies trust us for their website needs."
+      }
+    }
+  },
+  "process": {
+    "title": "Our Process",
+    "items": {
+      "development": {
+        "title": "Development",
+        "description": "We handle all changes with precision. Our development process includes coding and unit testing to ensure quality."
+      },
+      "qa": {
+        "title": "Quality Assurance",
+        "description": "Thorough QA processes, including manual and automated testing, guarantee that every change meets your standards."
+      },
+      "improvements": {
+        "title": "Improvements",
+        "description": "We optimize your site with Analytics, Lighthouse audits, SEO enhancements, Sitemap creation, and version control using GitHub."
+      },
+      "devops": {
+        "title": "DevOps",
+        "description": "Deployment and verification of updates are handled seamlessly to minimize disruption."
+      }
+    }
+  },
+  "target": {
+    "title": "Who We Serve",
+    "description": "We cater to small companies and startups across various domains. If you have an existing website created by another provider and need reliable maintenance, we are here to help you manage it in-house efficiently."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Ready to simplify your website maintenance? Reach out to us today!",
+    "form": {
+      "title": "Send us a message",
+      "name": "Your Name",
+      "email": "Your Email",
+      "message": "Your Message",
+      "submit": "Send Message",
+      "success": "Message sent!",
+      "successDesc": "We'll get back to you as soon as possible."
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "contact": "Contact",
+    "getStarted": "Get Started"
+  }
+}

@@ -9,12 +9,17 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import LanguageSelector from './LanguageSelector';
+import { Separator } from './ui/separator';
 
 export default function Header() {
+  const t = useTranslations('nav');
+
   const navItems = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About Us' },
-    // { href: '/contact', label: 'Contact' },
+    { href: '/', label: t('home') },
+    { href: '/about', label: t('about') },
+    // { href: '/contact', label: t('contact') },
   ];
 
   return (
@@ -34,14 +39,23 @@ export default function Header() {
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList className="space-x-4">
             {navItems.map((item) => (
-              <NavigationMenuItem key={item.href}>
-                <Link href={item.href} legacyBehavior passHref>
-                  <NavigationMenuLink className="text-sm font-medium">
-                    {item.label}
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
+              <>
+                <NavigationMenuItem key={item.href}>
+                  <Link href={item.href} legacyBehavior passHref>
+                    <NavigationMenuLink className="text-sm font-medium hover:text-primary">
+                      {item.label}
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                <Separator
+                  orientation="vertical"
+                  className="h-6 w-px bg-gray-300"
+                />
+              </>
             ))}
+            <NavigationMenuItem key="language-selector">
+              <LanguageSelector />
+            </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
 
@@ -64,6 +78,9 @@ export default function Header() {
                   {item.label}
                 </Link>
               ))}
+              <div className="flex items-center gap-4 mt-4">
+                <LanguageSelector />
+              </div>
             </nav>
           </SheetContent>
         </Sheet>
