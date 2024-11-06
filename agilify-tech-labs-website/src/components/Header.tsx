@@ -38,21 +38,20 @@ export default function Header() {
         {/* Desktop Navigation */}
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList className="space-x-4">
-            {navItems.map((item) =>
-              [
-                <NavigationMenuItem key={item.label}>
-                  <Link href={item.href} legacyBehavior passHref>
-                    <NavigationMenuLink className="text-sm font-medium hover:text-primary">
-                      {item.label}
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>,
-                <Separator
-                  orientation="vertical"
-                  className="h-6 w-px bg-gray-300"
-                />,
-              ]
-            )}
+            {navItems.map((item) => [
+              <NavigationMenuItem key={item.label}>
+                <Link href={item.href} legacyBehavior passHref>
+                  <NavigationMenuLink className="text-sm font-medium hover:text-primary">
+                    {item.label}
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>,
+              <Separator
+                key={item.label}
+                orientation="vertical"
+                className="h-6 w-px bg-gray-300"
+              />,
+            ])}
             <NavigationMenuItem key="language-selector">
               <LanguageSelector />
             </NavigationMenuItem>
