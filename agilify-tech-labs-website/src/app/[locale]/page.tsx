@@ -7,10 +7,12 @@ import TargetAudience from '@/components/TargetAudience';
 import ContactSection from '@/components/ContactSection';
 
 type Props = {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
-export default function Home({ params: { locale } }: Props) {
+export default async function Home({ params }: Props) {
+  const { locale } = await params;
+
   // Enable static rendering
   setRequestLocale(locale);
 

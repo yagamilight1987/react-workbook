@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { clsx } from 'clsx';
+import Head from 'next/head';
 import { Istok_Web } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
@@ -21,8 +21,8 @@ export default async function BaseLayout({ children, locale }: Props) {
   const messages = await getMessages();
 
   return (
-    <html className="h-full" lang={locale}>
-      <head>
+    <html className="h-full" lang={locale} suppressHydrationWarning>
+      <Head>
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -40,8 +40,8 @@ export default async function BaseLayout({ children, locale }: Props) {
           sizes="16x16"
           href="/favicon-16x16.png"
         />
-      </head>
-      <body className={clsx(istokWeb.className, '')}>
+      </Head>
+      <body className={istokWeb.className}>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="light">
             <Header />

@@ -1,8 +1,13 @@
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+
+  const navT = useTranslations('nav');
+  const heroT = useTranslations('hero');
+  const footerT = useTranslations('footer');
 
   return (
     <footer className="bg-gray-50 border-t">
@@ -16,20 +21,18 @@ export default function Footer() {
               height={32}
               className="w-auto h-8"
             />
-            <p className="text-sm text-gray-600">
-              Your partner in seamless website maintenance and small changes.
-            </p>
+            <p className="text-sm text-gray-600">{heroT('title')}</p>
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Sitemap</h3>
+            <h3 className="font-semibold mb-4">{footerT('sitemap')}</h3>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="/"
                   className="text-sm text-gray-600 hover:text-gray-900"
                 >
-                  Home
+                  {navT('home')}
                 </Link>
               </li>
               <li>
@@ -37,27 +40,21 @@ export default function Footer() {
                   href="/about"
                   className="text-sm text-gray-600 hover:text-gray-900"
                 >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-sm text-gray-600 hover:text-gray-900"
-                >
-                  Contact
+                  {navT('about')}
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Contact</h3>
+            <h3 className="font-semibold mb-4">{footerT('contact')}</h3>
             <ul className="space-y-2">
               <li className="text-sm text-gray-600">
-                Email: contact@agilifytechlabs.com
+                {footerT('email')}: contact@agilifytechlabs.com
               </li>
-              <li className="text-sm text-gray-600">Phone: (123) 456-7890</li>
+              <li className="text-sm text-gray-600">
+                {footerT('phone')}: (123) 456-7890
+              </li>
             </ul>
           </div>
         </div>

@@ -72,5 +72,11 @@
     "about": "हमारे बारे में",
     "contact": "संपर्क",
     "getStarted": "शुरू करें"
+  },
+  "footer": {
+    "sitemap": "साइट मैप",
+    "contact": "संपर्क",
+    "email": "ईमेल",
+    "phone": "फ़ोन"
   }
 }

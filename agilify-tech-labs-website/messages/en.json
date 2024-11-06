@@ -72,5 +72,11 @@
     "about": "About Us",
     "contact": "Contact",
     "getStarted": "Get Started"
+  },
+  "footer": {
+    "sitemap": "Sitemap",
+    "contact": "Contact",
+    "email": "Email",
+    "phone": "Phone"
   }
 }
