@@ -2,10 +2,17 @@ import AppSafeAreaView from '@/components/AppSafeAreaView';
 import CustomButton from '@/components/Button';
 import Logo from '@/components/Logo';
 import { images } from '@/constants';
-import { Link, router } from 'expo-router';
+import { useAuth } from '@clerk/clerk-expo';
+import { Link, Redirect, router } from 'expo-router';
 import { Text, View, Image } from 'react-native';
 
 export default function Index() {
+  const { isSignedIn } = useAuth();
+
+  if (isSignedIn) {
+    return <Redirect href={'/home'} />;
+  }
+
   return (
     <>
       <AppSafeAreaView>

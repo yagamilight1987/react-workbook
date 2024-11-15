@@ -1,10 +1,12 @@
 import AppSafeAreaView from '@/components/AppSafeAreaView';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 const Home = () => {
   return (
     <AppSafeAreaView>
-      <Text>Home</Text>
+      <View className="flex-1 px-5 gap-8">
+        <Text>Home</Text>
+      </View>
     </AppSafeAreaView>
   );
 };

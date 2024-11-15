@@ -1,13 +1,21 @@
-import { Stack } from 'expo-router';
-import '../global.css';
-import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
+import { Stack } from 'expo-router';
+import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { setStatusBarStyle } from 'expo-status-bar';
+import { ClerkProvider, ClerkLoaded } from '@clerk/clerk-expo';
+import '../global.css';
+import { SecureStoreTokenCache } from '@/src/cache';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
+
+  if (!publishableKey) {
+    throw new Error('Add EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY to your .env file');
+  }
+
   useEffect(() => {
     setTimeout(() => {
       setStatusBarStyle('light');
@@ -35,10 +43,17 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-    </Stack>
+    <ClerkProvider
+      tokenCache={SecureStoreTokenCache()}
+      publishableKey={publishableKey}
+    >
+      <ClerkLoaded>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        </Stack>
+      </ClerkLoaded>
+    </ClerkProvider>
   );
 }
