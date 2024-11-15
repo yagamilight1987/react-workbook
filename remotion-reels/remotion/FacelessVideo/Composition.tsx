@@ -41,34 +41,66 @@ const hi_sentences = [
   "बायो में लिंक",
 ];
 
+const ka_sentences = [
+  "ನಿಮ್ಮ ಮೊಮ್ಮಕ್ಕಳೊಂದಿಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಲು ತೊಂದರೆಯಾಗುತ್ತಿದೆಯೇ?",
+  "ಏನು ಕೇಳುವುದು ಅಥವಾ ಏನು ಹೇಳುವುದು ಎಂದು ತಿಳಿದಿಲ್ಲವೇ?",
+  "ಅಥವಾ ನೀವು ಇಂಗ್ಲಿಷ್ ಬಳಸುವಲ್ಲಿ ಸ್ವಲ್ಪ ನერვಸ್ ಆಗಿದ್ದೀರಾ?",
+  "ಹಾಗಾದರೆ ಚಿಂತಿಸಬೇಡಿ!",
+  "ಈ AI ಶಕ್ತಿಯುತ ಸಾಧನವನ್ನು ಪರಿಚಯಿಸುತ್ತಿದ್ದೇವೆ",
+  "ನಿಮ್ಮ ಮೊಮ್ಮಕ್ಕಳೊಂದಿಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸುವುದನ್ನು ಸುಲಭಗೊಳಿಸುತ್ತದೆ.",
+  "ಈ ಸಾಧನವು ನಿಮ್ಮಿಗೆ ಸ್ವಯಂ-ರಚಿತ ಸಂಭಾಷಣೆ ವಿನಿಮಯಗಳನ್ನು ಒದಗಿಸುತ್ತದೆ",
+  "ಅಭ್ಯಾಸ ಮಾಡಲು ಮತ್ತು ನಿಜ ಜೀವನದ ಚರ್ಚೆಗಳಲ್ಲಿ ತರುವುದಕ್ಕೆ ಪರ್ಫೆಕ್ಟ್!",
+  "ಸಾಮಾನ್ಯ ಪ್ರಶ್ನೆಗಳಿಂದ ಆಳವಾದ ಚರ್ಚೆಗಳವರೆಗೆ,",
+  "ಇವೆಲ್ಲವೂ ನಿಮ್ಮ ಬೆರಳ ತುದಿಯಲ್ಲಿ ಇರುತ್ತದೆ,",
+  "ಪ್ರತಿ ಸಂವಹನದೊಂದಿಗೆ ನಿಮ್ಮನ್ನು ಆತ್ಮವಿಶ್ವಾಸಿ ಮಾಡುತ್ತದೆ.",
+  "ಸಂಪರ್ಕಿಸುವುದು ಇಷ್ಟು ಸುಲಭವಾಗಿ ಇರುತ್ತದೆ.",
+  "ಒಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ, ಇಂದು ಅಂತರವನ್ನು ಹತ್ತಿರಗೊಳ್ಳಿಸಲು ಪ್ರಾರಂಭಿಸಿ!",
+  "ಬಯೋದಲ್ಲಿ ಲಿಂಕ್",
+];
+
 export const FacelessVideoComposition: React.FC = () => {
   const en_durationInFrames =
     sentences.join("").length * DURATION_PER_CHARACTER;
+
   const hi_durationInFrames =
     hi_sentences.join("").length * DURATION_PER_CHARACTER;
+
+  const ka_durationInFrames =
+    ka_sentences.join("").length * DURATION_PER_CHARACTER;
 
   return (
     <>
       <Composition
         id="en-faceless-video"
         component={FacelessVideo}
-        durationInFrames={en_durationInFrames} // durationInFrames * fps = durationInSeconds
+        durationInFrames={en_durationInFrames}
         fps={VIDEO_FPS}
-        width={VIDEO_WIDTH} // Instagram Reel dimensions
+        width={VIDEO_WIDTH}
         height={VIDEO_HEIGHT}
         defaultProps={{
-          sentences: sentences
+          sentences: sentences,
         }}
       />
       <Composition
         id="hi-faceless-video"
         component={FacelessVideo}
-        durationInFrames={hi_durationInFrames} // durationInFrames * fps = durationInSeconds
+        durationInFrames={hi_durationInFrames}
         fps={VIDEO_FPS}
-        width={VIDEO_WIDTH} // Instagram Reel dimensions
+        width={VIDEO_WIDTH}
         height={VIDEO_HEIGHT}
         defaultProps={{
-          sentences: hi_sentences
+          sentences: hi_sentences,
+        }}
+      />
+      <Composition
+        id="ka-faceless-video"
+        component={FacelessVideo}
+        durationInFrames={ka_durationInFrames}
+        fps={VIDEO_FPS}
+        width={VIDEO_WIDTH}
+        height={VIDEO_HEIGHT}
+        defaultProps={{
+          sentences: ka_sentences,
         }}
       />
     </>
