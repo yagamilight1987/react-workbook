@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "find-flow-app",
+    "name": "Find Flow",
     "slug": "find-flow-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -21,7 +21,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ylfifa20xbox1.findflowapp"
     },
     "web": {
       "bundler": "metro",
@@ -42,6 +43,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "cb18cb31-87fa-49e7-96e8-27ca1b6f87b6"
+      }
     }
   }
 }
