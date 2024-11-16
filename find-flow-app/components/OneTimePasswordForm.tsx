@@ -5,14 +5,15 @@ import Button from './Button';
 
 type Props = {
   onCodeSubmit: (code: string) => void;
+  isLoading: boolean;
 };
 
-const OneTimePasswordForm = ({ onCodeSubmit }: Props) => {
+const OneTimePasswordForm = ({ onCodeSubmit, isLoading }: Props) => {
   const [code, setCode] = useState('');
 
   return (
     <View className="w-full items-center mt-10 gap-10">
-      <Text className="text-secondary text-sRegular tracking-widest text-lg">
+      <Text className="text-secondary font-sRegular">
         Check your email to continue to your app
       </Text>
 
@@ -32,6 +33,7 @@ const OneTimePasswordForm = ({ onCodeSubmit }: Props) => {
         title="Continue"
         onPress={() => onCodeSubmit(code)}
         containerStyles="w-full"
+        isLoading={isLoading}
       />
     </View>
   );

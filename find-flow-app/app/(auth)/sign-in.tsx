@@ -2,25 +2,31 @@ import AppSafeAreaView from '@/components/AppSafeAreaView';
 import Button from '@/components/Button';
 import Logo from '@/components/Logo';
 import OneTimePasswordForm from '@/components/OneTimePasswordForm';
-import { useSignIn } from '@clerk/clerk-expo';
+import { isClerkAPIResponseError, useSignIn } from '@clerk/clerk-expo';
 import { SignInFirstFactor, EmailCodeFactor } from '@clerk/types';
 import { Link } from 'expo-router';
 import { useState } from 'react';
-import { View, Text, TextInput } from 'react-native';
+import { View, Text } from 'react-native';
 import { useRouter } from 'expo-router';
 import EmailForm from '@/components/EmailForm';
+import { ClerkAPIError } from '@clerk/types';
+import ClerkErrors from '@/components/ClerkErrors';
 
 const SignIn = () => {
   const [showOTPForm, setShowOTPForm] = useState(false);
+  const [errors, setErrors] = useState<ClerkAPIError[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const { isLoaded, signIn, setActive } = useSignIn();
   const router = useRouter();
 
   const handleEmailSubmission = async (email: string) => {
-    console.log(email);
+    setErrors([]);
 
     if (!isLoaded) return;
 
     try {
+      setIsLoading(true);
+
       // Start the sign-in process using the email method
       const { supportedFirstFactors } = await signIn.create({
         identifier: email,
@@ -47,16 +53,23 @@ const SignIn = () => {
         // Set showOTPForm to true to display second form and capture the OTP code
         setShowOTPForm(true);
       }
-    } catch (err) {
-      console.error(JSON.stringify(err, null, 2));
+    } catch (error) {
+      if (isClerkAPIResponseError(error)) {
+        setErrors(error.errors);
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleCodeSubmission = async (code: string) => {
-    console.log(code);
+    setErrors([]);
+
     if (!isLoaded) return;
 
     try {
+      setIsLoading(true);
+
       // Use the code provided by the user and attempt verification
       const completeSignIn = await signIn.attemptFirstFactor({
         strategy: 'email_code',
@@ -73,10 +86,12 @@ const SignIn = () => {
         // complete further steps.
         console.error(JSON.stringify(completeSignIn, null, 2));
       }
-    } catch (err: any) {
-      // See https://clerk.com/docs/custom-flows/error-handling
-      // for more info on error handling
-      console.error(JSON.stringify(err, null, 2));
+    } catch (error) {
+      if (isClerkAPIResponseError(error)) {
+        setErrors(error.errors);
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -84,12 +99,15 @@ const SignIn = () => {
     <AppSafeAreaView>
       <View className="flex-1 px-5 min-h-[85vh] items-center justify-center">
         <Logo />
-        <Text className="text-secondary text-sRegular tracking-widest text-2xl mt-10">
+        <Text className="text-secondary font-sRegular text-2xl mt-10 self-start">
           Login
         </Text>
         {showOTPForm ? (
           <>
-            <OneTimePasswordForm onCodeSubmit={handleCodeSubmission} />
+            <OneTimePasswordForm
+              onCodeSubmit={handleCodeSubmission}
+              isLoading={isLoading}
+            />
             <Button
               title="Back"
               onPress={() => setShowOTPForm(false)}
@@ -98,15 +116,20 @@ const SignIn = () => {
           </>
         ) : (
           <>
-            <EmailForm onEmailSubmit={handleEmailSubmission} />
+            <EmailForm
+              onEmailSubmit={handleEmailSubmission}
+              isLoading={isLoading}
+            />
             <Text className="text-secondary font-sRegular mt-10">
               Don't have an account?{' '}
-              <Link href="/sign-up" className="text-white font-sMedium">
+              <Link replace href="/sign-up" className="text-white font-sMedium">
                 Sign up
               </Link>
             </Text>
           </>
         )}
+
+        <ClerkErrors errors={errors} />
       </View>
     </AppSafeAreaView>
   );

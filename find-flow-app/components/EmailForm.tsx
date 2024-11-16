@@ -4,9 +4,10 @@ import Button from './Button';
 
 type Props = {
   onEmailSubmit: (email: string) => void;
+  isLoading?: boolean;
 };
 
-const EmailForm = ({ onEmailSubmit }: Props) => {
+const EmailForm = ({ onEmailSubmit, isLoading }: Props) => {
   const [email, setEmail] = useState('');
 
   return (
@@ -22,7 +23,11 @@ const EmailForm = ({ onEmailSubmit }: Props) => {
           className="p-4 bg-white w-full rounded text-secondary text-sRegular"
         />
       </View>
-      <Button onPress={() => onEmailSubmit(email)} title="Continue" />
+      <Button
+        onPress={() => onEmailSubmit(email)}
+        title="Continue"
+        isLoading={isLoading}
+      />
     </View>
   );
 };
