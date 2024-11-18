@@ -15,7 +15,7 @@
     },
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.anonymous.find-flow-app"
+      "bundleIdentifier": "com.ylfifa20xbox1.findflowapp"
     },
     "android": {
       "adaptiveIcon": {
