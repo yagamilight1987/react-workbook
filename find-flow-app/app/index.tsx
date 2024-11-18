@@ -2,10 +2,26 @@ import AppSafeAreaView from '@/components/AppSafeAreaView';
 import CustomButton from '@/components/Button';
 import Logo from '@/components/Logo';
 import { images } from '@/constants';
-import { Link, router } from 'expo-router';
+import { Link } from 'expo-router';
 import { Text, View, Image } from 'react-native';
+import { useAuth0 } from 'react-native-auth0';
 
 export default function Index() {
+  const { authorize, user } = useAuth0();
+
+  const handleLogin = async () => {
+    try {
+      console.log('\n calling authorize');
+      const credentials = await authorize();
+
+      console.log(`\nCredentials: ${credentials}`);
+
+      console.log('\nUser: ' + user);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <>
       <AppSafeAreaView>
@@ -25,7 +41,7 @@ export default function Index() {
           <View className="w-full items-center">
             <CustomButton
               title="Continue with email"
-              onPress={() => router.push('/sign-in')}
+              onPress={handleLogin}
               containerStyles="w-full"
             />
             <Text className="text-white my-5">or</Text>

@@ -4,6 +4,7 @@ import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import { setStatusBarStyle } from 'expo-status-bar';
+import { Auth0Provider } from 'react-native-auth0';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -34,11 +35,20 @@ export default function RootLayout() {
     return null;
   }
 
+  const domain = process.env.EXPO_PUBLIC_AUTH0_DOMAIN;
+  const clientId = process.env.EXPO_PUBLIC_AUTH0_CLIENT_ID;
+
+  if (!domain || !clientId) {
+    return null;
+  }
+
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-    </Stack>
+    <Auth0Provider domain={domain} clientId={clientId}>
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+      </Stack>
+    </Auth0Provider>
   );
 }
