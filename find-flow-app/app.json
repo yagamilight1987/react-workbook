@@ -15,7 +15,8 @@
     },
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.anonymous.find-flow-app"
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "bundleIdentifier": "com.ylfifa20xbox1.findflowapp"
     },
     "android": {
       "adaptiveIcon": {
@@ -38,6 +39,16 @@
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#0E013F"
+        }
+      ],
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
         }
       ]
     ],
