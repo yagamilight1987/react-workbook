@@ -32,8 +32,8 @@ const Message: React.FC<Props> = ({ value, inputRange }: Props) => {
     const currentWord = words[index];
     const currentWordCharacterCount = currentWord.length;
 
-    const startWord = wordsBeforeCharacterCount * DURATION_PER_CHARACTER;
-    const endWord = currentWordCharacterCount * DURATION_PER_CHARACTER;
+    const startWord = wordsBeforeCharacterCount * (DURATION_PER_CHARACTER / 2);
+    const endWord = currentWordCharacterCount * (DURATION_PER_CHARACTER / 2);
 
     return { start: start + startWord, end: start + startWord + endWord };
   };
@@ -44,7 +44,7 @@ const Message: React.FC<Props> = ({ value, inputRange }: Props) => {
       className="justify-center items-center text-6xl text-center py-20"
       style={{ opacity: sentenceOpacity() }}
     >
-      <span className="bg-white flex flex-wrap justify-center items-center rounded-xl">
+      <section className="bg-white flex flex-wrap justify-center items-center rounded-xl p-10">
         {words.map((word: string, index: number) => (
           <Word
             key={index}
@@ -52,7 +52,7 @@ const Message: React.FC<Props> = ({ value, inputRange }: Props) => {
             inputRange={getInputRange(words, index)}
           />
         ))}
-      </span>
+      </section>
     </AbsoluteFill>
   );
 };
